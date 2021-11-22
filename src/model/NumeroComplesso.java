@@ -35,7 +35,7 @@ public class NumeroComplesso {
         return new NumeroComplesso(a*x.parteReale, a*x.parteImmaginaria);
     }
     public static NumeroComplesso divisione (NumeroComplesso x, NumeroComplesso y) {
-        return moltiplicazione(x, moltiplicazione(1/y.radicequadrata()/y.radicequadrata(), y.coniugato()));
+        return moltiplicazione(x, moltiplicazione(1/y.abs()/y.abs(), y.coniugato()));
     }
     public NumeroComplesso coniugato(){
         return new NumeroComplesso(parteReale, -parteImmaginaria);
@@ -47,10 +47,36 @@ public class NumeroComplesso {
     public double immmaginaria(){
         return parteImmaginaria;
     }
-    public double radicequadrata(){
+    public double abs(){
         return Math.sqrt(parteReale*parteReale+parteImmaginaria*parteImmaginaria);
     }
     public double arg(){
-        return (2*Math.PI + Math.atan2(parteImmaginaria, parteReale)) % (2*Math.PI);
+        return (Math.atan2(parteImmaginaria, parteReale));
     }
+    
+        public double mod() {
+        if (parteReale!=0 || parteImmaginaria!=0) {
+            return Math.sqrt(parteReale*parteReale+parteImmaginaria*parteImmaginaria);
+        } else {
+            return 0d;
+        }
+    }
+    public NumeroComplesso radiceQuadra() {
+        double reale = this.parteReale*this.parteReale - this.parteImmaginaria*this.parteImmaginaria;
+        double immaginaria = 2*this.parteReale*this.parteImmaginaria;
+        return new NumeroComplesso(reale,immaginaria);
+    }
+    
+    @Override
+    public String toString()
+    {
+        String re = this.parteReale+"";
+        String im = "";
+        if(this.parteImmaginaria < 0)
+            im = this.parteImmaginaria+"i";
+        else
+            im = "+"+this.parteImmaginaria+"i";
+        return re+im;
+    }
+    
 }
