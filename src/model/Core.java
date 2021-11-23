@@ -10,45 +10,40 @@ import java.util.*;
  *
  * @author agostinomoffa
  */
-public class Core implements Operations{
+public class Core implements Operations {
+
     private StackSingle data;
-    public Core(){
+
+    public Core() {
         data = StackSingle.getInstance();
     }
-    
+
     @Override
-    public void creaNumero(double a, double b){
-        NumeroComplesso j = new NumeroComplesso(a,b);
+    public void creaNumero(double a, double b) {
+        NumeroComplesso j = new NumeroComplesso(a, b);
         this.pushInStack(j);
     }
-    
-  
-    
-    public void pushInStack(NumeroComplesso a){
+
+    @Override
+    public void pushInStack(NumeroComplesso a) {
         data.StackPush(a);
     }
-    
-    public NumeroComplesso popFromStack(){
+
+    @Override
+    public NumeroComplesso popFromStack() {
         return (NumeroComplesso) data.StackPop();
-    }
-    
-    public void sottinstack(){
-        NumeroComplesso a = (NumeroComplesso) data.StackPop();
-        NumeroComplesso b = (NumeroComplesso) data.StackPop();
-        NumeroComplesso s = NumeroComplesso.sottrazione(a, b);
-        data.StackPush(s);
     }
 
     @Override
     public void sommaInStack() {
-               NumeroComplesso a,b,s;
-        
-        if(data.StackStatus())
-        {
-         a = (NumeroComplesso) data.StackPop();
+        NumeroComplesso a, b, s;
+
+        if (data.StackStatus()) {
+            a = (NumeroComplesso) data.StackPop();
+        } else {
+            throw new EmptyStackException();
         }
-        else throw new EmptyStackException(); 
-        if(data.StackStatus()){
+        if (data.StackStatus()) {
             b = (NumeroComplesso) data.StackPop();
             s = NumeroComplesso.somma(a, b);
             data.StackPush(s);
@@ -60,30 +55,77 @@ public class Core implements Operations{
 
     @Override
     public void diffInStack() {
-        NumeroComplesso a = (NumeroComplesso) data.StackPop();
-        NumeroComplesso b = (NumeroComplesso) data.StackPop();
-        NumeroComplesso s = NumeroComplesso.sottrazione(a, b);
-        data.StackPush(s);
+        NumeroComplesso a, b, s;
+
+        if (data.StackStatus()) {
+            a = (NumeroComplesso) data.StackPop();
+        } else {
+            throw new EmptyStackException();
+        }
+        if (data.StackStatus()) {
+            b = (NumeroComplesso) data.StackPop();
+            s = NumeroComplesso.sottrazione(a, b);
+            data.StackPush(s);
+        } else {
+            data.StackPush(a);
+            throw new EmptyStackException();
+        }
     }
 
     @Override
     public void prodInStack() {
-        NumeroComplesso a = (NumeroComplesso) data.StackPop();
-        NumeroComplesso b = (NumeroComplesso) data.StackPop();
-        NumeroComplesso s = NumeroComplesso.moltiplicazione(a, b);
-        data.StackPush(s);
+        NumeroComplesso a, b, s;
+
+        if (data.StackStatus()) {
+            a = (NumeroComplesso) data.StackPop();
+        } else {
+            throw new EmptyStackException();
+        }
+        if (data.StackStatus()) {
+            b = (NumeroComplesso) data.StackPop();
+            s = NumeroComplesso.moltiplicazione(a, b);
+            data.StackPush(s);
+        } else {
+            data.StackPush(a);
+            throw new EmptyStackException();
+        }
     }
 
     @Override
     public void divInStack() {
-        NumeroComplesso a = (NumeroComplesso) data.StackPop();
-        NumeroComplesso b = (NumeroComplesso) data.StackPop();
-        NumeroComplesso s = NumeroComplesso.divisione(a, b);
-        data.StackPush(s);
+        NumeroComplesso a, b, s;
+
+        if (data.StackStatus()) {
+            a = (NumeroComplesso) data.StackPop();
+        } else {
+            throw new EmptyStackException();
+        }
+        if (data.StackStatus()) {
+            b = (NumeroComplesso) data.StackPop();
+            s = NumeroComplesso.divisione(a, b);
+            data.StackPush(s);
+        } else {
+            data.StackPush(a);
+            throw new EmptyStackException();
+        }
     }
-   
-   public void printStack(){
-       System.out.println(data.stackPrint());
-   }
+
     
+    
+    public void radiceInStack(){
+        NumeroComplesso a, s;
+         if (data.StackStatus()) {
+            a = (NumeroComplesso) data.StackPop();
+        } else throw new EmptyStackException();
+         s = a.radiceQuadra();
+         data.StackPush(s);
+    
+    }
+    
+    
+    
+    public void printStack() {
+        System.out.println(data.stackPrint());
+    }
+
 }

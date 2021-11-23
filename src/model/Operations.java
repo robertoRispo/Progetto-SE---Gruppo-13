@@ -23,5 +23,6 @@ public interface Operations {
      * @return
      */
     void creaNumero(double a, double b);
-    
+    void pushInStack(NumeroComplesso a); 
+    NumeroComplesso popFromStack();
 }
