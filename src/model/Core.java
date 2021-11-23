@@ -112,6 +112,7 @@ public class Core implements Operations {
 
     
     
+    @Override
     public void radiceInStack(){
         NumeroComplesso a, s;
          if (data.StackStatus()) {

@@ -31,10 +31,25 @@ public class CoreTest {
         }
 
     }
+    
+    
+    
+    @Test
+    public void testCreaNumero(){
+        int a, b;
+        NumeroComplesso j;
+        for (int i = 0; i < 999; i++) {
+            a = ran.nextInt();
+            b = ran.nextInt();
+            test.creaNumero(a, b);     
+            j = new NumeroComplesso(a, b);
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
+
+            assertEquals(j.equals(test.popFromStack()), true);
+
+        }
+    }
+  
     @Test
     public void testSommaInStack() {
         int a, b, c, d;

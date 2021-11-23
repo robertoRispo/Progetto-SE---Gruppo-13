@@ -24,5 +24,6 @@ public interface Operations {
      */
     void creaNumero(double a, double b);
     void pushInStack(NumeroComplesso a); 
+    void radiceInStack();
     NumeroComplesso popFromStack();
 }
