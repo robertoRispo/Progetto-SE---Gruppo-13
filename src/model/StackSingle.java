@@ -33,6 +33,13 @@ public class StackSingle implements StackOp{
     public void StackPush(Object E) {
       data.push(E);
     }
+
+    @Override
+    public boolean StackStatus() {
+        return data.isEmpty();
+    }
+    
+    
     
     
 }

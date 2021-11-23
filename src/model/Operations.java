@@ -8,8 +8,20 @@ package model;
  *
  * @author agostinomoffa
  */
-public interface StackOp {
-    public Object StackPop();
-    public void StackPush(Object E);
-    public boolean StackStatus();
+public interface Operations {
+    void sommaInStack();
+    void diffInStack();
+    void prodInStack();
+
+    /**
+     *
+     */
+    void divInStack();
+
+    /**
+     *
+     * @return
+     */
+    void creaNumero();
+    
 }
