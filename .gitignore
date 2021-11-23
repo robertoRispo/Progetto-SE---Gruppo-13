@@ -58,3 +58,4 @@ dkms.conf
 *.txt
 *.csv
 /build/*
+/dist/

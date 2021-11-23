@@ -20,9 +20,11 @@ public class CoreStack {
         dataSingle = StackSingle.getInstance();
     }
 
-    List<NumeroComplesso> stackToList = dataSingle.convertiLista();
-    
-    public List<NumeroComplesso> getSubList
-    List<NumeroComplesso> getSubList = stackToList.subList(0, indexElement);
 
+    public List<NumeroComplesso> getSubList() {
+        List<NumeroComplesso> stackToList = dataSingle.convertiLista();
+        List<NumeroComplesso> getSubList = stackToList.subList(0, indexElement);
+        return getSubList;
+    }
+    
 }
