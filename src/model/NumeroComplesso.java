@@ -67,6 +67,15 @@ public class NumeroComplesso {
         return new NumeroComplesso(reale,immaginaria);
     }
     
+    public boolean equals(NumeroComplesso j){
+        if(this.reale() == j.reale()){
+            if(this.immmaginaria() == j.immmaginaria()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @Override
     public String toString()
     {

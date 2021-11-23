@@ -17,9 +17,7 @@ public class Core implements Operations{
     }
     
     @Override
-    public void creaNumero(){
-        int a = 5;
-        int b = 7;
+    public void creaNumero(double a, double b){
         NumeroComplesso j = new NumeroComplesso(a,b);
         this.pushInStack(j);
     }
@@ -28,6 +26,10 @@ public class Core implements Operations{
     
     public void pushInStack(NumeroComplesso a){
         data.StackPush(a);
+    }
+    
+    public NumeroComplesso popFromStack(){
+        return (NumeroComplesso) data.StackPop();
     }
     
     public void sottinstack(){
@@ -80,6 +82,8 @@ public class Core implements Operations{
         data.StackPush(s);
     }
    
-   
+   public void printStack(){
+       System.out.println(data.stackPrint());
+   }
     
 }

@@ -39,12 +39,17 @@ public class StackSingle implements StackOp{
 
     @Override
     public boolean StackStatus() {
-        return data.isEmpty();
+        return !data.isEmpty();
     }
     
     @Override
     public List<NumeroComplesso> convertiLista(){
         List<NumeroComplesso> stackToList = new ArrayList(data);
         return stackToList;
+    }
+    
+    @Override
+    public String stackPrint(){
+        return(data.toString());
     }
 }
