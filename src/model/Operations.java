@@ -25,5 +25,6 @@ public interface Operations {
     void creatNumber(double a, double b);
     void pushInStack(NumeroComplesso a); 
     void square2InStack();
+    void inversionInStack();
     NumeroComplesso popFromStack();
 }

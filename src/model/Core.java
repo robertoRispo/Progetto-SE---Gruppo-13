@@ -170,4 +170,9 @@ public class Core implements Operations {
         System.out.println(data.stackPrint());
     }
 
+    @Override
+    public void inversionInStack() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
