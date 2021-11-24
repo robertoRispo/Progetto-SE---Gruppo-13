@@ -39,7 +39,7 @@ public class Main {
         
         Calcolatrice calcolatrice = new Calcolatrice(core, coreStack);
         
-        Gui gui = new Gui(calcolatrice);
+        Gui gui = new Gui(calcolatrice, coreStack);
         gui.setVisible(true);
 
         System.out.println("SI ACCENDE");

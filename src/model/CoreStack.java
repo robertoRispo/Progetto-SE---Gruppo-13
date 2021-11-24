@@ -20,20 +20,24 @@ public class CoreStack {
         dataSingle = StackSingle.getInstance();
     }
 
-/**
- * Il metodo getSubList() richiama il metodo stackToList per ottenere lo stack
- * in formato lista, per poi prendere i primi indexElement elementi e
- * restituirli in output sotto forma di lista di numeri complessi
- * @return List<NumeroComplesso>
- */
+    /**
+     * Il metodo getSubList() richiama il metodo stackToList per ottenere lo
+     * stack in formato lista, per poi prendere i primi indexElement elementi e
+     * restituirli in output sotto forma di lista di numeri complessi
+     *
+     * @return List<NumeroComplesso>
+     */
     public List<NumeroComplesso> getSubList() {
         List<NumeroComplesso> stackToList = dataSingle.convertiLista();
-        List<NumeroComplesso> getSubList = stackToList.subList(0, indexElement);
-        return getSubList;
+
+        if (stackToList.size() > 12) {
+            List<NumeroComplesso> getSubList = stackToList.subList(0, indexElement);
+            return getSubList;
+        } else {
+            List<NumeroComplesso> getSubList = stackToList.subList(0, stackToList.size());
+            return getSubList;
+        }
+        
     }
-    
-    
-    
-    
-    
+
 }
