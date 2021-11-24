@@ -6,7 +6,6 @@ package controller;
 
 import model.Core;
 import model.CoreStack;
-import view.GUI;
 
 /**
  *
