@@ -27,7 +27,7 @@ public class Core implements Operations {
      * @param b parte immaginaria
      */
     @Override
-    public void creaNumero(double a, double b) {
+    public void creatNumber(double a, double b) {
         NumeroComplesso j = new NumeroComplesso(a, b);
         this.pushInStack(j);
     }
@@ -57,7 +57,7 @@ public class Core implements Operations {
      * del risultato nello stack
      */
     @Override
-    public void sommaInStack() {
+    public void sumInStack() {
         NumeroComplesso a, b, s;
 
         if (data.StackStatus()) {
@@ -153,7 +153,7 @@ public class Core implements Operations {
      * del risultato nello stack
      */
     @Override
-    public void radiceInStack(){
+    public void square2InStack(){
         NumeroComplesso a, s;
          if (data.StackStatus()) {
             a = (NumeroComplesso) data.StackPop();

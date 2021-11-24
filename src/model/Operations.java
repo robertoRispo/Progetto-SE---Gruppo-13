@@ -9,7 +9,7 @@ package model;
  * @author agostinomoffa
  */
 public interface Operations {
-    void sommaInStack();
+    void sumInStack();
     void diffInStack();
     void prodInStack();
 
@@ -22,8 +22,8 @@ public interface Operations {
      *
      * @return
      */
-    void creaNumero(double a, double b);
+    void creatNumber(double a, double b);
     void pushInStack(NumeroComplesso a); 
-    void radiceInStack();
+    void square2InStack();
     NumeroComplesso popFromStack();
 }

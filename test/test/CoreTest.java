@@ -27,7 +27,7 @@ public class CoreTest {
     @Before
     public void setUpClass() {
         for (int i = 0; i < 0; i++) {
-            test.creaNumero(ran.nextInt(), ran.nextInt());
+            test.creatNumber(ran.nextInt(), ran.nextInt());
         }
 
     }
@@ -35,13 +35,13 @@ public class CoreTest {
     
     
     @Test
-    public void testCreaNumero(){
+    public void testCreatNumber(){
         int a, b;
         NumeroComplesso j;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creaNumero(a, b);     
+            test.creatNumber(a, b);     
             j = new NumeroComplesso(a, b);
 
 
@@ -60,9 +60,9 @@ public class CoreTest {
             b = ran.nextInt();
             c = ran.nextInt();
             d = ran.nextInt();
-            test.creaNumero(a, b);
-            test.creaNumero(c, d);
-            test.sommaInStack();
+            test.creatNumber(a, b);
+            test.creatNumber(c, d);
+            test.sumInStack();
             j = new NumeroComplesso(a, b);
             k = new NumeroComplesso(c, d);
 
@@ -82,8 +82,8 @@ public class CoreTest {
             b = ran.nextInt();
             c = ran.nextInt();
             d = ran.nextInt();
-            test.creaNumero(a, b);
-            test.creaNumero(c, d);
+            test.creatNumber(a, b);
+            test.creatNumber(c, d);
             test.diffInStack();
             j = new NumeroComplesso(a, b);
             k = new NumeroComplesso(c, d);
@@ -103,8 +103,8 @@ public class CoreTest {
             b = ran.nextInt();
             c = ran.nextInt();
             d = ran.nextInt();
-            test.creaNumero(a, b);
-            test.creaNumero(c, d);
+            test.creatNumber(a, b);
+            test.creatNumber(c, d);
             test.prodInStack();
             j = new NumeroComplesso(a, b);
             k = new NumeroComplesso(c, d);
@@ -126,8 +126,8 @@ public class CoreTest {
             b = ran.nextInt();
             c = ran.nextInt();
             d = ran.nextInt();
-            test.creaNumero(a, b);
-            test.creaNumero(c, d);
+            test.creatNumber(a, b);
+            test.creatNumber(c, d);
             test.divInStack();
             j = new NumeroComplesso(a, b);
             k = new NumeroComplesso(c, d);
@@ -139,14 +139,14 @@ public class CoreTest {
     
     
     @Test
-    public void testradiceInStack(){
+    public void testsquare2InStack(){
         int a, b;
         NumeroComplesso j;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creaNumero(a, b);     
-            test.radiceInStack();
+            test.creatNumber(a, b);     
+            test.square2InStack();
             j = new NumeroComplesso(a, b);
 
 
