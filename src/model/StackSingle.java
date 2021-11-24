@@ -4,6 +4,8 @@ package model;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -45,6 +47,7 @@ public class StackSingle implements StackOp{
     @Override
     public List<NumeroComplesso> convertiLista(){
         List<NumeroComplesso> stackToList = new ArrayList(data);
+        Collections.reverse(stackToList);
         return stackToList;
     }
     

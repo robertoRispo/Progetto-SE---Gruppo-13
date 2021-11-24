@@ -83,10 +83,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Component id="labelComplexPart" max="32767" attributes="0"/>
+                                          <Component id="labelComplexPart" pref="145" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="textComplexPart" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="buttonInsert" min="-2" max="-2" attributes="0"/>
@@ -277,6 +276,9 @@
               <Dimension value="[60, 25]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textRealPartMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textComplexPart">
           <Properties>
@@ -290,6 +292,9 @@
               <Dimension value="[60, 25]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textComplexPartMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonInsert">
           <Properties>

@@ -38,6 +38,9 @@ public class Gui extends javax.swing.JFrame {
         this.numList = new ArrayList<>();
         this.model = new DefaultListModel();
 
+        textRealPart.setText("0");
+        textComplexPart.setText("0");
+
     }
 
     /**
@@ -136,10 +139,20 @@ public class Gui extends javax.swing.JFrame {
         textRealPart.setMaximumSize(new java.awt.Dimension(60, 25));
         textRealPart.setMinimumSize(new java.awt.Dimension(60, 25));
         textRealPart.setPreferredSize(new java.awt.Dimension(60, 25));
+        textRealPart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textRealPartMouseClicked(evt);
+            }
+        });
 
         textComplexPart.setMaximumSize(new java.awt.Dimension(60, 25));
         textComplexPart.setMinimumSize(new java.awt.Dimension(60, 25));
         textComplexPart.setPreferredSize(new java.awt.Dimension(60, 25));
+        textComplexPart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textComplexPartMouseClicked(evt);
+            }
+        });
 
         buttonInsert.setText("Inserisci");
         buttonInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +190,8 @@ public class Gui extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(labelComplexPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(labelComplexPart, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
                                         .addComponent(textComplexPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(buttonInsert)
@@ -271,6 +283,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackSum();
+        updateModel();
     }//GEN-LAST:event_buttonSumActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Differenza"
@@ -278,6 +291,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiffActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackDiff();
+        updateModel();
     }//GEN-LAST:event_buttonDiffActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Prodotto"
@@ -285,6 +299,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackProd();
+        updateModel();
     }//GEN-LAST:event_buttonProdActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Divisione"
@@ -292,6 +307,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackDiv();
+        updateModel();
     }//GEN-LAST:event_buttonDivActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata"
@@ -299,6 +315,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackSqr();
+        updateModel();
     }//GEN-LAST:event_buttonSqrActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno"
@@ -306,6 +323,7 @@ public class Gui extends javax.swing.JFrame {
     private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
         // TODO add your handling code here:
         calcolatrice.stackInv();
+        updateModel();
     }//GEN-LAST:event_buttonInvActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Inserisci" Questo
@@ -313,26 +331,61 @@ public class Gui extends javax.swing.JFrame {
      */
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
         // TODO add your handling code here:
+        double real = 0, img = 0;
+
         String realPart = textRealPart.getText();
         String complexPart = textComplexPart.getText();
 
-        if (isNumeric(realPart) && isNumeric(complexPart)) {
-            double real = Double.parseDouble(realPart);
-            double img = Double.parseDouble(complexPart);
-
-            calcolatrice.creatComplexNumber(real, img);
+        if (realPart.equals("")) {
+            real = 0;
+        } else if (isNumeric(realPart)) {
+            real = Double.parseDouble(realPart);
         } else {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Devi inserire solo variabili numeriche!");
+
+            textRealPart.setText("0");
+            textComplexPart.setText("0");
+            return;
         }
 
-        textRealPart.setText("");
-        textComplexPart.setText("");
-        
-        numList = coreStack.getSubList();
-        updateModel(model, numList);
-        listComplexNumbers.setModel(model);
+        if (complexPart.equals("")) {
+            img = 0;
+        } else if (isNumeric(complexPart)) {
+            img = Double.parseDouble(complexPart);
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Devi inserire solo variabili numeriche!");
+
+            textRealPart.setText("0");
+            textComplexPart.setText("0");
+            return;
+        }
+
+        textRealPart.setText("0");
+        textComplexPart.setText("0");
+        calcolatrice.creatComplexNumber(real, img);
+        updateModel();
+
     }//GEN-LAST:event_buttonInsertActionPerformed
+    /**
+     * Metodo richiamato quando viene premuto il pulsante sinistro del mouse e
+     * svuota l'area di testo
+     */
+    private void textRealPartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textRealPartMouseClicked
+        // TODO add your handling code here:
+        textRealPart.setText("");
+    }//GEN-LAST:event_textRealPartMouseClicked
+
+    /**
+     * Metodo richiamato quando viene premuto il pulsante sinistro del mouse e
+     * svuota l'area di testo
+     */
+    private void textComplexPartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textComplexPartMouseClicked
+        // TODO add your handling code here:
+        textComplexPart.setText("");
+
+    }//GEN-LAST:event_textComplexPartMouseClicked
 
     /**
      * @param args the command line arguments
@@ -373,19 +426,27 @@ public class Gui extends javax.swing.JFrame {
     /**
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici, False altrimenti
+     *
      * @param String stringa in input
      * @return boolean (True o False)
      */
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
-    
-    public static void updateModel(DefaultListModel model, List<NumeroComplesso> list){
+
+    /**
+     * Metodo necessario per aggiornare il model del component
+     * listComplexNumbers
+     */
+    public void updateModel() {
+        numList = coreStack.getSubList();
         model.clear();
-        for (int i = 0; i<list.size(); i++) {
-            NumeroComplesso element = list.get(i);
+        for (int i = 0; i < numList.size(); i++) {
+            NumeroComplesso element = numList.get(i);
             model.addElement(element);
         }
+        listComplexNumbers.setModel(model);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
