@@ -68,7 +68,7 @@ public class Calcolatrice {
      * Metodo utilizzato per invertire il segno di un elemento nello stack
      */
     public void stackInv() {
-        core.inversionInStack();
+        core.conjugatedInStack();
     }
 
 }

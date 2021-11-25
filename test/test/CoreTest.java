@@ -51,7 +51,7 @@ public class CoreTest {
     }
   
     @Test
-    public void testSommaInStack() {
+    public void testSumInStack() {
         int a, b, c, d;
         ComplexNumber j;
         ComplexNumber k;
@@ -139,7 +139,7 @@ public class CoreTest {
     
     
     @Test
-    public void testsquare2InStack(){
+    public void testSquare2InStack(){
         int a, b;
         ComplexNumber j;
         for (int i = 0; i < 999; i++) {
@@ -152,6 +152,60 @@ public class CoreTest {
 
             assertEquals(j.sqrt().equals(test.popFromStack()), true);
 
+        }
+    }
+    
+    @Test
+    public void testConjugatedInStack(){
+        int a, b;
+        ComplexNumber j;
+        for (int i = 0; i < 999; i++) {
+            a = ran.nextInt();
+            b = ran.nextInt();
+            test.creatNumber(a, b);     
+            test.conjugatedInStack();
+            j = new ComplexNumber(a, b);
+
+
+            assertEquals(j.conjugated().equals(test.popFromStack()), true);
+
+        }
+    }
+    
+    @Test
+    public void testModInStack(){
+          int a, b;
+        ComplexNumber j;
+        ComplexNumber h;
+        for (int i = 0; i < 999; i++) {
+            a = ran.nextInt();
+            b = ran.nextInt();
+            test.creatNumber(a, b);     
+            test.modInStack();
+            j = new ComplexNumber(a, b);
+            h = test.popFromStack();
+
+            assertEquals(j.mod() == h.re(), true);
+            assertEquals(h.im() == 0, true);
+        }
+    }
+    
+    
+    @Test
+    public void testAbsInStack(){
+          int a, b;
+        ComplexNumber j;
+        ComplexNumber h;
+        for (int i = 0; i < 999; i++) {
+            a = ran.nextInt();
+            b = ran.nextInt();
+            test.creatNumber(a, b);     
+            test.absInStack();
+            j = new ComplexNumber(a, b);
+            h = test.popFromStack();
+
+            assertEquals(j.abs() == h.re(), true);
+            assertEquals(h.im() == 0, true);
         }
     }
 }

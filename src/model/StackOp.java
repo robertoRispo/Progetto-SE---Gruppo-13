@@ -11,6 +11,7 @@ import java.util.List;
  * @author agostinomoffa
  */
 public interface StackOp {
+  
     public Object StackPop();
     public void StackPush(Object E);
     public boolean StackStatus();

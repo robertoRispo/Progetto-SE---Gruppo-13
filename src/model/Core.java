@@ -175,9 +175,48 @@ public class Core implements Operations {
         System.out.println(data.stackPrint());
     }
 
+    /**
+     * Metodo utilizzato per effettuare il coniugato del numero presente sulla 
+     * cima dello stack.
+     */
     @Override
-    public void inversionInStack() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void conjugatedInStack() {
+        ComplexNumber a;
+        ComplexNumber s;
+         if (data.StackStatus()) {
+            a = (ComplexNumber) data.StackPop();
+        } else throw new EmptyStackException();
+         s = a.conjugated();
+         data.StackPush(s);
     }
 
+    /**
+     * Metodo utilizzato per effettuare il modulo del numero presente sulla 
+     * cima dello stack, pochè il risultato è un numero reale verrà inserito 
+     * nello stack nella forma mod + 0i;
+     */
+    @Override
+    public void modInStack(){
+        ComplexNumber a;
+        ComplexNumber s;
+         if (data.StackStatus()) {
+            a = (ComplexNumber) data.StackPop();
+        } else throw new EmptyStackException();
+         s = new ComplexNumber(a.mod(),0);
+         data.StackPush(s);
+    }
+    
+    
+    
+    @Override
+    public void absInStack(){
+        ComplexNumber a;
+        ComplexNumber s;
+         if (data.StackStatus()) {
+            a = (ComplexNumber) data.StackPop();
+        } else throw new EmptyStackException();
+         s = new ComplexNumber(a.abs(),0);
+         data.StackPush(s);
+    }
 }
+
