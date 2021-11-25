@@ -31,9 +31,5 @@ public class CoreStack {
         List<ComplexNumber> getSubList = stackToList.subList(0, indexElement);
         return getSubList;
     }
-    
-    
-    
-    
-    
+
 }

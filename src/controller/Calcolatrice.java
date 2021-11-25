@@ -6,7 +6,6 @@ package controller;
 
 import model.Core;
 import model.CoreStack;
-import view.GUI;
 
 /**
  *
@@ -21,31 +20,53 @@ public class Calcolatrice {
         this.core = core;
         this.coreStack = coreStack;
     }
-
+    
+    /**
+     * Metodo utilizzato per creare un numero complesso e inserirlo nello stack
+     */
     public void creatComplexNumber(double real, double img) {
         core.creatNumber(real, img);
     }
-
+    
+    /**
+     * Metodo utilizzato per sommare due elementi nello stack
+     */
     public void stackSum() {
         core.sumInStack();
     }
-
+    
+    /**
+     * Metodo utilizzato per fare la differenza tra due elementi nello stack
+     */
     public void stackDiff() {
         core.diffInStack();
     }
 
+    /**
+     * Metodo utilizzato per moltiplicare due elementi nello stack
+     */
     public void stackProd() {
         core.prodInStack();
     }
-
+    
+    /**
+     * Metodo utilizzato per dividere due elementi nello stack
+     */
     public void stackDiv() {
         core.divInStack();
     }
-
+    
+    /**
+     * Metodo utilizzato per calcolare la radice quadrata di un elemento
+     * nello stack
+     */
     public void stackSqr() {
         core.square2InStack();
     }
-
+    
+    /**
+     * Metodo utilizzato per invertire il segno di un elemento nello stack
+     */
     public void stackInv() {
         core.inversionInStack();
     }
