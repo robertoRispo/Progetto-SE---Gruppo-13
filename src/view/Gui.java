@@ -24,7 +24,7 @@ public class Gui extends javax.swing.JFrame {
      */
     Calcolatrice calcolatrice;
     CoreStack coreStack;
-    List<NumeroComplesso> numList;
+    List<ComplexNumber> numList;
     DefaultListModel model;
 
     public Gui() {
@@ -442,7 +442,7 @@ public class Gui extends javax.swing.JFrame {
         numList = coreStack.getSubList();
         model.clear();
         for (int i = 0; i < numList.size(); i++) {
-            NumeroComplesso element = numList.get(i);
+            ComplexNumber element = numList.get(i);
             model.addElement(element);
         }
         listComplexNumbers.setModel(model);
