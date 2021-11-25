@@ -43,8 +43,8 @@ public class StackSingle implements StackOp{
     }
     
     @Override
-    public List<NumeroComplesso> convertiLista(){
-        List<NumeroComplesso> stackToList = new ArrayList(data);
+    public List<ComplexNumber> convertiLista(){
+        List<ComplexNumber> stackToList = new ArrayList(data);
         return stackToList;
     }
     

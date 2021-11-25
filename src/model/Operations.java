@@ -23,8 +23,8 @@ public interface Operations {
      * @return
      */
     void creatNumber(double a, double b);
-    void pushInStack(NumeroComplesso a); 
+    void pushInStack(ComplexNumber a); 
     void square2InStack();
     void inversionInStack();
-    NumeroComplesso popFromStack();
+    ComplexNumber popFromStack();
 }

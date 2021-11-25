@@ -6,7 +6,7 @@ package test;
  */
 import java.util.Random;
 import model.Core;
-import model.NumeroComplesso;
+import model.ComplexNumber;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -37,12 +37,12 @@ public class CoreTest {
     @Test
     public void testCreatNumber(){
         int a, b;
-        NumeroComplesso j;
+        ComplexNumber j;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
             test.creatNumber(a, b);     
-            j = new NumeroComplesso(a, b);
+            j = new ComplexNumber(a, b);
 
 
             assertEquals(j.equals(test.popFromStack()), true);
@@ -53,8 +53,8 @@ public class CoreTest {
     @Test
     public void testSommaInStack() {
         int a, b, c, d;
-        NumeroComplesso j;
-        NumeroComplesso k;
+        ComplexNumber j;
+        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -63,10 +63,10 @@ public class CoreTest {
             test.creatNumber(a, b);
             test.creatNumber(c, d);
             test.sumInStack();
-            j = new NumeroComplesso(a, b);
-            k = new NumeroComplesso(c, d);
+            j = new ComplexNumber(a, b);
+            k = new ComplexNumber(c, d);
 
-            assertEquals(NumeroComplesso.somma(j, k).equals(test.popFromStack()), true);
+            assertEquals(ComplexNumber.sum(j, k).equals(test.popFromStack()), true);
 
         }
        
@@ -75,8 +75,8 @@ public class CoreTest {
     @Test
     public void testDiffInStack() {
         int a, b, c, d;
-        NumeroComplesso j;
-        NumeroComplesso k;
+        ComplexNumber j;
+        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -85,10 +85,10 @@ public class CoreTest {
             test.creatNumber(a, b);
             test.creatNumber(c, d);
             test.diffInStack();
-            j = new NumeroComplesso(a, b);
-            k = new NumeroComplesso(c, d);
+            j = new ComplexNumber(a, b);
+            k = new ComplexNumber(c, d);
 
-            assertEquals(NumeroComplesso.sottrazione(k, j).equals(test.popFromStack()), true);
+            assertEquals(ComplexNumber.sub(k, j).equals(test.popFromStack()), true);
 
         }
     }
@@ -96,8 +96,8 @@ public class CoreTest {
     @Test
     public void testProdInStack() {
         int a, b, c, d;
-        NumeroComplesso j;
-        NumeroComplesso k;
+        ComplexNumber j;
+        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -106,10 +106,10 @@ public class CoreTest {
             test.creatNumber(a, b);
             test.creatNumber(c, d);
             test.prodInStack();
-            j = new NumeroComplesso(a, b);
-            k = new NumeroComplesso(c, d);
+            j = new ComplexNumber(a, b);
+            k = new ComplexNumber(c, d);
 
-            assertEquals(NumeroComplesso.moltiplicazione(k, j).equals(test.popFromStack()), true);
+            assertEquals(ComplexNumber.multiplication(k, j).equals(test.popFromStack()), true);
 
         }
 
@@ -119,8 +119,8 @@ public class CoreTest {
     @Test
     public void testDivInStack(){
          int a, b, c, d;
-        NumeroComplesso j;
-        NumeroComplesso k;
+        ComplexNumber j;
+        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -129,10 +129,10 @@ public class CoreTest {
             test.creatNumber(a, b);
             test.creatNumber(c, d);
             test.divInStack();
-            j = new NumeroComplesso(a, b);
-            k = new NumeroComplesso(c, d);
+            j = new ComplexNumber(a, b);
+            k = new ComplexNumber(c, d);
 
-            assertEquals(NumeroComplesso.divisione(k, j).equals(test.popFromStack()), true);
+            assertEquals(ComplexNumber.division(k, j).equals(test.popFromStack()), true);
 
         }
     } 
@@ -141,16 +141,16 @@ public class CoreTest {
     @Test
     public void testsquare2InStack(){
         int a, b;
-        NumeroComplesso j;
+        ComplexNumber j;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
             test.creatNumber(a, b);     
             test.square2InStack();
-            j = new NumeroComplesso(a, b);
+            j = new ComplexNumber(a, b);
 
 
-            assertEquals(j.radiceQuadra().equals(test.popFromStack()), true);
+            assertEquals(j.sqrt().equals(test.popFromStack()), true);
 
         }
     }

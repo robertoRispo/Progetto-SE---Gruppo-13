@@ -14,6 +14,6 @@ public interface StackOp {
     public Object StackPop();
     public void StackPush(Object E);
     public boolean StackStatus();
-    public List<NumeroComplesso> convertiLista();
+    public List<ComplexNumber> convertiLista();
     public String stackPrint();
 }

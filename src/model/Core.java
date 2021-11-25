@@ -23,12 +23,12 @@ public class Core implements Operations {
      * Il metodo viene prende in input due valori di tipo double, al primo
      * associa parte real mentre al secondo associa la parte complessa, crea un 
      * oggetto di tipo Numero Complesso e ne effettua il push nello stack
-     * @param a parte reale
+     * @param a parte re
      * @param b parte immaginaria
      */
     @Override
     public void creatNumber(double a, double b) {
-        NumeroComplesso j = new NumeroComplesso(a, b);
+        ComplexNumber j = new ComplexNumber(a, b);
         this.pushInStack(j);
     }
 
@@ -37,7 +37,7 @@ public class Core implements Operations {
      * @param a Numero Complesso
      */
     @Override
-    public void pushInStack(NumeroComplesso a) {
+    public void pushInStack(ComplexNumber a) {
         data.StackPush(a);
     }
 
@@ -47,8 +47,8 @@ public class Core implements Operations {
      * @return Numero Complesso
      */
     @Override
-    public NumeroComplesso popFromStack() {
-        return (NumeroComplesso) data.StackPop();
+    public ComplexNumber popFromStack() {
+        return (ComplexNumber) data.StackPop();
     }
 
     /**
@@ -58,16 +58,17 @@ public class Core implements Operations {
      */
     @Override
     public void sumInStack() {
-        NumeroComplesso a, b, s;
+        ComplexNumber a;
+        ComplexNumber b, s;
 
         if (data.StackStatus()) {
-            a = (NumeroComplesso) data.StackPop();
+            a = (ComplexNumber) data.StackPop();
         } else {
             throw new EmptyStackException();
         }
         if (data.StackStatus()) {
-            b = (NumeroComplesso) data.StackPop();
-            s = NumeroComplesso.somma(a, b);
+            b = (ComplexNumber) data.StackPop();
+            s = ComplexNumber.sum(a, b);
             data.StackPush(s);
         } else {
             data.StackPush(a);
@@ -82,16 +83,17 @@ public class Core implements Operations {
      */
     @Override
     public void diffInStack() {
-        NumeroComplesso a, b, s;
+        ComplexNumber a;
+        ComplexNumber b, s;
 
         if (data.StackStatus()) {
-            a = (NumeroComplesso) data.StackPop();
+            a = (ComplexNumber) data.StackPop();
         } else {
             throw new EmptyStackException();
         }
         if (data.StackStatus()) {
-            b = (NumeroComplesso) data.StackPop();
-            s = NumeroComplesso.sottrazione(a, b);
+            b = (ComplexNumber) data.StackPop();
+            s = ComplexNumber.sub(a, b);
             data.StackPush(s);
         } else {
             data.StackPush(a);
@@ -106,16 +108,17 @@ public class Core implements Operations {
      */
     @Override
     public void prodInStack() {
-        NumeroComplesso a, b, s;
+        ComplexNumber a;
+        ComplexNumber b, s;
 
         if (data.StackStatus()) {
-            a = (NumeroComplesso) data.StackPop();
+            a = (ComplexNumber) data.StackPop();
         } else {
             throw new EmptyStackException();
         }
         if (data.StackStatus()) {
-            b = (NumeroComplesso) data.StackPop();
-            s = NumeroComplesso.moltiplicazione(a, b);
+            b = (ComplexNumber) data.StackPop();
+            s = ComplexNumber.multiplication(a, b);
             data.StackPush(s);
         } else {
             data.StackPush(a);
@@ -124,22 +127,23 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare la divisione tra due numeri complessi presenti nello stack
-     * Tale metodo prima effettua il Pop dei due numeri, ne fa la divisione ed effettua il push
-     * del risultato nello stack
+     * Metodo per effettuare la division tra due numeri complessi presenti nello stack
+ Tale metodo prima effettua il Pop dei due numeri, ne fa la division ed effettua il push
+ del risultato nello stack
      */
     @Override
     public void divInStack() {
-        NumeroComplesso a, b, s;
+        ComplexNumber a;
+        ComplexNumber b, s;
 
         if (data.StackStatus()) {
-            a = (NumeroComplesso) data.StackPop();
+            a = (ComplexNumber) data.StackPop();
         } else {
             throw new EmptyStackException();
         }
         if (data.StackStatus()) {
-            b = (NumeroComplesso) data.StackPop();
-            s = NumeroComplesso.divisione(a, b);
+            b = (ComplexNumber) data.StackPop();
+            s = ComplexNumber.division(a, b);
             data.StackPush(s);
         } else {
             data.StackPush(a);
@@ -154,11 +158,12 @@ public class Core implements Operations {
      */
     @Override
     public void square2InStack(){
-        NumeroComplesso a, s;
+        ComplexNumber a;
+        ComplexNumber s;
          if (data.StackStatus()) {
-            a = (NumeroComplesso) data.StackPop();
+            a = (ComplexNumber) data.StackPop();
         } else throw new EmptyStackException();
-         s = a.radiceQuadra();
+         s = a.sqrt();
          data.StackPush(s);
     
     }
