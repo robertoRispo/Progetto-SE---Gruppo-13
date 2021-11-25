@@ -5,6 +5,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +17,7 @@ import java.util.List;
  */
 public class CoreStack {
 
-    private StackSingle dataSingle;
+    private StackOp dataSingle;
     int indexElement = 12;
 
     public CoreStack() {
@@ -27,8 +31,19 @@ public class CoreStack {
  * @return List<ComplexNumber>
  */
     public List<ComplexNumber> getSubList() {
-        List<ComplexNumber> stackToList = dataSingle.convertiLista();
-        List<ComplexNumber> getSubList = stackToList.subList(0, indexElement);
+        LinkedList<ComplexNumber> getSubList = new LinkedList<>();
+        Iterator stack = dataSingle.stackElements();
+       
+        int n = 0;
+        while (n < 12){
+        if(stack.hasNext()){
+            getSubList.add((ComplexNumber)stack.next());
+        }
+           
+        n++;    
+        }
+      
+        
         return getSubList;
     }
 

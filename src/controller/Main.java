@@ -6,6 +6,7 @@ package controller;
 
 import model.Core;
 import model.CoreStack;
+import model.Operations;
 import view.Gui;
 
 /**
@@ -34,7 +35,7 @@ public class Main {
         }
         
         
-        Core core = new Core();
+        Operations core = new Core();
         CoreStack coreStack = new CoreStack();
         
         Calcolatrice calcolatrice = new Calcolatrice(core, coreStack);

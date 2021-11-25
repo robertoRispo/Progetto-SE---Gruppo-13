@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface StackOp {
     public boolean StackStatus();
     public List<ComplexNumber> convertiLista();
     public String stackPrint();
+    public Iterator stackElements();
 }

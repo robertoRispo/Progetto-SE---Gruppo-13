@@ -6,6 +6,7 @@ package controller;
 
 import model.Core;
 import model.CoreStack;
+import model.Operations;
 
 /**
  *
@@ -13,10 +14,10 @@ import model.CoreStack;
  */
 public class Calcolatrice {
 
-    Core core;
+    Operations core;
     CoreStack coreStack;
 
-    public Calcolatrice(Core core, CoreStack coreStacke) {
+    public Calcolatrice(Operations core, CoreStack coreStacke) {
         this.core = core;
         this.coreStack = coreStack;
     }

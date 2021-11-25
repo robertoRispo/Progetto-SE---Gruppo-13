@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Core implements Operations {
 
-    private StackSingle data;
+    private StackOp data;
 
     public Core() {
         data = StackSingle.getInstance();
