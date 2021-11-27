@@ -13,37 +13,37 @@ public class ComplexNumber {
     private double pRe;
     private double pIm;
     /**
-        Constructs the complex number z = u + i*v
-        @param u Real part
-        @param v Imaginary part
+        Costruttore del numero complesso z = u + i*v
+        @param u Parte reale
+        @param v Parte immaginaria
     */
     public ComplexNumber(double parteReale,double parteImmaginaria){
         this.pRe = parteReale;
         this.pIm = parteImmaginaria;
     }
     /**
-        Addition of Complex numbers (doesn't change this Complex number).
+        Addizione di numeri complessi (non cambia questo numero complesso).
         (x+i*y) + (s+i*t) = (x+s)+i*(y+t).
-        @param w is the number to add.
-        @return z+w where z is this Complex number.
+        @param w è il numero da aggiungere.
+        @return z+w dove z è questo numero complesso.
     */
     public static ComplexNumber sum (ComplexNumber x, ComplexNumber y) {
         return new ComplexNumber(x.pRe + y.pRe, x.pIm + y.pIm);
     }
     
     /**
-        Subtraction of Complex numbers (doesn't change this Complex number).
+        Sottrazione di numeri complessi (non cambia questo numero complesso).
         (x+i*y) - (s+i*t) = (x-s)+i*(y-t).
-        @param w is the number to subtract.
-        @return z-w where z is this Complex number.
+        @param w è il numero da sottrarre.
+        @return z-w dove z è questo numero complesso.
     */
     public static ComplexNumber sub (ComplexNumber x, ComplexNumber y) {
         return new ComplexNumber(x.pRe - y.pRe, x.pIm - y.pIm);
     }
     /**
-        Complex multiplication (doesn't change this Complex number).
-        @param w is the number to multiply by.
-        @return z*w where z is this Complex number.
+        Moltiplicazione complessa (non cambia questo numero complesso).
+        @param w è il numero per cui moltiplicare.
+        @return z*w dove z è questo numero complesso.
     */
     public static ComplexNumber multiplication (ComplexNumber x, ComplexNumber y) {
         double parteReale = x.pRe*y.pRe - x.pIm*y.pIm;
@@ -55,73 +55,73 @@ public class ComplexNumber {
         return new ComplexNumber(a*x.pRe, a*x.pIm);
     }
     /**
-        Division of Complex numbers (doesn't change this Complex number).
+        Divisione di numeri complessi (non modifica questo numero complesso).
         (x+i*y)/(s+i*t) = ((x*s+y*t) + i*(y*s-y*t)) / (s^2+t^2)
-        @param w is the number to divide by
-        @return new Complex number z/w where z is this Complex number  
+        @param w è il numero per cui dividere
+        @return nuovo Numero complesso z/w dove z è il numero complesso
     */
     public static ComplexNumber division (ComplexNumber x, ComplexNumber y) {
         return ComplexNumber.multiplication(x, multiplication(1/y.abs()/y.abs(), y.conjugated()));
     }
     /**
-        Complex conjugate of this Complex number
-        (the conjugate of x+i*y is x-i*y).
-        @return z-bar where z is this Complex number.
+        Coniugato complesso di questo numero complesso
+        (il coniugato di x+i*y é x-i*y).
+        @return z-bar dove z è questo numero complesso.
     */
     public ComplexNumber conjugated(){
         return new ComplexNumber(pRe, -pIm);
     }
     /**
-        Real part of this Complex number 
-        (the x-coordinate in rectangular coordinates).
-        @return Re[z] where z is this Complex number.
+        Parte reale di questo numero complesso 
+        (la coordinata x in coordinate rettangolari).
+        @return Re[z] dove z è questo numero complesso.
     */
     public double re(){
-        return pRe;
+        return this.pRe;
     }
     /**
-        Imaginary part of this Complex number 
-        (the y-coordinate in rectangular coordinates).
-        @return Im[z] where z is this Complex number.
+        Parte immaginaria di questo numero complesso
+        (la coordinata y in coordinate rettangolari).
+        @return Im[z] dove z è questo numero complesso.
     */
     public double im(){
-        return pIm;
+        return this.pIm;
     }
     /**
-     * ABS of this Complex number
-        (the x-coordinate and the y-coordinate in rectangular coordinates).
-        @return ABS[z] where z is this Complex number.
+        ABS di questo numero complesso
+        (la coordinata x e la coordinata y in coordinate rettangolari).
+        @return ABS[z] dove z è questo numero complesso.
     */
     public double abs(){
-        return Math.sqrt(pRe*pRe+pIm*pIm);
+        return Math.sqrt(this.pRe*this.pRe+this.pIm*this.pIm);
     }
     /**
-        Argument of this Complex number 
-        (the angle in radians with the x-axis in polar coordinates).
-        @return arg(z) where z is this Complex number.
+        Argomento di questo numero complesso
+         (l'angolo in radianti con l'asse x in coordinate polari).
+        @return arg(z) dove z è questo numero complesso.
     */
     public double arg(){
-        return (Math.atan2(pIm, pRe));
+        return (Math.atan2(this.pIm, this.pRe));
     }
     
     /**
-        Modulus of this Complex number
-        (the distance from the origin in polar coordinates).
-        @return |z| where z is this Complex number.
+        Modulo di questo numero complesso
+         (la distanza dall'origine in coordinate polari).
+        @return |z| dove z è questo numero complesso.
     */
     public double mod() {
-        if (pRe!=0 || pIm!=0) {
-            return Math.sqrt(pRe*pRe+pIm*pIm);
+        if (this.pRe!=0 || this.pIm!=0) {
+            return Math.sqrt(this.pRe*this.pRe+this.pIm*this.pIm);
         } else {
             return 0d;
         }
     }
         
     /**
-        Complex square root (doesn't change this complex number).
-        Computes the principal branch of the square root, which 
-        is the value with 0 <= arg < pi.
-        @return sqrt(z) where z is this Complex number.
+        Radice quadrata complessa (non cambia questo numero complesso).
+         Calcola il ramo principale della radice quadrata, che
+         è il valore con 0 <= arg < pi.
+        @return sqrt(z) dove z è questo numero complesso.
     */
     public ComplexNumber sqrt() {
         double r=Math.sqrt(this.mod());
@@ -129,9 +129,9 @@ public class ComplexNumber {
         return new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
     }
     /**
-        Complex equals.
-        Compare two complex number.
-        @return bool where true is that the immaginary part and real part are equals.
+        Complesso uguale.
+        Confronta due numeri complessi.
+        @return bool dove vero è che la parte immaginaria e la parte reale sono uguali.
     */
     public boolean equals(ComplexNumber j){
         if(this.re() == j.re()){
@@ -142,9 +142,9 @@ public class ComplexNumber {
         return false;
     }
     /**
-        Complex String.
-        Parse the complex number in a string.
-        @return the complex number in string.
+        Complesso String.
+        Trasforma il numero complesso in una stringa.
+        @return il numero complesso in stringa.
     */
     @Override
     public String toString()
