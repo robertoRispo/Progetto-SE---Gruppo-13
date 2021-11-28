@@ -90,7 +90,7 @@ public class ComplexNumberTest {
         ComplexNumber ncomd = new ComplexNumber(c, d);
         ComplexNumber test = ncom.multiplication(ncom,ncomd);
         double re = a * c - b * d;
-        double im = a * b + c * d;
+        double im = b * c + a * d;
         ComplexNumber comp = new ComplexNumber(re, im);
         assertEquals(test.equals(comp), true);
     }}
@@ -125,7 +125,8 @@ public class ComplexNumberTest {
         b = ran.nextDouble();
         
         ComplexNumber ncom = new ComplexNumber(a, -b);
-        assertEquals(test.equals(ncom.conjugated()), true);
+        ComplexNumber ncomd = new ComplexNumber(a, b);
+        assertEquals(ncom.equals(ncomd.conjugated()), true);
     }}
     /**
         Test che verifica se la parte reale è corretta e restituicse errore nel caso non sia coerente.
@@ -221,9 +222,9 @@ public class ComplexNumberTest {
         
         double r=Math.sqrt(ncom.mod());
         double theta=ncom.arg()/2;
-        ComplexNumber c = new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
-        
-        assertEquals(ncom.equals(c), true);
+        ComplexNumber c = new ComplexNumber(Math.floor(r*Math.cos(theta)*100)/100,Math.floor(r*Math.sin(theta)*100)/100);
+
+        assertEquals(ncom.sqrt().equals(c), true);
     }}
     /**
         Test che verifica il funzionamento della funzione equals e restituicse errore nel caso non sia coerente.
@@ -231,17 +232,15 @@ public class ComplexNumberTest {
     @Test
     public void testEquals(){
         for (int i = 0; i < 999; i++) {
-        double a, b, c, d;
+        double a, b;
         a = ran.nextDouble();
-        b = ran.nextDouble();        
-        c = ran.nextDouble();
-        d = ran.nextDouble();
+        b = ran.nextDouble();    
         boolean e = true;
         ComplexNumber ncom = new ComplexNumber(a, b);
-        ComplexNumber ncomd = new ComplexNumber(c, d);
+        ComplexNumber ncomd = new ComplexNumber(a, b);
     
-        if(a == c){
-            if(b == d){
+        if(ncom.re() == ncomd.re()){
+            if(ncom.im() == ncomd.im()){
                 e = true;
             }
         }
@@ -265,15 +264,14 @@ public class ComplexNumberTest {
         ComplexNumber ncom = new ComplexNumber(a, b);
         String re = a+"";
         String im = "";
-        String c = "";
+        
         if(b < 0){
             im = b+"i";}
         else{
             im = "+"+b+"i";
-            c = re+im;
         }
-
-            assertEquals(ncom.toString()==c, true);
+        String c = re+im;
+        assertEquals(ncom.toString()==c, true);
         
 
     }}}        
