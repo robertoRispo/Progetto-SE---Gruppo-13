@@ -3,3 +3,4 @@ Google Docs:
 2) Product backlog and Sprint backlogs: (https://docs.google.com/document/d/1gWCNd4MgtKeMuybImxl7d2vQHdrxP6nVQGiAna9ay-Y/edit?usp=sharing)
 3) Review Report: (https://docs.google.com/document/d/1jDxn2hiNlXyCOUWAHlK_yb9Y6VFn8DSqgnI-Qdl9JCM/edit)
 4) Retrospective Report: (https://docs.google.com/document/d/1Hm4dhgSlxputE94WKhJvOXjA_QNc2iznNPn81Nt7JLY/edit)
+5) Burndown Chart: (https://docs.google.com/document/d/18rw2o_c3fOXAk-7muoSXCg-K_U8Jl972GPgLNIPy92o/edit)
