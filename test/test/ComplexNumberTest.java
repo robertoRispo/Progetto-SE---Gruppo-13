@@ -17,19 +17,25 @@ import static org.junit.Assert.*;
 public class ComplexNumberTest {
     public ComplexNumber test;
     public Random ran;
+    
 
     public ComplexNumberTest() {
+        this.ran = new Random();
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
         this.test = new ComplexNumber(a,b);
-        this.ran = new Random();
+
     }
+    
+
     /**
         Test della somma che restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testSum()
         {
+        for (int i = 0; i < 999; i++) {
         double a, b, c, d;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -44,13 +50,14 @@ public class ComplexNumberTest {
         double im = b + d;
         ComplexNumber comp = new ComplexNumber(re, im);
         assertEquals(test.equals(comp), true);
-    }
+    }}
     
     /**
         Test della sottrazione che restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testSub(){
-        {
+        for (int i = 0; i < 999; i++) {
         double a, b, c, d;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -70,8 +77,9 @@ public class ComplexNumberTest {
     /**
         Test della moltiplicazione che restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testMultiplication(){
-        
+        for (int i = 0; i < 999; i++) {
         double a, b, c, d;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -85,11 +93,13 @@ public class ComplexNumberTest {
         double im = a * b + c * d;
         ComplexNumber comp = new ComplexNumber(re, im);
         assertEquals(test.equals(comp), true);
-    }
+    }}
     /**
         Test della divisione che restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testDivision(){
+        for (int i = 0; i < 999; i++) {
         double a, b, c, d;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -102,23 +112,27 @@ public class ComplexNumberTest {
         ComplexNumber test = ComplexNumber.division(ncom, ncomd);     
         
         assertEquals(test.equals(ComplexNumber.multiplication(ncom, ncom.multiplication(1/ncomd.abs()/ncomd.abs(), ncomd.conjugated()))), true);
-    }
+    }}
     
     /**
         Test del coniugato che restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testConjugated(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
         
         ComplexNumber ncom = new ComplexNumber(a, -b);
         assertEquals(test.equals(ncom.conjugated()), true);
-    }
+    }}
     /**
         Test che verifica se la parte reale è corretta e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testRe(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -126,11 +140,13 @@ public class ComplexNumberTest {
         ComplexNumber ncomd = new ComplexNumber(a, b);
         
         assertEquals(ncom.equals(ncomd), true);
-    }
+    }}
     /**
         Test che verifica se la parte reale è corretta e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testIm(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -141,41 +157,43 @@ public class ComplexNumberTest {
         else{
             assertEquals(false, true);
                 }
-    }
+    }}
     /**
         Test che verifica se il valore assoluto è corretto e restituicse errore nel caso non sia coerente.
-    */   
+    */
+    @Test
     public void testAbs(){
+        for (int i = 0; i < 999; i++) {
             double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
         ComplexNumber ncom = new ComplexNumber(a, b);
         double c = Math.sqrt(a*a+b*b);
-        if (ncom.sqrt()==c){
-        assertEquals(true, true);}
-        else{
-            assertEquals(false, true);
-        }
+        
+        assertEquals(ncom.abs()==c, true);}
+        
     }
     /**
         Test che verifica se l'argomento è corretto e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testArg(){
+        for (int i = 0; i < 999; i++) {
             double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
         ComplexNumber ncom = new ComplexNumber(a, b);
         double c = Math.atan2(b,a);
-        if (ncom.arg()==c){
-        assertEquals(true, true);}
-        else{
-            assertEquals(false, true);
-        }
+
+        assertEquals(ncom.arg()==c, true);}
+
     }
     /**
         Test che verifica il modulo se è corretto e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testMod(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -186,16 +204,15 @@ public class ComplexNumberTest {
         } else {
             c = 0d;
         }
-        if (ncom.mod()==c){
-            assertEquals(true, true);}
-        else{
-            assertEquals(false, true);
-        }
-    }
+
+        assertEquals(ncom.mod()==c, true);
+    }}
     /**
         Test che verifica la radice quadrata e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testSqrt(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble();
@@ -207,11 +224,13 @@ public class ComplexNumberTest {
         ComplexNumber c = new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
         
         assertEquals(ncom.equals(c), true);
-    }
+    }}
     /**
         Test che verifica il funzionamento della funzione equals e restituicse errore nel caso non sia coerente.
     */
+    @Test
     public void testEquals(){
+        for (int i = 0; i < 999; i++) {
         double a, b, c, d;
         a = ran.nextDouble();
         b = ran.nextDouble();        
@@ -230,17 +249,16 @@ public class ComplexNumberTest {
         e = false;
         }
         
-        if (ncom.equals(ncomd)==e){
-        assertEquals(true, true);
-        }
-        else{
-            assertEquals(false, true);
-        }
-    }
+
+        assertEquals(ncom.equals(ncomd)==e, true);
+
+    }}
     /**
         Test che verifica il funzionamento della funzione toString e restituicse errore nel caso non sia coerente.
     */ 
+    @Test
     public void testToString(){
+        for (int i = 0; i < 999; i++) {
         double a, b;
         a = ran.nextDouble();
         b = ran.nextDouble(); 
@@ -248,18 +266,15 @@ public class ComplexNumberTest {
         String re = a+"";
         String im = "";
         String c = "";
-        if(b < 0)
-            im = b+"i";
-        else
+        if(b < 0){
+            im = b+"i";}
+        else{
             im = "+"+b+"i";
             c = re+im;
         }
-        if (ncom.toString()==c) {
-            assertEquals(true, true);
-        }
-        else{
-            assertEquals(false, true);
-        }
-    }        
-}
+
+            assertEquals(ncom.toString()==c, true);
+        
+
+    }}}        
     

@@ -126,7 +126,7 @@ public class ComplexNumber {
     public ComplexNumber sqrt() {
         double r=Math.sqrt(this.mod());
         double theta=this.arg()/2;
-        return new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
+        return new ComplexNumber(Math.floor(r*Math.cos(theta)*100)/100,Math.floor(r*Math.sin(theta)*100)/100);
     }
     /**
         Complesso uguale.
