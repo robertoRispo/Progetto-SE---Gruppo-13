@@ -28,7 +28,7 @@ public class ComplexNumberTest {
     /**
         Test della somma che restituicse errore nel caso non sia coerente.
     */
-    public void testSum(){
+    public void testSum()
         {
         double a, b, c, d;
         a = ran.nextDouble();
@@ -113,7 +113,7 @@ public class ComplexNumberTest {
         b = ran.nextDouble();
         
         ComplexNumber ncom = new ComplexNumber(a, -b);
-        assertEquals(test.equals(ncom.conjugated())), true);
+        assertEquals(test.equals(ncom.conjugated()), true);
     }
     /**
         Test che verifica se la parte reale è corretta e restituicse errore nel caso non sia coerente.

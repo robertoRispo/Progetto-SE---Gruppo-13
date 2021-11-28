@@ -31,18 +31,18 @@ public class StackSingle implements StackOp{
    
 
     @Override
-    public Object StackPop() {
+    public Object stackPop() {
         Object c = data.pop();
         return c;
     }
 
     @Override
-    public void StackPush(Object E) {
+    public void stackPush(Object E) {
       data.push(E);
     }
 
     @Override
-    public boolean StackStatus() {
+    public boolean stackStatus() {
         return !data.isEmpty();
     }
     

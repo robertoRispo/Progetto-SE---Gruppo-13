@@ -38,7 +38,7 @@ public class Core implements Operations {
      */
     @Override
     public void pushInStack(ComplexNumber a) {
-        data.StackPush(a);
+        data.stackPush(a);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Core implements Operations {
      */
     @Override
     public ComplexNumber popFromStack() {
-        return (ComplexNumber) data.StackPop();
+        return (ComplexNumber) data.stackPop();
     }
 
     /**
@@ -61,17 +61,17 @@ public class Core implements Operations {
         ComplexNumber a;
         ComplexNumber b, s;
 
-        if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else {
             throw new EmptyStackException();
         }
-        if (data.StackStatus()) {
-            b = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            b = (ComplexNumber) data.stackPop();
             s = ComplexNumber.sum(a, b);
-            data.StackPush(s);
+            data.stackPush(s);
         } else {
-            data.StackPush(a);
+            data.stackPush(a);
             throw new EmptyStackException();
         }
     }
@@ -86,17 +86,17 @@ public class Core implements Operations {
         ComplexNumber a;
         ComplexNumber b, s;
 
-        if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else {
             throw new EmptyStackException();
         }
-        if (data.StackStatus()) {
-            b = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            b = (ComplexNumber) data.stackPop();
             s = ComplexNumber.sub(a, b);
-            data.StackPush(s);
+            data.stackPush(s);
         } else {
-            data.StackPush(a);
+            data.stackPush(a);
             throw new EmptyStackException();
         }
     }
@@ -111,17 +111,17 @@ public class Core implements Operations {
         ComplexNumber a;
         ComplexNumber b, s;
 
-        if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else {
             throw new EmptyStackException();
         }
-        if (data.StackStatus()) {
-            b = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            b = (ComplexNumber) data.stackPop();
             s = ComplexNumber.multiplication(a, b);
-            data.StackPush(s);
+            data.stackPush(s);
         } else {
-            data.StackPush(a);
+            data.stackPush(a);
             throw new EmptyStackException();
         }
     }
@@ -136,17 +136,17 @@ public class Core implements Operations {
         ComplexNumber a;
         ComplexNumber b, s;
 
-        if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else {
             throw new EmptyStackException();
         }
-        if (data.StackStatus()) {
-            b = (ComplexNumber) data.StackPop();
+        if (data.stackStatus()) {
+            b = (ComplexNumber) data.stackPop();
             s = ComplexNumber.division(a, b);
-            data.StackPush(s);
+            data.stackPush(s);
         } else {
-            data.StackPush(a);
+            data.stackPush(a);
             throw new EmptyStackException();
         }
     }
@@ -160,11 +160,11 @@ public class Core implements Operations {
     public void square2InStack(){
         ComplexNumber a;
         ComplexNumber s;
-         if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+         if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else throw new EmptyStackException();
          s = a.sqrt();
-         data.StackPush(s);
+         data.stackPush(s);
     
     }
     
@@ -183,11 +183,11 @@ public class Core implements Operations {
     public void conjugatedInStack() {
         ComplexNumber a;
         ComplexNumber s;
-         if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+         if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else throw new EmptyStackException();
          s = a.conjugated();
-         data.StackPush(s);
+         data.stackPush(s);
     }
 
     /**
@@ -199,24 +199,27 @@ public class Core implements Operations {
     public void modInStack(){
         ComplexNumber a;
         ComplexNumber s;
-         if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+         if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else throw new EmptyStackException();
          s = new ComplexNumber(a.mod(),0);
-         data.StackPush(s);
+         data.stackPush(s);
     }
     
-    
-    
+    /**
+     * Metodo utilizzato per effettuare l'abs del numero presente sulla 
+     * cima dello stack, pochè il risultato è un numero reale verrà inserito 
+     * nello stack nella forma mod + 0i;
+     */
     @Override
     public void absInStack(){
         ComplexNumber a;
         ComplexNumber s;
-         if (data.StackStatus()) {
-            a = (ComplexNumber) data.StackPop();
+         if (data.stackStatus()) {
+            a = (ComplexNumber) data.stackPop();
         } else throw new EmptyStackException();
          s = new ComplexNumber(a.abs(),0);
-         data.StackPush(s);
+         data.stackPush(s);
     }
 }
 

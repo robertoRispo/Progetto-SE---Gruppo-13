@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface StackOp {
   
-    public Object StackPop();
-    public void StackPush(Object E);
-    public boolean StackStatus();
+    public Object stackPop();
+    public void stackPush(Object E);
+    public boolean stackStatus();
     public List<ComplexNumber> convertiLista();
     public String stackPrint();
     public Iterator stackElements();
