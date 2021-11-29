@@ -5,6 +5,8 @@
 package view;
 
 import controller.Calcolatrice;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -38,8 +40,7 @@ public class Gui extends javax.swing.JFrame {
         this.numList = new ArrayList<>();
         this.model = new DefaultListModel();
 
-        textRealPart.setText("0");
-        textComplexPart.setText("0");
+        textInsertNumber.setText("0");
 
     }
 
@@ -59,12 +60,8 @@ public class Gui extends javax.swing.JFrame {
         buttonDiv = new javax.swing.JButton();
         buttonSqr = new javax.swing.JButton();
         buttonInv = new javax.swing.JButton();
-        labelRealPart = new javax.swing.JLabel();
-        labelComplexPart = new javax.swing.JLabel();
-        textRealPart = new javax.swing.JTextField();
-        textComplexPart = new javax.swing.JTextField();
+        textInsertNumber = new javax.swing.JTextField();
         buttonInsert = new javax.swing.JButton();
-        labelPlus = new javax.swing.JLabel();
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listComplexNumbers = new javax.swing.JList<>();
@@ -132,25 +129,12 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        labelRealPart.setText("Parte Reale");
-
-        labelComplexPart.setText("Parte Immaginaria");
-
-        textRealPart.setMaximumSize(new java.awt.Dimension(60, 25));
-        textRealPart.setMinimumSize(new java.awt.Dimension(60, 25));
-        textRealPart.setPreferredSize(new java.awt.Dimension(60, 25));
-        textRealPart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                textRealPartMouseClicked(evt);
-            }
-        });
-
-        textComplexPart.setMaximumSize(new java.awt.Dimension(60, 25));
-        textComplexPart.setMinimumSize(new java.awt.Dimension(60, 25));
-        textComplexPart.setPreferredSize(new java.awt.Dimension(60, 25));
-        textComplexPart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                textComplexPartMouseClicked(evt);
+        textInsertNumber.setMaximumSize(new java.awt.Dimension(60, 25));
+        textInsertNumber.setMinimumSize(new java.awt.Dimension(60, 25));
+        textInsertNumber.setPreferredSize(new java.awt.Dimension(60, 25));
+        textInsertNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textInsertNumberActionPerformed(evt);
             }
         });
 
@@ -160,8 +144,6 @@ public class Gui extends javax.swing.JFrame {
                 buttonInsertActionPerformed(evt);
             }
         });
-
-        labelPlus.setText("+");
 
         labelTitle.setText("Calcolatrice Con Numeri Complessi");
 
@@ -173,34 +155,17 @@ public class Gui extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelTitle)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelRealPart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(textRealPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelPlus)
-                                        .addGap(8, 8, 8)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(labelComplexPart, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(textComplexPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonInsert)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
+                        .addComponent(labelTitle))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(textInsertNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonInsert))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonSum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,24 +174,18 @@ public class Gui extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonSqr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelTitle)
-                .addGap(35, 35, 35)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelRealPart)
-                    .addComponent(labelComplexPart))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textRealPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textComplexPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonInsert)
-                    .addComponent(labelPlus))
-                .addGap(32, 32, 32)
+                    .addComponent(textInsertNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonInsert))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDiff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +195,7 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(buttonProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         listComplexNumbers.setModel(new javax.swing.AbstractListModel<String>() {
@@ -331,61 +290,49 @@ public class Gui extends javax.swing.JFrame {
      */
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
         // TODO add your handling code here:
-        double real = 0, img = 0;
+        double real = 0, complex = 0;
+        String realPart;
+        String complexPart;
 
-        String realPart = textRealPart.getText();
-        String complexPart = textComplexPart.getText();
+        String pattern = "\\A\\+{1}";
 
-        if (realPart.equals("")) {
-            real = 0;
-        } else if (isNumeric(realPart)) {
-            real = Double.parseDouble(realPart);
+        String expression = textInsertNumber.getText();
+        
+        if (isExpression(expression)) {
+            if ((expression.lastIndexOf("+") == -1) || (expression.lastIndexOf("+") == 0)) {
+                realPart = expression.substring(0, expression.lastIndexOf("-"));
+                complexPart = expression.substring(expression.lastIndexOf("-") + 1, expression.lastIndexOf("i"));
+            } else {
+                realPart = expression.substring(0, expression.lastIndexOf("+"));
+                complexPart = expression.substring(expression.lastIndexOf("+") + 1, expression.lastIndexOf("i"));
+            }
+        } else if (isReal(expression)) {
+            realPart = expression.substring(0, expression.lastIndexOf(""));
+            complexPart = "0";
+        } else if (isComplex(expression)) {
+            realPart = "0";
+            complexPart = expression.substring(0, expression.lastIndexOf("i"));
         } else {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Devi inserire solo variabili numeriche!");
 
-            textRealPart.setText("0");
-            textComplexPart.setText("0");
+            textInsertNumber.setText("0");
             return;
         }
 
-        if (complexPart.equals("")) {
-            img = 0;
-        } else if (isNumeric(complexPart)) {
-            img = Double.parseDouble(complexPart);
-        } else {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Devi inserire solo variabili numeriche!");
+        real = Double.parseDouble(realPart);
+        complex = Double.parseDouble(complexPart);
 
-            textRealPart.setText("0");
-            textComplexPart.setText("0");
-            return;
-        }
-
-        textRealPart.setText("0");
-        textComplexPart.setText("0");
-        calcolatrice.creatComplexNumber(real, img);
+        
+        calcolatrice.creatComplexNumber(real, complex);
         updateModel();
 
     }//GEN-LAST:event_buttonInsertActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante sinistro del mouse e
-     * svuota l'area di testo
-     */
-    private void textRealPartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textRealPartMouseClicked
-        // TODO add your handling code here:
-        textRealPart.setText("");
-    }//GEN-LAST:event_textRealPartMouseClicked
 
-    /**
-     * Metodo richiamato quando viene premuto il pulsante sinistro del mouse e
-     * svuota l'area di testo
-     */
-    private void textComplexPartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textComplexPartMouseClicked
+    private void textInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertNumberActionPerformed
         // TODO add your handling code here:
-        textComplexPart.setText("");
-
-    }//GEN-LAST:event_textComplexPartMouseClicked
+        buttonInsertActionPerformed(evt);
+    }//GEN-LAST:event_textInsertNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,13 +372,47 @@ public class Gui extends javax.swing.JFrame {
     //Useful Methods
     /**
      * Metodo che ritorna True se in String sono presenti solo caratteri
-     * numerici, False altrimenti
+     * numerici, che possono essere anche seguiti da un simbolo "-", False
+     * altrimenti
      *
      * @param String stringa in input
      * @return boolean (True o False)
      */
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici complessi nella forma cartesiana
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isExpression(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?[-+]+\\d+(\\.\\d+)?i+");
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici complessi nella forma cartesiana
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isReal(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?");
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici complessi nella forma cartesiana
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isComplex(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?i+");
     }
 
     /**
@@ -459,13 +440,9 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonSum;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelComplexPart;
     private javax.swing.JLabel labelListTitle;
-    private javax.swing.JLabel labelPlus;
-    private javax.swing.JLabel labelRealPart;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JList<String> listComplexNumbers;
-    private javax.swing.JTextField textComplexPart;
-    private javax.swing.JTextField textRealPart;
+    private javax.swing.JTextField textInsertNumber;
     // End of variables declaration//GEN-END:variables
 }
