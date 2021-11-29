@@ -6,17 +6,29 @@ package model;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-/**
- *
- * @author agostinomoffa
- */
 public interface StackOp {
-  
+
     public Object stackPop();
+
     public void stackPush(Object E);
+
     public boolean stackStatus();
-    public List<ComplexNumber> convertiLista();
+
+    public List<ComplexNumber> convertToList();
+
     public String stackPrint();
+
     public Iterator stackElements();
+
+    public void clear();
+
+    public void duplicate() throws NoSuchElementException;
+
+    public void swap() throws NoSuchElementException;
+
+    public void drop() throws NoSuchElementException;
+
+    public void over() throws NoSuchElementException;
 }

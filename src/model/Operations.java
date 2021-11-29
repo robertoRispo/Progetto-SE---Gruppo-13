@@ -4,10 +4,7 @@
  */
 package model;
 
-/**
- *
- * @author agostinomoffa
- */
+
 public interface Operations {
     void sumInStack();
     void diffInStack();

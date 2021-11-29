@@ -4,10 +4,7 @@
  */
 package model;
 
-/**
- *
- * @author agostinomoffa
- */
+
 public class ComplexNumber {
     
     private double pRe;

@@ -9,16 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.CoreStack;
 import model.ComplexNumber;
 
-/**
- *
- * @author gigi9
- */
 public class Gui extends javax.swing.JFrame {
 
     /**
@@ -39,8 +36,6 @@ public class Gui extends javax.swing.JFrame {
         this.coreStack = coreStack;
         this.numList = new ArrayList<>();
         this.model = new DefaultListModel();
-
-        textInsertNumber.setText("0");
 
     }
 
@@ -63,16 +58,23 @@ public class Gui extends javax.swing.JFrame {
         textInsertNumber = new javax.swing.JTextField();
         buttonInsert = new javax.swing.JButton();
         labelTitle = new javax.swing.JLabel();
+        buttonDup = new javax.swing.JButton();
+        buttonClear = new javax.swing.JButton();
+        buttonSwap = new javax.swing.JButton();
+        buttonDrop = new javax.swing.JButton();
+        buttonOver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listComplexNumbers = new javax.swing.JList<>();
         labelListTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(502, 400));
+        setResizable(false);
 
         buttonSum.setText("Somma");
-        buttonSum.setMaximumSize(new java.awt.Dimension(85, 25));
-        buttonSum.setMinimumSize(new java.awt.Dimension(85, 25));
-        buttonSum.setPreferredSize(new java.awt.Dimension(85, 25));
+        buttonSum.setMaximumSize(new java.awt.Dimension(100, 25));
+        buttonSum.setMinimumSize(new java.awt.Dimension(100, 25));
+        buttonSum.setPreferredSize(new java.awt.Dimension(100, 25));
         buttonSum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSumActionPerformed(evt);
@@ -80,9 +82,9 @@ public class Gui extends javax.swing.JFrame {
         });
 
         buttonDiff.setText("Differenza");
-        buttonDiff.setMaximumSize(new java.awt.Dimension(85, 25));
-        buttonDiff.setMinimumSize(new java.awt.Dimension(85, 25));
-        buttonDiff.setPreferredSize(new java.awt.Dimension(85, 25));
+        buttonDiff.setMaximumSize(new java.awt.Dimension(100, 25));
+        buttonDiff.setMinimumSize(new java.awt.Dimension(100, 25));
+        buttonDiff.setPreferredSize(new java.awt.Dimension(100, 25));
         buttonDiff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDiffActionPerformed(evt);
@@ -90,9 +92,9 @@ public class Gui extends javax.swing.JFrame {
         });
 
         buttonProd.setText("Prodotto");
-        buttonProd.setMaximumSize(new java.awt.Dimension(85, 25));
-        buttonProd.setMinimumSize(new java.awt.Dimension(85, 25));
-        buttonProd.setPreferredSize(new java.awt.Dimension(85, 25));
+        buttonProd.setMaximumSize(new java.awt.Dimension(100, 25));
+        buttonProd.setMinimumSize(new java.awt.Dimension(100, 25));
+        buttonProd.setPreferredSize(new java.awt.Dimension(100, 25));
         buttonProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonProdActionPerformed(evt);
@@ -100,9 +102,9 @@ public class Gui extends javax.swing.JFrame {
         });
 
         buttonDiv.setText("Divisione");
-        buttonDiv.setMaximumSize(new java.awt.Dimension(85, 25));
-        buttonDiv.setMinimumSize(new java.awt.Dimension(85, 25));
-        buttonDiv.setPreferredSize(new java.awt.Dimension(85, 25));
+        buttonDiv.setMaximumSize(new java.awt.Dimension(100, 25));
+        buttonDiv.setMinimumSize(new java.awt.Dimension(100, 25));
+        buttonDiv.setPreferredSize(new java.awt.Dimension(100, 25));
         buttonDiv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDivActionPerformed(evt);
@@ -147,6 +149,56 @@ public class Gui extends javax.swing.JFrame {
 
         labelTitle.setText("Calcolatrice Con Numeri Complessi");
 
+        buttonDup.setText("Dup");
+        buttonDup.setMaximumSize(new java.awt.Dimension(65, 25));
+        buttonDup.setMinimumSize(new java.awt.Dimension(65, 25));
+        buttonDup.setPreferredSize(new java.awt.Dimension(65, 25));
+        buttonDup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDupActionPerformed(evt);
+            }
+        });
+
+        buttonClear.setText("Clear");
+        buttonClear.setMaximumSize(new java.awt.Dimension(65, 25));
+        buttonClear.setMinimumSize(new java.awt.Dimension(65, 25));
+        buttonClear.setPreferredSize(new java.awt.Dimension(65, 25));
+        buttonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClearActionPerformed(evt);
+            }
+        });
+
+        buttonSwap.setText("Swap");
+        buttonSwap.setMaximumSize(new java.awt.Dimension(65, 25));
+        buttonSwap.setMinimumSize(new java.awt.Dimension(65, 25));
+        buttonSwap.setPreferredSize(new java.awt.Dimension(65, 25));
+        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSwapActionPerformed(evt);
+            }
+        });
+
+        buttonDrop.setText("Drop");
+        buttonDrop.setMaximumSize(new java.awt.Dimension(65, 25));
+        buttonDrop.setMinimumSize(new java.awt.Dimension(65, 25));
+        buttonDrop.setPreferredSize(new java.awt.Dimension(65, 25));
+        buttonDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDropActionPerformed(evt);
+            }
+        });
+
+        buttonOver.setText("Over");
+        buttonOver.setMaximumSize(new java.awt.Dimension(65, 25));
+        buttonOver.setMinimumSize(new java.awt.Dimension(65, 25));
+        buttonOver.setPreferredSize(new java.awt.Dimension(65, 25));
+        buttonOver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,18 +215,30 @@ public class Gui extends javax.swing.JFrame {
                         .addComponent(buttonInsert))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonSum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonSqr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonSum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonSqr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonInv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonDup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonOver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +259,14 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(buttonProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonDup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonOver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         listComplexNumbers.setModel(new javax.swing.AbstractListModel<String>() {
@@ -213,12 +284,12 @@ public class Gui extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelListTitle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +301,7 @@ public class Gui extends javax.swing.JFrame {
                         .addComponent(labelListTitle)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,10 +365,8 @@ public class Gui extends javax.swing.JFrame {
         String realPart;
         String complexPart;
 
-        String pattern = "\\A\\+{1}";
-
         String expression = textInsertNumber.getText();
-        
+
         if (isExpression(expression)) {
             if ((expression.lastIndexOf("+") == -1) || (expression.lastIndexOf("+") == 0)) {
                 realPart = expression.substring(0, expression.lastIndexOf("-"));
@@ -314,25 +383,70 @@ public class Gui extends javax.swing.JFrame {
             complexPart = expression.substring(0, expression.lastIndexOf("i"));
         } else {
             JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Devi inserire solo variabili numeriche!");
+            JOptionPane.showMessageDialog(jFrame, "Devi inserire l'espressione nella forma corretta!");
 
-            textInsertNumber.setText("0");
+            textInsertNumber.setText("");
             return;
         }
 
         real = Double.parseDouble(realPart);
         complex = Double.parseDouble(complexPart);
 
-        
+        textInsertNumber.setText("");
         calcolatrice.creatComplexNumber(real, complex);
         updateModel();
 
     }//GEN-LAST:event_buttonInsertActionPerformed
 
     private void textInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertNumberActionPerformed
-        // TODO add your handling code here:
         buttonInsertActionPerformed(evt);
     }//GEN-LAST:event_textInsertNumberActionPerformed
+
+    private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
+        coreStack.clear();
+        updateModel();
+    }//GEN-LAST:event_buttonClearActionPerformed
+
+    private void buttonDupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDupActionPerformed
+        try {
+            coreStack.duplicate();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
+        }
+
+        updateModel();
+    }//GEN-LAST:event_buttonDupActionPerformed
+
+    private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
+        try {
+            coreStack.swap();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Gli elementi nello Stack non sono sufficienti per l'operazione di Swap");
+        }
+        updateModel();
+    }//GEN-LAST:event_buttonSwapActionPerformed
+
+    private void buttonDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDropActionPerformed
+        try {
+            coreStack.drop();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
+        }
+        updateModel();
+    }//GEN-LAST:event_buttonDropActionPerformed
+
+    private void buttonOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOverActionPerformed
+        try {
+            coreStack.over();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Gli elementi nello Stack non sono sufficienti per l'operazione di Over");
+        }
+        updateModel();
+    }//GEN-LAST:event_buttonOverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,13 +465,17 @@ public class Gui extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -395,7 +513,7 @@ public class Gui extends javax.swing.JFrame {
 
     /**
      * Metodo che ritorna True se in String sono presenti solo caratteri
-     * numerici complessi nella forma cartesiana
+     * numerici eventualmente seguiti da un segno
      *
      * @param String stringa in input
      * @return boolean (True o False)
@@ -406,7 +524,7 @@ public class Gui extends javax.swing.JFrame {
 
     /**
      * Metodo che ritorna True se in String sono presenti solo caratteri
-     * numerici complessi nella forma cartesiana
+     * numerici seguiti dal simbolo "i" ed eventualmente seguiti da un segno
      *
      * @param String stringa in input
      * @return boolean (True o False)
@@ -431,13 +549,18 @@ public class Gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonDiff;
     private javax.swing.JButton buttonDiv;
+    private javax.swing.JButton buttonDrop;
+    private javax.swing.JButton buttonDup;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonInv;
+    private javax.swing.JButton buttonOver;
     private javax.swing.JButton buttonProd;
     private javax.swing.JButton buttonSqr;
     private javax.swing.JButton buttonSum;
+    private javax.swing.JButton buttonSwap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelListTitle;

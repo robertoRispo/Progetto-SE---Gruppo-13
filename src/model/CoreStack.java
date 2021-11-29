@@ -10,11 +10,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-/**
- *
- * @author gigi9
- */
+
 public class CoreStack {
 
     private StackOp dataSingle;
@@ -37,12 +35,33 @@ public class CoreStack {
 
         int n = 0;
 
-        while(stack.hasNext() && n <= indexElement) {
+        while (stack.hasNext() && n <= indexElement) {
             getSubList.add((ComplexNumber) stack.next());
             n++;
         }
 
         return getSubList;
+    }
+
+    public void clear() {
+        dataSingle.clear();
+    }
+
+    public void duplicate() throws NoSuchElementException {
+        dataSingle.duplicate();
+    }
+
+    public void swap() {
+        dataSingle.swap();
+
+    }
+
+    public void drop() {
+        dataSingle.drop();
+    }
+
+    public void over() {
+        dataSingle.over();
     }
 
 }

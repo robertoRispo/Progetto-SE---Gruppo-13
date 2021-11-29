@@ -8,10 +8,7 @@ import model.Core;
 import model.CoreStack;
 import model.Operations;
 
-/**
- *
- * @author agostinomoffa
- */
+
 public class Calcolatrice {
 
     Operations core;
