@@ -262,6 +262,7 @@ public class ComplexNumberTest {
         a = ran.nextDouble();
         b = ran.nextDouble(); 
         ComplexNumber ncom = new ComplexNumber(a, b);
+        ComplexNumber ncoma = new ComplexNumber(a, b);
         String re = a+"";
         String im = "";
         
@@ -271,6 +272,7 @@ public class ComplexNumberTest {
             im = "+"+b+"i";
         }
         String c = re+im;
+
         assertEquals(ncom.toString()==c, true);
         
 
