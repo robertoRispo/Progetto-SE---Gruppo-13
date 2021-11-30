@@ -11,10 +11,14 @@ import model.StackOp;
 import model.StackSingle;
 
 /**
- *
- * @author agostinomoffa
+ * Classe utilizzata per gestire le variabili nella calcolatrice.
+ * Le variabili vengono gestite in una HashMap <String,ComplexNumber> dove la chiave
+ * (String) rappresenta la variabile e il valore il numero complesso associato.
+ * In tutte i metodi si è supposto che i controlli necessari sulle stringhe siano
+ * stati fatti prima di richiamarli.
  */
 public class Variables{
+   
     private StackOp data;
     HashMap <String, ComplexNumber> variables;
     
@@ -23,13 +27,22 @@ public class Variables{
         variables = new HashMap<>();
     }
     
+    /**
+     * Metodo utilizzato per inserire nella "variabile" l'elemento
+     * in cima allo stack.
+     * @param a Stringa che contiene il nome della variabile
+     */
     public void pushInVar(String a) {
         ComplexNumber num = (ComplexNumber) data.stackPop();
         variables.put(a, num);
         
     }
 
-
+    /**
+     * Metodo utilizzato per inserire il valore presente nella variabile 
+     * a in cima allo stack
+     * @param a Stringa che contiene il nome della variabile
+     */
     public void popFromVar(String a) {
         
        ComplexNumber num = variables.get(a);
@@ -39,7 +52,11 @@ public class Variables{
        data.stackPush(num);
     }
 
- 
+    /**
+     * Metodo utilizzato per effettuare la somma tra la variabile e l'elemento 
+     * presente in cima allo stack, il risultato viene inserito nella variabile
+     * @param a Stringa che contiene il nome della variabile
+     */
     public void addInVar(String a) {
         ComplexNumber num = variables.get(a);
         ComplexNumber num2 = (ComplexNumber) data.stackPop();
@@ -47,7 +64,11 @@ public class Variables{
         variables.put(a, sum);
     }
 
-
+    /**
+     * Metodo utilizzato per effettuare la differenza tra la variabile e l'elemento 
+     * presente in cima allo stack, il risultato viene inserito nella variabile
+     * @param a Stringa che contiene il nome della variabile
+     */
     public void diffInVar(String a) {
         ComplexNumber num = variables.get(a);
         ComplexNumber num2 = (ComplexNumber) data.stackPop();
