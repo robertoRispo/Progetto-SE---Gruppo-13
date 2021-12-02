@@ -18,6 +18,9 @@ public class CoreStack {
     private StackOp dataSingle;
     int indexElement = 12;
 
+    public CoreStack() {
+        dataSingle = StackSingle.getInstance();
+    }
 
     /**
      * Il metodo getSubList() richiama il metodo stackToList per ottenere lo
