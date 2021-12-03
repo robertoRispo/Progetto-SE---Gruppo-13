@@ -67,6 +67,9 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listComplexNumbers = new javax.swing.JList<>();
         labelListTitle = new javax.swing.JLabel();
+        panelSequenceOperations = new javax.swing.JPanel();
+        labelInsertOperations = new javax.swing.JLabel();
+        textInsertOperations = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -269,7 +272,7 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonOver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         listComplexNumbers.setModel(new javax.swing.AbstractListModel<String>() {
@@ -281,14 +284,40 @@ public class Gui extends javax.swing.JFrame {
 
         labelListTitle.setText("Lista Elementi Stack");
 
+        labelInsertOperations.setText("Inserisci una sequenza di Operazioni");
+
+        javax.swing.GroupLayout panelSequenceOperationsLayout = new javax.swing.GroupLayout(panelSequenceOperations);
+        panelSequenceOperations.setLayout(panelSequenceOperationsLayout);
+        panelSequenceOperationsLayout.setHorizontalGroup(
+            panelSequenceOperationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSequenceOperationsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelSequenceOperationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSequenceOperationsLayout.createSequentialGroup()
+                        .addComponent(labelInsertOperations)
+                        .addGap(0, 154, Short.MAX_VALUE))
+                    .addComponent(textInsertOperations, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        panelSequenceOperationsLayout.setVerticalGroup(
+            panelSequenceOperationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSequenceOperationsLayout.createSequentialGroup()
+                .addComponent(labelInsertOperations)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textInsertOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelSequenceOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelListTitle))
@@ -297,67 +326,22 @@ public class Gui extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panelSequenceOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelListTitle)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Somma"
-     */
-    private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackSum();
-        updateModel();
-    }//GEN-LAST:event_buttonSumActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Differenza"
-     */
-    private void buttonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiffActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackDiff();
-        updateModel();
-    }//GEN-LAST:event_buttonDiffActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Prodotto"
-     */
-    private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackProd();
-        updateModel();
-    }//GEN-LAST:event_buttonProdActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Divisione"
-     */
-    private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackDiv();
-        updateModel();
-    }//GEN-LAST:event_buttonDivActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata"
-     */
-    private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackSqr();
-        updateModel();
-    }//GEN-LAST:event_buttonSqrActionPerformed
-    /**
-     * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno"
-     */
-    private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackInv();
-        updateModel();
-    }//GEN-LAST:event_buttonInvActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Inserisci" Questo
      * metodo richiama il metodo stackInv() per l'inserimento nello stack
@@ -373,13 +357,13 @@ public class Gui extends javax.swing.JFrame {
         if (isOperation(expression)) {
             System.out.println("FUNZIONA!");
             try{
-            calcolatrice.executeOperation(expression);
+                calcolatrice.executeOperation(expression);
             }catch (NoSuchElementException e){
                 JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "La variabile non è inizializzata");
+                JOptionPane.showMessageDialog(jFrame, "La variabile non è inizializzata");
 
-            textInsertNumber.setText("");
-            return;
+                textInsertNumber.setText("");
+                return;
             }
             textInsertNumber.setText("");
             updateModel();
@@ -413,28 +397,33 @@ public class Gui extends javax.swing.JFrame {
         textInsertNumber.setText("");
         calcolatrice.creatComplexNumber(real, complex);
         updateModel();
-
     }//GEN-LAST:event_buttonInsertActionPerformed
 
-    private void textInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertNumberActionPerformed
-        buttonInsertActionPerformed(evt);
-    }//GEN-LAST:event_textInsertNumberActionPerformed
-
-    private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
-        coreStack.clear();
+   /**
+     * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno"
+     */
+    private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
+        // TODO add your handling code here:
+        calcolatrice.stackInv();
         updateModel();
-    }//GEN-LAST:event_buttonClearActionPerformed
+    }//GEN-LAST:event_buttonInvActionPerformed
 
-    private void buttonDupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDupActionPerformed
-        try {
-            coreStack.duplicate();
-        } catch (NoSuchElementException e) {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
-        }
+    private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
 
+    }//GEN-LAST:event_buttonSqrActionPerformed
+
+    private void buttonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiffActionPerformed
+
+    }//GEN-LAST:event_buttonDiffActionPerformed
+
+   /**
+     * Metodo richiamato quando viene premuto il pulsante "Divisione"
+     */
+    private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
+        // TODO add your handling code here:
+        calcolatrice.stackDiv();
         updateModel();
-    }//GEN-LAST:event_buttonDupActionPerformed
+    }//GEN-LAST:event_buttonDivActionPerformed
 
     private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
         try {
@@ -465,6 +454,39 @@ public class Gui extends javax.swing.JFrame {
         }
         updateModel();
     }//GEN-LAST:event_buttonOverActionPerformed
+
+    private void buttonDupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDupActionPerformed
+        try {
+            coreStack.duplicate();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
+        }
+
+        updateModel();
+    }//GEN-LAST:event_buttonDupActionPerformed
+
+    private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
+        coreStack.clear();
+        updateModel();
+    }//GEN-LAST:event_buttonClearActionPerformed
+
+    private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
+
+    }//GEN-LAST:event_buttonProdActionPerformed
+
+    /**
+     * Metodo richiamato quando viene premuto il pulsante "Somma"
+     */
+    private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
+        // TODO add your handling code here:
+        calcolatrice.stackSum();
+        updateModel();
+    }//GEN-LAST:event_buttonSumActionPerformed
+
+    private void textInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertNumberActionPerformed
+        buttonInsertActionPerformed(evt);
+    }//GEN-LAST:event_textInsertNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,11 +613,16 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonSum;
     private javax.swing.JButton buttonSwap;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelInsertOperations;
     private javax.swing.JLabel labelListTitle;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JList<String> listComplexNumbers;
+    private javax.swing.JPanel panelSequenceOperations;
     private javax.swing.JTextField textInsertNumber;
+    private javax.swing.JTextField textInsertOperations;
     // End of variables declaration//GEN-END:variables
 }
