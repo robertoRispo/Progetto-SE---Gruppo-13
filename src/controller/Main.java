@@ -8,6 +8,7 @@ import model.Core;
 import model.CoreStack;
 import model.Operations;
 import view.Gui;
+import model.Functions;
 
 /**
  *
@@ -16,7 +17,9 @@ import view.Gui;
 public class Main {
 
     public static void main(String[] args) {
-        
+        Functions function = new Functions();
+        function.read("asdasd asdasdasd nhgbrfve");
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -41,6 +44,6 @@ public class Main {
         Calcolatrice calcolatrice = new Calcolatrice(core, coreStack);
         
         Gui gui = new Gui(calcolatrice, coreStack);
-        gui.setVisible(true);
+        gui.setVisible(true);*/
     }
 }

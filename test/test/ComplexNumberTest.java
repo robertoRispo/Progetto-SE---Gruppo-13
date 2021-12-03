@@ -272,8 +272,7 @@ public class ComplexNumberTest {
             im = "+"+b+"i";
         }
         String c = re+im;
-        //ncom.toString()==c
-        assertEquals(true, true);
+        assertEquals(c.equals(ncom.toString()), true);
         
 
     }}}        
