@@ -17,11 +17,6 @@ import view.Gui;
 public class Main {
 
     public static void main(String[] args) {
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> parent of f9ee32a (Aggiunte le classi Functions e FunctionsTest)
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

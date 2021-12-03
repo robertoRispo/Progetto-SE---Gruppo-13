@@ -5,12 +5,15 @@
 package view;
 
 import controller.Calcolatrice;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.CoreStack;
@@ -36,6 +39,8 @@ public class Gui extends javax.swing.JFrame {
         this.coreStack = coreStack;
         this.numList = new ArrayList<>();
         this.model = new DefaultListModel();
+
+        buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/info.png"))); // NOI18N
 
     }
 
@@ -67,6 +72,10 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listComplexNumbers = new javax.swing.JList<>();
         labelListTitle = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        labelTitle2 = new javax.swing.JLabel();
+        textInsertOperations = new javax.swing.JTextField();
+        buttonInfo = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -269,7 +278,7 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonOver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         listComplexNumbers.setModel(new javax.swing.AbstractListModel<String>() {
@@ -281,13 +290,66 @@ public class Gui extends javax.swing.JFrame {
 
         labelListTitle.setText("Lista Elementi Stack");
 
+        labelTitle2.setText("Inserisci la sequenza di operazioni:");
+
+        textInsertOperations.setMaximumSize(new java.awt.Dimension(60, 25));
+        textInsertOperations.setMinimumSize(new java.awt.Dimension(60, 25));
+        textInsertOperations.setPreferredSize(new java.awt.Dimension(60, 25));
+        textInsertOperations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textInsertOperationsActionPerformed(evt);
+            }
+        });
+
+        buttonInfo.setMaximumSize(new java.awt.Dimension(25, 25));
+        buttonInfo.setMinimumSize(new java.awt.Dimension(25, 25));
+        buttonInfo.setPreferredSize(new java.awt.Dimension(25, 25));
+        buttonInfo.setVerifyInputWhenFocusTarget(false);
+        buttonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonInfoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(labelTitle2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textInsertOperations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(labelTitle2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(textInsertOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,14 +359,17 @@ public class Gui extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelListTitle)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,14 +437,14 @@ public class Gui extends javax.swing.JFrame {
 
         if (isOperation(expression)) {
             System.out.println("FUNZIONA!");
-            try{
-            calcolatrice.executeOperation(expression);
-            }catch (NoSuchElementException e){
+            try {
+                calcolatrice.executeOperation(expression);
+            } catch (NoSuchElementException e) {
                 JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "La variabile non è inizializzata");
+                JOptionPane.showMessageDialog(jFrame, "La variabile non è inizializzata");
 
-            textInsertNumber.setText("");
-            return;
+                textInsertNumber.setText("");
+                return;
             }
             textInsertNumber.setText("");
             updateModel();
@@ -465,6 +530,21 @@ public class Gui extends javax.swing.JFrame {
         }
         updateModel();
     }//GEN-LAST:event_buttonOverActionPerformed
+
+    private void textInsertOperationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertOperationsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textInsertOperationsActionPerformed
+
+    private void buttonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInfoActionPerformed
+        try {
+            coreStack.over();
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Inserisci il nome della funzione in questo modo [funzione]\n"
+                    + "Inserisci le operazioni in questo modo: [op1 op2 op3]\n"
+                    + "Per eseguire un operazione basta inserire il nome della funzione e premere invio");
+        }
+    }//GEN-LAST:event_buttonInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,6 +663,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonDiv;
     private javax.swing.JButton buttonDrop;
     private javax.swing.JButton buttonDup;
+    private javax.swing.JButton buttonInfo;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonInv;
     private javax.swing.JButton buttonOver;
@@ -591,11 +672,14 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonSum;
     private javax.swing.JButton buttonSwap;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelListTitle;
     private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelTitle2;
     private javax.swing.JList<String> listComplexNumbers;
     private javax.swing.JTextField textInsertNumber;
+    private javax.swing.JTextField textInsertOperations;
     // End of variables declaration//GEN-END:variables
 }
