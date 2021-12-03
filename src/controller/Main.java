@@ -7,6 +7,7 @@ package controller;
 import model.Core;
 import model.CoreStack;
 import model.Operations;
+import model.Variables;
 import view.Gui;
 import model.Functions;
 
@@ -17,9 +18,7 @@ import model.Functions;
 public class Main {
 
     public static void main(String[] args) {
-        Functions function = new Functions();
-        function.read("asdasd asdasdasd nhgbrfve");
-        /*
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -36,13 +35,13 @@ public class Main {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
+
         Operations core = new Core();
         CoreStack coreStack = new CoreStack();
-        
-        Calcolatrice calcolatrice = new Calcolatrice(core, coreStack);
-        
+        Variables var = new Variables();
+
+        Calcolatrice calcolatrice = new Calcolatrice(core, coreStack, var);
+
         Gui gui = new Gui(calcolatrice, coreStack);
         gui.setVisible(true);*/
     }

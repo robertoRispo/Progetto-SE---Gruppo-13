@@ -6,6 +6,7 @@ package model;
 
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import model.ComplexNumber;
 import model.StackOp;
 import model.StackSingle;
@@ -43,11 +44,11 @@ public class Variables{
      * a in cima allo stack
      * @param a Stringa che contiene il nome della variabile
      */
-    public void popFromVar(String a) {
+    public void popFromVar(String a) throws NoSuchElementException{
         
        ComplexNumber num = variables.get(a);
        if (num == null){
-           return;
+           throw new NoSuchElementException("La variabile non è inizializzata");
        }
        data.stackPush(num);
     }

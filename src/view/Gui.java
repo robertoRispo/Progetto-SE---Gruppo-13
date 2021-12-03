@@ -48,6 +48,7 @@ public class Gui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         buttonSum = new javax.swing.JButton();
         buttonDiff = new javax.swing.JButton();
@@ -66,6 +67,8 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listComplexNumbers = new javax.swing.JList<>();
         labelListTitle = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(502, 400));
@@ -362,12 +365,27 @@ public class Gui extends javax.swing.JFrame {
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
         // TODO add your handling code here:
         double real = 0, complex = 0;
-        String realPart;
-        String complexPart;
+        String realPart = null;
+        String complexPart = null;
 
         String expression = textInsertNumber.getText();
 
-        if (isExpression(expression)) {
+        if (isOperation(expression)) {
+            System.out.println("FUNZIONA!");
+            try{
+            calcolatrice.executeOperation(expression);
+            }catch (NoSuchElementException e){
+                JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "La variabile non è inizializzata");
+
+            textInsertNumber.setText("");
+            return;
+            }
+            textInsertNumber.setText("");
+            updateModel();
+
+            return;
+        } else if (isExpression(expression)) {
             if ((expression.lastIndexOf("+") == -1) || (expression.lastIndexOf("+") == 0)) {
                 realPart = expression.substring(0, expression.lastIndexOf("-"));
                 complexPart = expression.substring(expression.lastIndexOf("-") + 1, expression.lastIndexOf("i"));
@@ -534,6 +552,17 @@ public class Gui extends javax.swing.JFrame {
     }
 
     /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici eventualmente seguiti da un segno
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isOperation(String str) {
+        return str.matches("[-+<>][a-z]");
+    }
+
+    /**
      * Metodo necessario per aggiornare il model del component
      * listComplexNumbers
      */
@@ -563,6 +592,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonSwap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelListTitle;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JList<String> listComplexNumbers;
