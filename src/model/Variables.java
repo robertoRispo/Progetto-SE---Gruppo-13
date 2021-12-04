@@ -77,6 +77,11 @@ public class Variables{
         variables.put(a, sub);
     }
     
+    /**
+     * Metodo utilizzato per prendere il valore della variabile passata come stringa
+     * @param a stringa con il nome della variabile
+     * @return Oggetto contenuto nella variabile
+     */
     public ComplexNumber getVar(String a){
         return variables.get(a);
     }
