@@ -6,6 +6,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +41,8 @@ public class Calcolatrice {
     /**
      * Metodo utilizzato per sommare due elementi nello stack
      */
-    public void stackSum() {
+    public void stackSum() throws EmptyStackException{
+        
         core.sumInStack();
     }
 

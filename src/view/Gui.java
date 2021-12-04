@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.imageio.ImageIO;
@@ -398,48 +399,101 @@ public class Gui extends javax.swing.JFrame {
      * Metodo richiamato quando viene premuto il pulsante "Somma"
      */
     private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackSum();
+        try {
+            calcolatrice.stackSum();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione somma");
+
+            textInsertNumber.setText("");
+            return;
+        }
+
         updateModel();
     }//GEN-LAST:event_buttonSumActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Differenza"
      */
     private void buttonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiffActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackDiff();
+        try {
+            calcolatrice.stackDiff();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione differenza");
+
+            textInsertNumber.setText("");
+            return;
+        }
+
         updateModel();
+
     }//GEN-LAST:event_buttonDiffActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Prodotto"
      */
     private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackProd();
+       try {
+              calcolatrice.stackProd();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione prodotto");
+
+            textInsertNumber.setText("");
+            return;
+        }
+
         updateModel();
     }//GEN-LAST:event_buttonProdActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Divisione"
      */
     private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackDiv();
+         try {
+               calcolatrice.stackDiv();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione divisione");
+
+            textInsertNumber.setText("");
+            return;
+        }
         updateModel();
     }//GEN-LAST:event_buttonDivActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata"
      */
     private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackSqr();
+         try {
+               calcolatrice.stackSqr();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione sqrt");
+
+            textInsertNumber.setText("");
+            return;
+        }
         updateModel();
     }//GEN-LAST:event_buttonSqrActionPerformed
     /**
      * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno"
      */
     private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
-        // TODO add your handling code here:
-        calcolatrice.stackInv();
+        try {
+                calcolatrice.stackInv();
+        } catch (EmptyStackException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
+                    + "per effettuare l'operazione di inversione");
+
+            textInsertNumber.setText("");
+            return;
+        }
+       
         updateModel();
     }//GEN-LAST:event_buttonInvActionPerformed
     /**

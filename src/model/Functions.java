@@ -14,12 +14,12 @@ public class Functions {
 
     private List<String> list;
     CoreStack coreStack;
-    Core core;
+    Operations core;
 
     public Functions() {
         List<String> list = new LinkedList<String>();
-        CoreStack coreStack = new CoreStack();
-        Core core = new Core();
+        coreStack = new CoreStack();
+        core = new Core();
     }
 
     /**
