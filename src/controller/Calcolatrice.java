@@ -24,7 +24,7 @@ public class Calcolatrice {
     Variables var;
     List<String> opList;
 
-    public Calcolatrice(Operations core, CoreStack coreStacke, Variables var) {
+    public Calcolatrice(Operations core, CoreStack coreStack, Variables var) {
         this.core = core;
         this.coreStack = coreStack;
         this.var = var;
@@ -139,9 +139,8 @@ public class Calcolatrice {
     /**
      * Metodo che controlla se la sequenza inserita è corretta
      *
-     * @param String stringa in input
-     * @return HashMap<String, List<String>>
-     * HashMap<NomeFunzione, ListaOperazioni>
+     * @param String operation in input
+     * @return bool
      */
     public boolean isFunctionCorrect(Iterator<String> operations) throws NoSuchElementException {
         /*String op = null;
@@ -153,4 +152,74 @@ public class Calcolatrice {
         }*/
         return true;
     }
+        /**
+     * Metodo che esegue in maniera ordinata una lista di funzioni legate ad una key della HashMap
+     *
+     * @param String operation in input
+     * HashMap<String, List<String>> 
+     * HashMap<NomeFunzione, ListaOperazioni>
+     */
+    public void executeFunction(HashMap<String, List<String>> function, String operation) {
+        if (verFunctionMap(function,operation)){
+        Iterator<String> operations = function.get(operation).iterator();
+        String op = null;
+        while(operations.hasNext()){
+            op = operations.next();      
+            switch (op) {
+                 case "dup":
+                     coreStack.duplicate();
+                     break;
+                 case "swap":
+                     coreStack.swap();
+                     break;
+                 case "*":
+                     core.prodInStack();
+                     break;
+                 case "-":
+                     core.diffInStack();
+                     break;
+                 case "+":
+                     core.sumInStack();
+                     break;
+                 case "/":
+                     core.divInStack();
+                     break;
+                 case "sqrt":
+                     stackSqr();
+                     break;
+                 case "conj":
+                     core.conjugatedInStack();
+                     break; 
+                 case "abs":
+                     core.absInStack();
+                     break;
+                 case "mod":
+                     core.modInStack();
+                     break;
+             }
+        }
+            }
+        else{
+            throw new NoSuchElementException ("error");
+        }
+        
+    }
+    
+    /**
+     * Metodo che controlla se la funzione richiesta esiste nell'hashmap
+     *
+     * @param String operation in input
+     * HashMap<String, List<String>> 
+     * HashMap<NomeFunzione, ListaOperazioni>
+     * @return bool
+     */
+    public boolean verFunctionMap(HashMap<String, List<String>> function, String operation) {
+         if (function.containsKey(operation)){
+             return true;
+         }
+         else{
+             return false;
+         }
+    }
 }
+

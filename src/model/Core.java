@@ -165,7 +165,6 @@ public class Core implements Operations {
         } else throw new EmptyStackException();
          s = a.sqrt();
          data.stackPush(s);
-    
     }
     
     /**
