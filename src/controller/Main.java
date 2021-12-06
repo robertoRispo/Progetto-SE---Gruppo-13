@@ -6,6 +6,7 @@ package controller;
 
 import model.Core;
 import model.CoreStack;
+import model.Functions;
 import model.Operations;
 import model.Variables;
 import view.Gui;
@@ -37,10 +38,11 @@ public class Main {
         Operations core = new Core();
         CoreStack coreStack = new CoreStack();
         Variables var = new Variables();
+        Functions function = new Functions(core, coreStack);
 
-        Calcolatrice calcolatrice = new Calcolatrice(core, coreStack, var);
-
-        Gui gui = new Gui(calcolatrice, coreStack);
+        Calcolatrice calcolatrice = new Calcolatrice(core, coreStack, var, function);
+        
+        Gui gui = new Gui(calcolatrice, coreStack, core);
         gui.setVisible(true);
     }
 }

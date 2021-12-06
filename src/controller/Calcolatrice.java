@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 import model.ComplexNumber;
 import model.Core;
 import model.CoreStack;
+import model.Functions;
 import model.Operations;
 import model.Variables;
 
@@ -22,13 +23,13 @@ public class Calcolatrice {
     Operations core;
     CoreStack coreStack;
     Variables var;
-    List<String> opList;
+    Functions function;
 
-    public Calcolatrice(Operations core, CoreStack coreStack, Variables var) {
+    public Calcolatrice(Operations core, CoreStack coreStack, Variables var, Functions function) {
         this.core = core;
         this.coreStack = coreStack;
         this.var = var;
-        opList = new ArrayList<String>(Arrays.asList("dup", "swap", "drop", "over", "+", "-", "/", "*", "conj", "abs", "mod"));
+        this.function = function;
     }
 
     /**
@@ -41,8 +42,8 @@ public class Calcolatrice {
     /**
      * Metodo utilizzato per sommare due elementi nello stack
      */
-    public void stackSum() throws EmptyStackException{
-        
+    public void stackSum() throws EmptyStackException {
+
         core.sumInStack();
     }
 
@@ -107,119 +108,18 @@ public class Calcolatrice {
         }
 
     }
-
-    /**
-     * Metodo che trasforma una lista di parole in una mappa con chiave la prima
-     * parola, e come valore una lista contenente le parole successive
-     *
-     * @param String stringa in input
-     * @return HashMap<String, List<String>>
-     * HashMap<NomeFunzione, ListaOperazioni>
-     */
-    public HashMap<String, List<String>> Function(String operations) throws NoSuchElementException {
-        List<String> operationsList = new ArrayList<String>(Arrays.asList(operations.split(" ")));
-
-        String name = operationsList.remove(0);
-
-        System.out.println(operationsList);
-
-        Iterator<String> iterOperations = operationsList.iterator();
-
-        if (!isFunctionCorrect(iterOperations)) {
-            System.out.println("Problema Trovato");
+    
+    
+    public void functionController(String operations){
+        List<String> listOperations = function.readOperations(operations);
+        
+        if(listOperations.size() == 1){
+            function.executeFunction(listOperations.get(0)); //Il primo elemento è il nome della funzione
+        } else {
+            function.createFunction(listOperations);
         }
-
-        HashMap<String, List<String>> function = new HashMap<>();;
-        function.put(name, operationsList);
-
-        return function;
-
-    }
-
-    /**
-     * Metodo che controlla se la sequenza inserita è corretta
-     *
-     * @param String operation in input
-     * @return bool
-     */
-    public boolean isFunctionCorrect(Iterator<String> operations) throws NoSuchElementException {
-        /*String op = null;
-        while(operations.hasNext()){
-            op = operations.next();
-            if(!opList.contains(op)){
-                throw new NoSuchElementException ("error");
-            }
-        }*/
-        return true;
-    }
-        /**
-     * Metodo che esegue in maniera ordinata una lista di funzioni legate ad una key della HashMap
-     *
-     * @param String operation in input
-     * HashMap<String, List<String>> 
-     * HashMap<NomeFunzione, ListaOperazioni>
-     */
-    public void executeFunction(HashMap<String, List<String>> function, String operation) {
-        if (verFunctionMap(function,operation)){
-        Iterator<String> operations = function.get(operation).iterator();
-        String op = null;
-        while(operations.hasNext()){
-            op = operations.next();      
-            switch (op) {
-                 case "dup":
-                     coreStack.duplicate();
-                     break;
-                 case "swap":
-                     coreStack.swap();
-                     break;
-                 case "*":
-                     core.prodInStack();
-                     break;
-                 case "-":
-                     core.diffInStack();
-                     break;
-                 case "+":
-                     core.sumInStack();
-                     break;
-                 case "/":
-                     core.divInStack();
-                     break;
-                 case "sqrt":
-                     stackSqr();
-                     break;
-                 case "conj":
-                     core.conjugatedInStack();
-                     break; 
-                 case "abs":
-                     core.absInStack();
-                     break;
-                 case "mod":
-                     core.modInStack();
-                     break;
-             }
-        }
-            }
-        else{
-            throw new NoSuchElementException ("error");
-        }
+        
         
     }
     
-    /**
-     * Metodo che controlla se la funzione richiesta esiste nell'hashmap
-     *
-     * @param String operation in input
-     * HashMap<String, List<String>> 
-     * HashMap<NomeFunzione, ListaOperazioni>
-     * @return bool
-     */
-    public boolean verFunctionMap(HashMap<String, List<String>> function, String operation) {
-         if (function.containsKey(operation)){
-             return true;
-         }
-         else{
-             return false;
-         }
-    }
 }
-

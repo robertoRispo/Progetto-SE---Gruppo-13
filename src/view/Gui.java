@@ -19,6 +19,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.CoreStack;
 import model.ComplexNumber;
+import model.Core;
+import model.Functions;
+import model.Operations;
 
 public class Gui extends javax.swing.JFrame {
 
@@ -27,6 +30,8 @@ public class Gui extends javax.swing.JFrame {
      */
     Calcolatrice calcolatrice;
     CoreStack coreStack;
+    Operations core;
+    Functions functions;
     List<ComplexNumber> numList;
     DefaultListModel model;
 
@@ -34,11 +39,13 @@ public class Gui extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Gui(Calcolatrice calcolatrice, CoreStack coreStack) {
+    public Gui(Calcolatrice calcolatrice, CoreStack coreStack, Operations core) {
         initComponents();
         this.calcolatrice = calcolatrice;
         this.coreStack = coreStack;
+        this.core = core;
         this.numList = new ArrayList<>();
+        this.functions = new Functions(core, coreStack);
         this.model = new DefaultListModel();
 
         buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/info.png"))); // NOI18N
@@ -621,7 +628,9 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonInsertFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertFunctionActionPerformed
         String operations = textInsertOperations.getText();
-        calcolatrice.Function(operations);
+        calcolatrice.functionController(operations);
+        textInsertOperations.setText("");
+        updateModel();
     }//GEN-LAST:event_buttonInsertFunctionActionPerformed
 
     /**
