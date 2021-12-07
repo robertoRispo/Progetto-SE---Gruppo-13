@@ -8,13 +8,18 @@ import controller.Calcolatrice;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.CoreStack;
@@ -28,12 +33,14 @@ public class Gui extends javax.swing.JFrame {
     /**
      * Creates new form Gui
      */
-    Calcolatrice calcolatrice;
-    CoreStack coreStack;
-    Operations core;
-    Functions functions;
-    List<ComplexNumber> numList;
-    DefaultListModel model;
+    private Calcolatrice calcolatrice;
+    private CoreStack coreStack;
+    private Operations core;
+    private Functions functions;
+    private List<ComplexNumber> numList;
+    private DefaultListModel model;
+
+    private JFileChooser saveFunctions;
 
     public Gui() {
         initComponents();
@@ -47,6 +54,8 @@ public class Gui extends javax.swing.JFrame {
         this.numList = new ArrayList<>();
         this.functions = new Functions(core, coreStack);
         this.model = new DefaultListModel();
+
+        this.saveFunctions = new JFileChooser();
 
         buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/info.png"))); // NOI18N
 
@@ -85,6 +94,8 @@ public class Gui extends javax.swing.JFrame {
         textInsertOperations = new javax.swing.JTextField();
         buttonInfo = new javax.swing.JButton();
         buttonInsertFunction = new javax.swing.JButton();
+        buttonSaveFunctions = new javax.swing.JButton();
+        buttonLoadFunctions = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -320,13 +331,34 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        buttonInsertFunction.setText("Inserisci Funzione");
+        buttonInsertFunction.setText("Inserisci/Esegui");
         buttonInsertFunction.setMaximumSize(new java.awt.Dimension(150, 25));
         buttonInsertFunction.setMinimumSize(new java.awt.Dimension(150, 25));
         buttonInsertFunction.setPreferredSize(new java.awt.Dimension(150, 25));
         buttonInsertFunction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonInsertFunctionActionPerformed(evt);
+            }
+        });
+
+        buttonSaveFunctions.setText("Salva");
+        buttonSaveFunctions.setMaximumSize(new java.awt.Dimension(50, 25));
+        buttonSaveFunctions.setMinimumSize(new java.awt.Dimension(50, 25));
+        buttonSaveFunctions.setPreferredSize(new java.awt.Dimension(50, 25));
+        buttonSaveFunctions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveFunctionsActionPerformed(evt);
+            }
+        });
+
+        buttonLoadFunctions.setText("Carica");
+        buttonLoadFunctions.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        buttonLoadFunctions.setMaximumSize(new java.awt.Dimension(50, 25));
+        buttonLoadFunctions.setMinimumSize(new java.awt.Dimension(50, 25));
+        buttonLoadFunctions.setPreferredSize(new java.awt.Dimension(50, 25));
+        buttonLoadFunctions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoadFunctionsActionPerformed(evt);
             }
         });
 
@@ -344,12 +376,15 @@ public class Gui extends javax.swing.JFrame {
                         .addComponent(labelTitle2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSaveFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonLoadFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +399,10 @@ public class Gui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textInsertOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSaveFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLoadFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -441,8 +479,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo richiamato quando viene premuto il pulsante "Prodotto"
      */
     private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
-       try {
-              calcolatrice.stackProd();
+        try {
+            calcolatrice.stackProd();
         } catch (EmptyStackException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
@@ -458,8 +496,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo richiamato quando viene premuto il pulsante "Divisione"
      */
     private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
-         try {
-               calcolatrice.stackDiv();
+        try {
+            calcolatrice.stackDiv();
         } catch (EmptyStackException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
@@ -474,8 +512,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata"
      */
     private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
-         try {
-               calcolatrice.stackSqr();
+        try {
+            calcolatrice.stackSqr();
         } catch (EmptyStackException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
@@ -491,7 +529,7 @@ public class Gui extends javax.swing.JFrame {
      */
     private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
         try {
-                calcolatrice.stackInv();
+            calcolatrice.stackInv();
         } catch (EmptyStackException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Non ci sono abbastanza elementi nello stack\n"
@@ -500,7 +538,7 @@ public class Gui extends javax.swing.JFrame {
             textInsertNumber.setText("");
             return;
         }
-       
+
         updateModel();
     }//GEN-LAST:event_buttonInvActionPerformed
     /**
@@ -627,15 +665,48 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonInsertFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertFunctionActionPerformed
         String operations = textInsertOperations.getText();
-        try{
-        calcolatrice.functionController(operations);
-        } catch (NumberFormatException e){
+        try {
+            calcolatrice.functionController(operations);
+        } catch (NumberFormatException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Il numero inserito non è nella forma corretta");
+        } catch (NoSuchElementException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Un operazione di questa funzione non è stata trovata");
+        } catch (NullPointerException e){
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "La funzione inserita non esiste");
         }
         textInsertOperations.setText("");
         updateModel();
     }//GEN-LAST:event_buttonInsertFunctionActionPerformed
+
+    private void buttonLoadFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoadFunctionsActionPerformed
+        String nameFile = textInsertOperations.getText();
+        try {
+            calcolatrice.loadFile(nameFile);
+
+        } catch (FileNotFoundException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Il File non è stato trovato");
+        } catch (IOException ex) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Problema riscontrato durante il caricamento del File");
+        }
+    }//GEN-LAST:event_buttonLoadFunctionsActionPerformed
+
+    private void buttonSaveFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveFunctionsActionPerformed
+        try {
+            String name = textInsertOperations.getText();
+            calcolatrice.saveFile(name);
+        } catch (IOException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Problema riscontrato durante il salvataggio del File");
+        } catch (NullPointerException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Questa funzione non esiste");
+        }
+    }//GEN-LAST:event_buttonSaveFunctionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -758,8 +829,10 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonInsertFunction;
     private javax.swing.JButton buttonInv;
+    private javax.swing.JButton buttonLoadFunctions;
     private javax.swing.JButton buttonOver;
     private javax.swing.JButton buttonProd;
+    private javax.swing.JButton buttonSaveFunctions;
     private javax.swing.JButton buttonSqr;
     private javax.swing.JButton buttonSum;
     private javax.swing.JButton buttonSwap;

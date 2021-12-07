@@ -4,6 +4,8 @@
  */
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -108,18 +110,24 @@ public class Calcolatrice {
         }
 
     }
-    
-    
-    public void functionController(String operations) throws NumberFormatException{
+
+    public void functionController(String operations) throws NumberFormatException, NullPointerException {
         List<String> listOperations = function.readOperations(operations);
-        
-        if(listOperations.size() == 1){
+
+        if (listOperations.size() == 1) {
             function.executeFunction(listOperations.get(0)); //Il primo elemento è il nome della funzione
         } else {
             function.createFunction(listOperations);
         }
-        
-        
+
     }
     
+    
+    public void saveFile(String name) throws IOException{
+        function.saveFile(name);
+    }
+    
+    public void loadFile(String name) throws IOException, FileNotFoundException{
+        function.loadFile(name);
+    }
 }

@@ -46,12 +46,6 @@ public class Functions {
 
         String name = operationsList.remove(0);
 
-        Iterator<String> iterOperations = operationsList.iterator();
-
-        if (!isFunctionCorrect(iterOperations)) {
-            System.out.println("Problema Trovato");
-        }
-
         function.put(name, operationsList);
 
         return function;
@@ -64,35 +58,13 @@ public class Functions {
     }
 
     /**
-     * Metodo che controlla se la sequenza inserita è corretta
-     *
-     * @param String operation in input
-     * @return bool
-     */
-    public boolean isFunctionCorrect(Iterator<String> operations) throws NoSuchElementException {
-        /*String op = null;
-        while(operations.hasNext()){
-            op = operations.next();
-            if(!opList.contains(op)){
-                throw new NoSuchElementException ("error");
-            }
-         for (int i = 0; i < lung; i++) {
-            if (!list.contains(testodiv[i])) {
-                return "error";
-            }
-        }
-        }*/
-        return true;
-    }
-
-    /**
      * Metodo che esegue in maniera ordinata una lista di funzioni legate ad una
      * key della HashMap
      *
      * @param String operation in input HashMap<String, List<String>>
      * HashMap<NomeFunzione, ListaOperazioni>
      */
-    public void executeFunction(String name) throws NumberFormatException {
+    public void executeFunction(String name) throws NumberFormatException, NullPointerException {
         if (function.containsKey(name)) {
             List<String> listOperations = function.get(name);
             Iterator<String> iterOperations = listOperations.iterator();
@@ -141,53 +113,61 @@ public class Functions {
                 }
             }
         } else {
-            throw new NoSuchElementException("error");
+            throw new NullPointerException("error");
         }
 
     }
-    
-    public void createFile(String name, String namefile) {  
+
+    public void saveFile(String name) throws IOException, NullPointerException {
         List<String> listOperations = function.get(name);
+        if (listOperations.isEmpty()) {
+            throw new NullPointerException("Lista Vuota");
+        }
         Iterator<String> iterOperations = listOperations.iterator();
         try {
-            FileWriter myWriter = new FileWriter(namefile);
+            String nameFile = name + ".txt";
+            FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(name);
-            while (iterOperations.hasNext()) {
-            myWriter.write(iterOperations.next());
-            myWriter.write("/n");
-            }
-            
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-          } 
-        catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-          }
-  }
+            myWriter.write(" ");
 
-    public void readFile(String namefile) {
-        try {
-            File myObj = new File(namefile);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                createFunction(readOperations(data));
-                System.out.println(data);
+            while (iterOperations.hasNext()) {
+                myWriter.write(iterOperations.next());
+                myWriter.write(" ");
             }
-            myReader.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+
+            myWriter.close();
+        } catch (IOException e) {
+            throw new IOException("Errore Creazione File");
         }
     }
-    
-    public void removeOperation(String name){
-        if(function.containsKey(name)){
+
+    public void loadFile(String name) throws FileNotFoundException {
+        String nameFile = name + ".txt";
+
+        try {
+            File myObj = new File(nameFile);
+            Scanner myReader = new Scanner(myObj);
+
+            String data = myReader.nextLine();
+            List<String> listOperations = readOperations(data);
+
+            createFunction(listOperations);
+            System.out.println(data);
+
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("File non trovato");
+        }
+    }
+
+    public void removeOperation(String name) {
+        if (function.containsKey(name)) {
             function.remove(name);
         }
     }
+
+    /*Da Rimuovere
     public void modifyOperation(String name){
         List<String> operationsList = readOperations(name);
         
@@ -206,10 +186,9 @@ public class Functions {
         else{
             throw new NoSuchElementException("Key non presente");
         }
-    }
-
+    }*/
     //Dobbiamo vedere dove mettere tutti questi metodi
-    public void strToComplex(String expression) throws NumberFormatException{
+    public void strToComplex(String expression) throws NumberFormatException {
 
         double real = 0, complex = 0;
         String realPart = null;
@@ -229,8 +208,8 @@ public class Functions {
         } else if (isComplex(expression)) {
             realPart = "0";
             complexPart = expression.substring(0, expression.lastIndexOf("i"));
-        }   else{
-            throw new NumberFormatException ("Variabile non compatibile");
+        } else {
+            throw new NumberFormatException("Variabile non compatibile");
         }
 
         real = Double.parseDouble(realPart);
