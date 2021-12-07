@@ -8,7 +8,6 @@ import java.util.ArrayDeque;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import model.ComplexNumber;
 import model.StackOp;
 import model.StackSingle;

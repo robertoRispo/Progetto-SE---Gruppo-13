@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * La classe CoreStack viene utilizzata per richiamare i metodi di StackSingle
- * 
+ * La classe CoreStack viene utilizzata per effettuare operazioni di
+ * manipolazione sullo Stack di numeri complessi
  */
 public class CoreStack {
 
@@ -79,7 +79,7 @@ public class CoreStack {
         dataSingle.drop();
     }
 
-     /**
+    /**
      * Metodo utilizzato per duplicare il penultimo elemento dello stack
      *
      * @throws NoSuchElementException Quando non ci sono abbastanza elementi

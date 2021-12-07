@@ -7,9 +7,9 @@ package model;
 import java.util.*;
 
 /**
- * La classe Core viene utilizzata per effettuare operazioni di modifica sullo stack
- * Implementa l'interfaccia operazione che definisce le operazioni elementari che devono 
- * essere implementate 
+ * La classe Core viene utilizzata per effettuare operazioni di modifica sullo
+ * stack Implementa l'interfaccia operazione che definisce le operazioni
+ * elementari che devono essere implementate
  */
 public class Core implements Operations {
 
@@ -21,8 +21,9 @@ public class Core implements Operations {
 
     /**
      * Il metodo viene prende in input due valori di tipo double, al primo
-     * associa parte real mentre al secondo associa la parte complessa, crea un 
+     * associa parte real mentre al secondo associa la parte complessa, crea un
      * oggetto di tipo Numero Complesso e ne effettua il push nello stack
+     *
      * @param a parte re
      * @param b parte immaginaria
      */
@@ -34,6 +35,7 @@ public class Core implements Operations {
 
     /**
      * Metodo che effettua il push nello stack di un numero complesso
+     *
      * @param a Numero Complesso
      */
     @Override
@@ -44,6 +46,7 @@ public class Core implements Operations {
     /**
      * Metodo che effettua il pop dallo stack e ritorna il numero complesso che
      * si trova nella cima dello stack
+     *
      * @return Numero Complesso
      */
     @Override
@@ -52,9 +55,9 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare la somma tra due numeri complessi presenti nello stack
-     * Tale metodo prima effettua il Pop dei due numeri, ne fa la somma ed effettua il push
-     * del risultato nello stack
+     * Metodo per effettuare la somma tra due numeri complessi presenti nello
+     * stack Tale metodo prima effettua il Pop dei due numeri, ne fa la somma ed
+     * effettua il push del risultato nello stack
      */
     @Override
     public void sumInStack() {
@@ -77,9 +80,9 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare la differenza tra due numeri complessi presenti nello stack
-     * Tale metodo prima effettua il Pop dei due numeri, ne fa la differenza ed effettua il push
-     * del risultato nello stack
+     * Metodo per effettuare la differenza tra due numeri complessi presenti
+     * nello stack Tale metodo prima effettua il Pop dei due numeri, ne fa la
+     * differenza ed effettua il push del risultato nello stack
      */
     @Override
     public void diffInStack() {
@@ -102,9 +105,9 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare il prodotto tra due numeri complessi presenti nello stack
-     * Tale metodo prima effettua il Pop dei due numeri, ne fa il prodotto ed effettua il push
-     * del risultato nello stack
+     * Metodo per effettuare il prodotto tra due numeri complessi presenti nello
+     * stack Tale metodo prima effettua il Pop dei due numeri, ne fa il prodotto
+     * ed effettua il push del risultato nello stack
      */
     @Override
     public void prodInStack() {
@@ -127,9 +130,9 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare la division tra due numeri complessi presenti nello stack
- Tale metodo prima effettua il Pop dei due numeri, ne fa la division ed effettua il push
- del risultato nello stack
+     * Metodo per effettuare la division tra due numeri complessi presenti nello
+     * stack Tale metodo prima effettua il Pop dei due numeri, ne fa la division
+     * ed effettua il push del risultato nello stack
      */
     @Override
     public void divInStack() {
@@ -152,21 +155,23 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo per effettuare la radice quadra di un numero complesso presente nello stack
-     * Tale metodo prima effettua il Pop del numero, ne calcola la radice ed effettua il push
-     * del risultato nello stack
+     * Metodo per effettuare la radice quadra di un numero complesso presente
+     * nello stack Tale metodo prima effettua il Pop del numero, ne calcola la
+     * radice ed effettua il push del risultato nello stack
      */
     @Override
-    public void square2InStack(){
+    public void square2InStack() {
         ComplexNumber a;
         ComplexNumber s;
-         if (data.stackStatus()) {
+        if (data.stackStatus()) {
             a = (ComplexNumber) data.stackPop();
-        } else throw new EmptyStackException();
-         s = a.sqrt();
-         data.stackPush(s);
+        } else {
+            throw new EmptyStackException();
+        }
+        s = a.sqrt();
+        data.stackPush(s);
     }
-    
+
     /**
      * Metodo utilizzato per stampare a schermo il contenuto dello stack.
      */
@@ -175,50 +180,55 @@ public class Core implements Operations {
     }
 
     /**
-     * Metodo utilizzato per effettuare il coniugato del numero presente sulla 
+     * Metodo utilizzato per effettuare il coniugato del numero presente sulla
      * cima dello stack.
      */
     @Override
     public void conjugatedInStack() {
         ComplexNumber a;
         ComplexNumber s;
-         if (data.stackStatus()) {
+        if (data.stackStatus()) {
             a = (ComplexNumber) data.stackPop();
-        } else throw new EmptyStackException();
-         s = a.conjugated();
-         data.stackPush(s);
+        } else {
+            throw new EmptyStackException();
+        }
+        s = a.conjugated();
+        data.stackPush(s);
     }
 
     /**
-     * Metodo utilizzato per effettuare il modulo del numero presente sulla 
-     * cima dello stack, pochè il risultato è un numero reale verrà inserito 
-     * nello stack nella forma mod + 0i;
+     * Metodo utilizzato per effettuare il modulo del numero presente sulla cima
+     * dello stack, pochè il risultato è un numero reale verrà inserito nello
+     * stack nella forma mod + 0i;
      */
     @Override
-    public void modInStack(){
+    public void modInStack() {
         ComplexNumber a;
         ComplexNumber s;
-         if (data.stackStatus()) {
+        if (data.stackStatus()) {
             a = (ComplexNumber) data.stackPop();
-        } else throw new EmptyStackException();
-         s = new ComplexNumber(a.mod(),0);
-         data.stackPush(s);
+        } else {
+            throw new EmptyStackException();
+        }
+        s = new ComplexNumber(a.mod(), 0);
+        data.stackPush(s);
     }
-    
+
     /**
-     * Metodo utilizzato per effettuare l'abs del numero presente sulla 
-     * cima dello stack, pochè il risultato è un numero reale verrà inserito 
-     * nello stack nella forma mod + 0i;
+     * Metodo utilizzato per effettuare l'abs del numero presente sulla cima
+     * dello stack, pochè il risultato è un numero reale verrà inserito nello
+     * stack nella forma mod + 0i;
      */
     @Override
-    public void absInStack(){
+    public void absInStack() {
         ComplexNumber a;
         ComplexNumber s;
-         if (data.stackStatus()) {
+        if (data.stackStatus()) {
             a = (ComplexNumber) data.stackPop();
-        } else throw new EmptyStackException();
-         s = new ComplexNumber(a.abs(),0);
-         data.stackPush(s);
+        } else {
+            throw new EmptyStackException();
+        }
+        s = new ComplexNumber(a.abs(), 0);
+        data.stackPush(s);
     }
 }
-

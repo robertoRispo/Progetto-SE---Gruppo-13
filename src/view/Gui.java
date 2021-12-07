@@ -38,7 +38,7 @@ public class Gui extends javax.swing.JFrame {
         this.coreStack = coreStack;
         this.numList = new ArrayList<>();
         this.model = new DefaultListModel();
-        
+
         buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/info.png"))); // NOI18N
 
     }
@@ -436,7 +436,10 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Somma"
+     * Metodo richiamato quando viene premuto il pulsante "Somma", ed esegue la
+     * funzione Calcolatrice.stackSum().
+     *
+     * @param evt
      */
     private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
         try {
@@ -453,7 +456,11 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
     }//GEN-LAST:event_buttonSumActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Differenza"
+     * Metodo richiamato quando viene premuto il pulsante "Differenza", ed
+     * esegue la funzione Calcolatrice.stackDiff().
+     *
+     * @param evt
+     *
      */
     private void buttonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiffActionPerformed
         try {
@@ -471,7 +478,10 @@ public class Gui extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonDiffActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Prodotto"
+     * Metodo richiamato quando viene premuto il pulsante "Prodotto", ed esegue
+     * la funzione Calcolatrice.stackProd().
+     *
+     * @param evt
      */
     private void buttonProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProdActionPerformed
         try {
@@ -488,7 +498,10 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
     }//GEN-LAST:event_buttonProdActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Divisione"
+     * Metodo richiamato quando viene premuto il pulsante "Divisione", ed esegue
+     * la funzione Calcolatrice.stackDiv().
+     *
+     * @param evt
      */
     private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
         try {
@@ -504,7 +517,10 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
     }//GEN-LAST:event_buttonDivActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata"
+     * Metodo richiamato quando viene premuto il pulsante "Radice Quadrata", ed
+     * esegue la funzione Calcolatrice.stackSqr().
+     *
+     * @param evt
      */
     private void buttonSqrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSqrActionPerformed
         try {
@@ -520,7 +536,12 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
     }//GEN-LAST:event_buttonSqrActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno"
+     * Metodo richiamato quando viene premuto il pulsante "Inversione di Segno",
+     * ed esegue la funzione Calcolatrice.stackInv().
+     *
+     * @param evt
+     *
+     *
      */
     private void buttonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInvActionPerformed
         try {
@@ -537,11 +558,12 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
     }//GEN-LAST:event_buttonInvActionPerformed
     /**
-     * Metodo richiamato quando viene premuto il pulsante "Inserisci" Questo
-     * metodo richiama il metodo stackInv() per l'inserimento nello stack
+     * Metodo richiamato quando viene premuto il pulsante "Inserisci", inserisce
+     * nello stack il numero inserito nell'apposita area di testo.
+     *
+     * @param evt
      */
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
-        // TODO add your handling code here:
         double real = 0, complex = 0;
         String realPart = null;
         String complexPart = null;
@@ -592,16 +614,30 @@ public class Gui extends javax.swing.JFrame {
         updateModel();
 
     }//GEN-LAST:event_buttonInsertActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo
+     * {@link buttonInsertActionPerformed(java.awt.event.ActionEvent evt)} alla
+     * pressione del tasto invio
+     *
+     * @param evt
+     */
     private void textInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertNumberActionPerformed
         buttonInsertActionPerformed(evt);
     }//GEN-LAST:event_textInsertNumberActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo {@link Calcolatrice.clear()}
+     *
+     * @param evt
+     */
     private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
         calcolatrice.clear();
         updateModel();
     }//GEN-LAST:event_buttonClearActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo {@link Calcolatrice.duplicate()}
+     *
+     * @param evt
+     */
     private void buttonDupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDupActionPerformed
         try {
             calcolatrice.duplicate();
@@ -612,7 +648,11 @@ public class Gui extends javax.swing.JFrame {
 
         updateModel();
     }//GEN-LAST:event_buttonDupActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo {@link Calcolatrice.Swap()}
+     *
+     * @param evt
+     */
     private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
         try {
             calcolatrice.swap();
@@ -622,7 +662,11 @@ public class Gui extends javax.swing.JFrame {
         }
         updateModel();
     }//GEN-LAST:event_buttonSwapActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo {@link Calcolatrice.drop()}
+     *
+     * @param evt
+     */
     private void buttonDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDropActionPerformed
         try {
             calcolatrice.drop();
@@ -632,7 +676,12 @@ public class Gui extends javax.swing.JFrame {
         }
         updateModel();
     }//GEN-LAST:event_buttonDropActionPerformed
-
+    /**
+     * Metodo che alla pressione del pulsanete esegue il metodo
+     * {@link Calcolatrice.over()}
+     *
+     * @param evt
+     */
     private void buttonOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOverActionPerformed
         try {
             calcolatrice.over();
@@ -642,11 +691,22 @@ public class Gui extends javax.swing.JFrame {
         }
         updateModel();
     }//GEN-LAST:event_buttonOverActionPerformed
-
+    /**
+     * Metodo per eseguire il metodo
+     * {@link buttonInsertFunctionActionPerformed(java.awt.event.ActionEvent evt)}
+     * alla pressione del tasto invio
+     *
+     * @param evt
+     */
     private void textInsertOperationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInsertOperationsActionPerformed
         buttonInsertFunctionActionPerformed(evt);
     }//GEN-LAST:event_textInsertOperationsActionPerformed
-
+    /**
+     * Metodo per poter vedere le info riguardo l'inserimento delle funzioni in
+     * un pannello separato
+     *
+     * @param evt
+     */
     private void buttonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInfoActionPerformed
         try {
             calcolatrice.over();
@@ -657,7 +717,12 @@ public class Gui extends javax.swing.JFrame {
                     + "Per eseguire una funzione basta inserire il nome della funzione e premere invio");
         }
     }//GEN-LAST:event_buttonInfoActionPerformed
-
+    /**
+     * Metodo richiamato alla pressione del tasto "Inserisci/Modifica", e
+     * memorizza la funzione inserita nell'apposita area di testo
+     *
+     * @param evt
+     */
     private void buttonInsertFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertFunctionActionPerformed
         String operations = textInsertOperations.getText();
         try {
@@ -675,7 +740,12 @@ public class Gui extends javax.swing.JFrame {
         textInsertOperations.setText("");
         updateModel();
     }//GEN-LAST:event_buttonInsertFunctionActionPerformed
-
+    /**
+     * Metodo richiamato alla pressione del tasto "Carica", carica e memorizza
+     * una funzione da file di testo
+     *
+     * @param evt
+     */
     private void buttonLoadFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoadFunctionsActionPerformed
         String nameFile = textInsertOperations.getText();
         try {
@@ -689,7 +759,12 @@ public class Gui extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jFrame, "Problema riscontrato durante il caricamento del File");
         }
     }//GEN-LAST:event_buttonLoadFunctionsActionPerformed
-
+    /**
+     * Metodo richiamato alla pressione del tasto "Salva", salva il nome della
+     * funzione e le operazioni che compie in un file di testo
+     *
+     * @param evt
+     */
     private void buttonSaveFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveFunctionsActionPerformed
         try {
             String name = textInsertOperations.getText();
@@ -702,7 +777,12 @@ public class Gui extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jFrame, "Questa funzione non esiste");
         }
     }//GEN-LAST:event_buttonSaveFunctionsActionPerformed
-
+    /**
+     * Metodo richiamato alla pressione del tasto "Elimina", cancella la
+     * funzione corrispondente al nome inserito nell'apposita area di testo
+     *
+     * @param evt
+     */
     private void buttonDeleteFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFunctionsActionPerformed
         try {
             String name = textInsertOperations.getText();
@@ -714,53 +794,16 @@ public class Gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonDeleteFunctionsActionPerformed
 
-    /**
-     * @param args the command line arguments
+    /* Metodi utili, valutare se creare una classe apposita, perché utilizzati
+     * anche nella classe Functions
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gui.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gui.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gui.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gui.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-            }
-        });
-    }
-
-    //Useful Methods
     /**
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici, che possono essere anche seguiti da un simbolo "-", False
      * altrimenti
      *
      * @param String stringa in input
-     * @return boolean (True o False)
+     * @return boolean (True se è una stringa numerica, False altrimenti)
      */
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
@@ -770,8 +813,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici complessi nella forma cartesiana
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return boolean (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isExpression(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?[-+]+\\d+(\\.\\d+)?i+");
@@ -781,8 +824,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isReal(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?");
@@ -792,8 +835,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici seguiti dal simbolo "i" ed eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isComplex(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?i+");
@@ -803,8 +846,8 @@ public class Gui extends javax.swing.JFrame {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isOperation(String str) {
         return str.matches("[-+<>][a-z]");

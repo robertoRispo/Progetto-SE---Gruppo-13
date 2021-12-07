@@ -110,21 +110,40 @@ public class Calcolatrice {
         }
 
     }
-    
-    public void clear(){
+
+    /**
+     * Metodo utilizzato per cancellare tutti gli elementi dello stack
+     */
+    public void clear() {
         coreStack.clear();
     }
-    public void duplicate() throws NoSuchElementException{
+
+    /**
+     * Metodo utilizzato per scambiare gli ultimi due elementi dello stack
+     */
+    public void duplicate() throws NoSuchElementException {
         coreStack.duplicate();
     }
-    public void swap(){
+
+    /**
+     * Metodo utilizzato per scambiare gli ultimi due elementi dello stack
+     */
+    public void swap() {
         coreStack.swap();
     }
-    public void over(){
-        coreStack.over();
-    }
-    public void drop(){
+
+    /**
+     * Metodo utilizzato per eliminare l'ultimo elemento inserito nello stack
+     */
+    public void drop() {
         coreStack.drop();
+    }
+
+    /**
+     * Metodo utilizzato per duplicare il penultimo elemento dello stack
+     */
+    public void over() {
+        coreStack.over();
     }
 
     public void functionController(String operations) throws NumberFormatException, NullPointerException {
@@ -137,17 +156,16 @@ public class Calcolatrice {
         }
 
     }
-    
-    
-    public void saveFile(String name) throws IOException{
+
+    public void saveFile(String name) throws IOException {
         function.saveFile(name);
     }
-    
-    public void loadFile(String name) throws IOException, FileNotFoundException{
+
+    public void loadFile(String name) throws IOException, FileNotFoundException {
         function.loadFile(name);
     }
-    
-    public void deleteFunction(String name) throws NullPointerException{
+
+    public void deleteFunction(String name) throws NullPointerException {
         function.deleteFunction(name);
     }
 }
