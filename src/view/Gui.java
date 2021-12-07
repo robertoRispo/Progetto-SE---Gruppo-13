@@ -396,7 +396,7 @@ public class Gui extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -516,7 +516,6 @@ public class Gui extends javax.swing.JFrame {
         String expression = textInsertNumber.getText();
 
         if (isOperation(expression)) {
-            System.out.println("FUNZIONA!");
             try {
                 calcolatrice.executeOperation(expression);
             } catch (NoSuchElementException e) {
@@ -621,14 +620,19 @@ public class Gui extends javax.swing.JFrame {
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Inserisci il nome della funzione in questo modo [funzione]\n"
-                    + "Inserisci le operazioni in questo modo: [op1 op2 op3 push(x+yi)]\n"
+                    + "Inserisci le operazioni in questo modo: [op1 op2 op3 push x+yi pop]\n"
                     + "Per eseguire una funzione basta inserire il nome della funzione e premere invio");
         }
     }//GEN-LAST:event_buttonInfoActionPerformed
 
     private void buttonInsertFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertFunctionActionPerformed
         String operations = textInsertOperations.getText();
+        try{
         calcolatrice.functionController(operations);
+        } catch (NumberFormatException e){
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Il numero inserito non è nella forma corretta");
+        }
         textInsertOperations.setText("");
         updateModel();
     }//GEN-LAST:event_buttonInsertFunctionActionPerformed
