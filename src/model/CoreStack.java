@@ -4,15 +4,15 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
+/**
+ * La classe CoreStack viene utilizzata per richiamare i metodi di StackSingle
+ * 
+ */
 public class CoreStack {
 
     private StackOp dataSingle;
@@ -27,7 +27,7 @@ public class CoreStack {
      * stack in formato lista, per poi prendere i primi indexElement elementi e
      * restituirli in output sotto forma di lista di numeri complessi
      *
-     * @return List<ComplexNumber>
+     * @return List({@link ComplexNumber}) -> Lista di numeri complessi
      */
     public List<ComplexNumber> getSubList() {
         LinkedList<ComplexNumber> getSubList = new LinkedList<>();
@@ -43,23 +43,48 @@ public class CoreStack {
         return getSubList;
     }
 
+    /**
+     * Metodo utilizzato per cancellare tutti gli elementi dello stack
+     */
     public void clear() {
         dataSingle.clear();
     }
 
+    /**
+     * Metodo utilizzato per scambiare gli ultimi due elementi dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     public void duplicate() throws NoSuchElementException {
         dataSingle.duplicate();
     }
 
+    /**
+     * Metodo utilizzato per scambiare gli ultimi due elementi dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     public void swap() {
         dataSingle.swap();
-
     }
 
+    /**
+     * Metodo utilizzato per eliminare l'ultimo elemento inserito nello stack
+     *
+     * @throws NoSuchElementException Quando lo stack è vuoto
+     */
     public void drop() {
         dataSingle.drop();
     }
 
+     /**
+     * Metodo utilizzato per duplicare il penultimo elemento dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     public void over() {
         dataSingle.over();
     }

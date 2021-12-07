@@ -13,13 +13,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/**
- *
- * @author gigi9
- */
 public class Functions {
 
     Operations core;
@@ -40,11 +35,11 @@ public class Functions {
      * Metodo che trasforma una lista di parole in una mappa con chiave la prima
      * parola, e come valore una lista contenente le parole successive
      *
-     * @param String stringa in input
-     * @return HashMap<String, List<String>>
-     * HashMap<NomeFunzione, ListaOperazioni>
+     * @param operationsList
+     * @return HashMap (Strings, List(Strings))
+     * @throws IllegalArgumentException Quando il nome della funzione esiste già
      */
-    public HashMap<String, List<String>> createFunction(List<String> operationsList) throws NoSuchElementException {
+    public HashMap<String, List<String>> createFunction(List<String> operationsList) throws IllegalArgumentException {
 
         String name = operationsList.remove(0);
 
@@ -54,6 +49,14 @@ public class Functions {
 
     }
 
+    /**
+     * Metodo che prende in input una stringa di operazioni divise da un
+     * carattere di spazio " ", ed effettua lo split della stringa in modo da
+     * creare una lista contenente il nome di ogni operazione da eseguire
+     *
+     * @param String operations -> Stringa delle operazioni da eseguire
+     * @return List({@link List}) -> Lista di operazioni
+     */
     public List<String> readOperations(String operations) {
         List<String> operationsList = new ArrayList<String>(Arrays.asList(operations.split(" ")));
         return operationsList;
@@ -63,8 +66,10 @@ public class Functions {
      * Metodo che esegue in maniera ordinata una lista di funzioni legate ad una
      * key della HashMap
      *
-     * @param String operation in input HashMap<String, List<String>>
-     * HashMap<NomeFunzione, ListaOperazioni>
+     * @param String name -> nome funzione
+     * @throws NumberFormatException Quando il il numero da inserire nello stack
+     * non è nella forma corretta
+     * @throws NullPointerException Quando la funzione non viene trovata
      */
     public void executeFunction(String name) throws NumberFormatException, NullPointerException {
         if (function.containsKey(name)) {
@@ -126,6 +131,15 @@ public class Functions {
 
     }
 
+    /**
+     * Metodo che salva una funzione esistente su file di testo
+     * "nomefunzion.txt"
+     *
+     * @param name
+     * @throws IOException
+     * @throws NullPointerException Quando non viene trovata la funzione
+     * corrispondente al nome passato in input al metodo
+     */
     public void saveFile(String name) throws IOException, NullPointerException {
         List<String> listOperations = function.get(name);
         if (listOperations.isEmpty()) {
@@ -149,6 +163,12 @@ public class Functions {
         }
     }
 
+    /**
+     * Metodo che carica una funzione da file di testo
+     *
+     * @param name
+     * @throws FileNotFoundException Quando il file indicato non viene trovato
+     */
     public void loadFile(String name) throws FileNotFoundException {
         String nameFile = name + ".txt";
 
@@ -169,7 +189,14 @@ public class Functions {
         }
     }
 
-    public void deleteFunction(String name) throws NullPointerException{
+    /**
+     * Metodo necessario per poter eliminare una funzione
+     *
+     * @param name
+     * @throws NullPointerException Quando il nome della funzione da eliminare
+     * non viene trovato
+     */
+    public void deleteFunction(String name) throws NullPointerException {
         if (function.containsKey(name)) {
             function.remove(name);
         } else {
@@ -197,9 +224,15 @@ public class Functions {
             throw new NoSuchElementException("Key non presente");
         }
     }*/
-    
-    
     //Dobbiamo vedere dove mettere tutti questi metodi
+    /**
+     * Trasforma una stringa di numeri, in un numero complesso, reale o solo
+     * immaginario
+     *
+     * @param expression
+     * @throws NumberFormatException Quando non viene riconosciuto il numero
+     * passato in input sottoforma di stringa
+     */
     public void strToComplex(String expression) throws NumberFormatException {
 
         double real = 0, complex = 0;
@@ -234,8 +267,8 @@ public class Functions {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici complessi nella forma cartesiana
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return boolean (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isExpression(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?[-+]+\\d+(\\.\\d+)?i+");
@@ -245,8 +278,8 @@ public class Functions {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isReal(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?");
@@ -256,8 +289,8 @@ public class Functions {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici seguiti dal simbolo "i" ed eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isComplex(String str) {
         return str.matches("[-+]?\\d+(\\.\\d+)?i+");
@@ -267,8 +300,8 @@ public class Functions {
      * Metodo che ritorna True se in String sono presenti solo caratteri
      * numerici eventualmente seguiti da un segno
      *
-     * @param String stringa in input
-     * @return boolean (True o False)
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
      */
     public static boolean isOperation(String str) {
         return str.matches("[-+<>][a-z]");

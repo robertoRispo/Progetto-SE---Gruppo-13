@@ -6,12 +6,9 @@ package model;
  */
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Stack;
 
 /**
  * Classe utilizzare per implementare il salvataggio dei dati in logica stack.
@@ -27,7 +24,6 @@ public class StackSingle implements StackOp {
         this.data = new ArrayDeque();
     }
 
-    
     public static StackSingle getInstance() {
         if (istanza == null) {
             istanza = new StackSingle();
@@ -37,11 +33,11 @@ public class StackSingle implements StackOp {
 
     /**
      * Metodo utilizzato per effettuare il pop dallo stack.
-     * @return L'oggetto presente in cima allo stack
-     * @throws NoSuchElementException
+     *
+     * @return Object -> L'oggetto presente nello stack
+     * @throws NoSuchElementException Quando lo stack è vuoto
      */
     @Override
-    
     public Object stackPop() throws NoSuchElementException {
         Object c = data.pop();
         return c;
@@ -49,7 +45,8 @@ public class StackSingle implements StackOp {
 
     /**
      * Metodo utilizzato per inserire un elemento in cima allo stack
-     * @param E Ogetto da inserire nello stack
+     *
+     * @param E -> Ogetto da inserire nello stack
      */
     @Override
     public void stackPush(Object E) {
@@ -58,7 +55,8 @@ public class StackSingle implements StackOp {
 
     /**
      * Metodo che verifica se ci sono elementi nello stack
-     * @return true se ci sono elementi, false altrimenti
+     *
+     * @return Boolean -> true se ci sono elementi, false altrimenti
      */
     @Override
     public boolean stackStatus() {
@@ -67,7 +65,8 @@ public class StackSingle implements StackOp {
 
     /**
      * Metodo utilizzato per convertire lo stack in una lista
-     * @return Lista di Numeri Complessi
+     *
+     * @return List(ComplexNumber) Lista di Numeri Complessi
      */
     @Override
     public List<ComplexNumber> convertToList() {
@@ -77,24 +76,38 @@ public class StackSingle implements StackOp {
 
     /**
      * Metodo utilizzato per stampare il contenuto dello stack
-     * @return Le stringhe da stampare
+     *
+     * @return {@link String} Le stringhe da stampare
      */
     @Override
     public String stackPrint() {
         return (data.toString());
     }
 
-    
+    /**
+     * Metodo utilizzato per ottenere l'iteratore dello stack
+     *
+     * @return Iterator
+     */
     @Override
     public Iterator stackElements() {
         return (data.iterator());
     }
 
+    /**
+     * Metodo utilizzato per cancellare tutti gli elementi dello stack
+     */
     @Override
     public void clear() {
         data.clear();
     }
 
+    /**
+     * Metodo utilizzato per duplicare l'ultimo elemento dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     @Override
     public void duplicate() throws NoSuchElementException {
         Iterator iter = stackElements();
@@ -102,24 +115,41 @@ public class StackSingle implements StackOp {
         stackPush(obj);
     }
 
+    /**
+     * Metodo utilizzato per scambiare gli ultimi due elementi dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     @Override
     public void swap() throws NoSuchElementException {
-        if(data.size() < 2){
-            throw new NoSuchElementException ("error");
+        if (data.size() < 2) {
+            throw new NoSuchElementException("error");
         }
         Object c1 = stackPop();
         Object c2 = stackPop();
 
         stackPush(c1);
         stackPush(c2);
-        
+
     }
 
+    /**
+     * Metodo utilizzato per eliminare l'ultimo elemento inserito nello stack
+     *
+     * @throws NoSuchElementException Quando lo stack è vuoto
+     */
     @Override
     public void drop() throws NoSuchElementException {
         stackPop();
     }
 
+    /**
+     * Metodo utilizzato per duplicare il penultimo elemento dello stack
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     @Override
     public void over() throws NoSuchElementException {
         Iterator iter = stackElements();

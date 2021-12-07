@@ -36,7 +36,7 @@ public class Variables {
      * Metodo utilizzato per inserire nella "variabile" l'elemento in cima allo
      * stack.
      *
-     * @param a Stringa che contiene il nome della variabile
+     * @param a -> Stringa che contiene il nome della variabile
      */
     public void pushInVar(String a) {
         ComplexNumber num = (ComplexNumber) data.stackPop();
@@ -141,6 +141,11 @@ public class Variables {
         }
     }
 
+    /**
+     * Metodo necessario per stampare le variabili
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return variables.toString();
