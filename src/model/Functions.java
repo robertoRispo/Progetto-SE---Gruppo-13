@@ -24,10 +24,12 @@ public class Functions {
 
     Operations core;
     CoreStack coreStack;
+    Variables var;
     List<String> opList;
     HashMap<String, List<String>> function;
 
-    public Functions(Operations core, CoreStack coreStack) {
+    public Functions(Operations core, CoreStack coreStack, Variables var) {
+        this.var = var;
         this.core = core;
         this.coreStack = coreStack;
         this.function = new HashMap<>();
@@ -96,6 +98,12 @@ public class Functions {
                         break;
                     case "conj":
                         core.conjugatedInStack();
+                        break;
+                    case "save":
+                        var.saveVar();
+                        break;
+                    case "restore":
+                        var.restoreVar();
                         break;
                     case "push":
                         String numb = iterOperations.next();
@@ -189,6 +197,8 @@ public class Functions {
             throw new NoSuchElementException("Key non presente");
         }
     }*/
+    
+    
     //Dobbiamo vedere dove mettere tutti questi metodi
     public void strToComplex(String expression) throws NumberFormatException {
 

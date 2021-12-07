@@ -27,6 +27,7 @@ import model.ComplexNumber;
 import model.Core;
 import model.Functions;
 import model.Operations;
+import model.Variables;
 
 public class Gui extends javax.swing.JFrame {
 
@@ -36,7 +37,9 @@ public class Gui extends javax.swing.JFrame {
     private Calcolatrice calcolatrice;
     private CoreStack coreStack;
     private Operations core;
-    private Functions functions;
+    private Functions function;
+    private Variables var;
+
     private List<ComplexNumber> numList;
     private DefaultListModel model;
 
@@ -46,13 +49,13 @@ public class Gui extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Gui(Calcolatrice calcolatrice, CoreStack coreStack, Operations core) {
+    public Gui(Calcolatrice calcolatrice, CoreStack coreStack, Operations core, Functions function) {
         initComponents();
         this.calcolatrice = calcolatrice;
         this.coreStack = coreStack;
         this.core = core;
         this.numList = new ArrayList<>();
-        this.functions = new Functions(core, coreStack);
+        this.function = function;
         this.model = new DefaultListModel();
 
         this.saveFunctions = new JFileChooser();

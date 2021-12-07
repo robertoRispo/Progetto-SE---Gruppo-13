@@ -38,11 +38,11 @@ public class Main {
         Operations core = new Core();
         CoreStack coreStack = new CoreStack();
         Variables var = new Variables();
-        Functions function = new Functions(core, coreStack);
+        Functions function = new Functions(core, coreStack, var);
 
         Calcolatrice calcolatrice = new Calcolatrice(core, coreStack, var, function);
         
-        Gui gui = new Gui(calcolatrice, coreStack, core);
+        Gui gui = new Gui(calcolatrice, coreStack, core, function);
         gui.setVisible(true);
     }
 }
