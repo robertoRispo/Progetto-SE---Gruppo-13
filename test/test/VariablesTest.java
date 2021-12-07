@@ -32,7 +32,7 @@ public class VariablesTest {
     
     @BeforeClass
     public static void setUpClass() {
-       
+   
     }
     
     @AfterClass
@@ -107,5 +107,81 @@ public class VariablesTest {
         assertEquals(diff.equals(num4),true);
     }
 }
+    
+    @Test
+    public void testSaveRestoreVar(){
+        ComplexNumber num = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num2 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num3 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num4 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num5 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        String a = "a";
+        String a2 = "b";
+        String a3 = "c";
+        String a4 = "d";
+        String a5 = "e";
+        op.pushInStack(num);
+        var.pushInVar(a);
+        op.pushInStack(num2);
+        var.pushInVar(a2);
+        op.pushInStack(num3);
+        var.pushInVar(a3);
+        op.pushInStack(num4);
+        var.pushInVar(a4);
+        op.pushInStack(num5);
+        var.pushInVar(a5);
+        
+        var.saveVar();
+        
+        ComplexNumber num6 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num7 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num8 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num9 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        ComplexNumber num10 = new ComplexNumber(ran.nextInt(), ran.nextInt());
+        
+        op.pushInStack(num6);
+        var.pushInVar(a);
+        op.pushInStack(num7);
+        var.pushInVar(a2);
+        op.pushInStack(num8);
+        var.pushInVar(a3);
+        op.pushInStack(num9);
+        var.pushInVar(a4);
+        op.pushInStack(num10);
+        var.pushInVar(a5);
+        
+        var.saveVar();
+     
+        //Riempio lo stack
+         int c, d;
+         for (int i = 0; i < 999; i++) {
+         c = ran.nextInt();
+         d = ran.nextInt();
+         op.creatNumber(c, d);   } 
+        for (int i = 0; i < 199; i++){
+            var.addInVar(a);
+            var.diffInVar(a2);
+            var.diffInVar(a3);
+            var.addInVar(a4);
+            var.diffInVar(a5);
+            
+        }
+        var.restoreVar();
+        
+      
+        assertEquals(num6.equals(var.getVar(a)),true);
+        assertEquals(num7.equals(var.getVar(a2)),true);
+        assertEquals(num8.equals(var.getVar(a3)),true);
+        assertEquals(num9.equals(var.getVar(a4)),true);
+        assertEquals(num10.equals(var.getVar(a5)),true);
+        var.restoreVar();
+         
+        
+        assertEquals(num.equals(var.getVar(a)),true);
+        assertEquals(num2.equals(var.getVar(a2)),true);
+        assertEquals(num3.equals(var.getVar(a3)),true);
+        assertEquals(num4.equals(var.getVar(a4)),true);
+        assertEquals(num5.equals(var.getVar(a5)),true);
+    }
 
 }
