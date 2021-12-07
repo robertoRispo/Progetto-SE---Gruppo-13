@@ -113,7 +113,7 @@ public class Functions {
                 }
             }
         } else {
-            throw new NullPointerException("error");
+            throw new NullPointerException("Funzione non trovata");
         }
 
     }
@@ -161,9 +161,11 @@ public class Functions {
         }
     }
 
-    public void removeOperation(String name) {
+    public void deleteFunction(String name) throws NullPointerException{
         if (function.containsKey(name)) {
             function.remove(name);
+        } else {
+            throw new NullPointerException("Funzione non trovata");
         }
     }
 

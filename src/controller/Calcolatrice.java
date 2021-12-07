@@ -130,4 +130,8 @@ public class Calcolatrice {
     public void loadFile(String name) throws IOException, FileNotFoundException{
         function.loadFile(name);
     }
+    
+    public void deleteFunction(String name) throws NullPointerException{
+        function.deleteFunction(name);
+    }
 }

@@ -96,6 +96,7 @@ public class Gui extends javax.swing.JFrame {
         buttonInsertFunction = new javax.swing.JButton();
         buttonSaveFunctions = new javax.swing.JButton();
         buttonLoadFunctions = new javax.swing.JButton();
+        buttonDeleteFunctions = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -342,9 +343,9 @@ public class Gui extends javax.swing.JFrame {
         });
 
         buttonSaveFunctions.setText("Salva");
-        buttonSaveFunctions.setMaximumSize(new java.awt.Dimension(50, 25));
-        buttonSaveFunctions.setMinimumSize(new java.awt.Dimension(50, 25));
-        buttonSaveFunctions.setPreferredSize(new java.awt.Dimension(50, 25));
+        buttonSaveFunctions.setMaximumSize(new java.awt.Dimension(70, 25));
+        buttonSaveFunctions.setMinimumSize(new java.awt.Dimension(70, 25));
+        buttonSaveFunctions.setPreferredSize(new java.awt.Dimension(70, 25));
         buttonSaveFunctions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSaveFunctionsActionPerformed(evt);
@@ -352,13 +353,22 @@ public class Gui extends javax.swing.JFrame {
         });
 
         buttonLoadFunctions.setText("Carica");
-        buttonLoadFunctions.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        buttonLoadFunctions.setMaximumSize(new java.awt.Dimension(50, 25));
-        buttonLoadFunctions.setMinimumSize(new java.awt.Dimension(50, 25));
-        buttonLoadFunctions.setPreferredSize(new java.awt.Dimension(50, 25));
+        buttonLoadFunctions.setMaximumSize(new java.awt.Dimension(70, 25));
+        buttonLoadFunctions.setMinimumSize(new java.awt.Dimension(70, 25));
+        buttonLoadFunctions.setPreferredSize(new java.awt.Dimension(70, 25));
         buttonLoadFunctions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoadFunctionsActionPerformed(evt);
+            }
+        });
+
+        buttonDeleteFunctions.setText("Elimina");
+        buttonDeleteFunctions.setMaximumSize(new java.awt.Dimension(70, 25));
+        buttonDeleteFunctions.setMinimumSize(new java.awt.Dimension(70, 25));
+        buttonDeleteFunctions.setPreferredSize(new java.awt.Dimension(70, 25));
+        buttonDeleteFunctions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteFunctionsActionPerformed(evt);
             }
         });
 
@@ -380,9 +390,11 @@ public class Gui extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonDeleteFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(buttonSaveFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonLoadFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -397,12 +409,13 @@ public class Gui extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(buttonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textInsertOperations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textInsertOperations, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonInsertFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSaveFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLoadFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonLoadFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDeleteFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -413,8 +426,8 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -673,7 +686,7 @@ public class Gui extends javax.swing.JFrame {
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Un operazione di questa funzione non è stata trovata");
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "La funzione inserita non esiste");
         }
@@ -707,6 +720,17 @@ public class Gui extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jFrame, "Questa funzione non esiste");
         }
     }//GEN-LAST:event_buttonSaveFunctionsActionPerformed
+
+    private void buttonDeleteFunctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFunctionsActionPerformed
+        try {
+            String name = textInsertOperations.getText();
+            textInsertOperations.setText("");
+            calcolatrice.deleteFunction(name);
+        } catch (NullPointerException e) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Questa funzione non esiste");
+        }
+    }//GEN-LAST:event_buttonDeleteFunctionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -821,6 +845,7 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonClear;
+    private javax.swing.JButton buttonDeleteFunctions;
     private javax.swing.JButton buttonDiff;
     private javax.swing.JButton buttonDiv;
     private javax.swing.JButton buttonDrop;
