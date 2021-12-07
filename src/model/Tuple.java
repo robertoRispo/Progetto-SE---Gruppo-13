@@ -4,10 +4,6 @@
  */
 package model;
 
-/**
- *
- * @author agostinomoffa
- */
 public class Tuple {
     private final String key;
     private final ComplexNumber num;

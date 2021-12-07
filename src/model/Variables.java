@@ -49,7 +49,8 @@ public class Variables {
      * cima allo stack
      *
      * @param a Stringa che contiene il nome della variabile
-     * @throws NoSuchElementException nel caso in cui la variabile non fosse inizializzata
+     * @throws NoSuchElementException nel caso in cui la variabile non fosse
+     * inizializzata
      */
     public void popFromVar(String a) throws NoSuchElementException {
 
@@ -99,26 +100,28 @@ public class Variables {
     }
 
     /**
-     * Metodo utilizzato per salvare lo stato attuale delle variabili nello stack variables
+     * Metodo utilizzato per salvare lo stato attuale delle variabili nello
+     * stack variables
+     *
      * @throws NoSuchElementException in caso non ci siano variabili da salvare
      */
-    public void saveVar() throws NoSuchElementException{
-        if (variables.isEmpty()){
+    public void saveVar() throws NoSuchElementException {
+        if (variables.isEmpty()) {
             throw new NoSuchElementException();
-        }
-        else {
-        Tuple breakpoint = new Tuple("stop", null);
-        variableStack.push(breakpoint);
-        for (String key : variables.keySet()) {
-            Tuple backup = new Tuple(key, this.getVar(key));
-            variableStack.push(backup);
-        }
+        } else {
+            Tuple breakpoint = new Tuple("stop", null);
+            variableStack.push(breakpoint);
+            for (String key : variables.keySet()) {
+                Tuple backup = new Tuple(key, this.getVar(key));
+                variableStack.push(backup);
+            }
         }
     }
 
     /**
      * Metodo utilizzato per recuperare lo stato delle variabili salvate nello
      * stackVariables
+     *
      * @throws EmptyStackException in caso lo stackVariables sia vuoto
      */
     public void restoreVar() throws EmptyStackException {

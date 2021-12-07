@@ -110,7 +110,7 @@ public class Calcolatrice {
     }
     
     
-    public void functionController(String operations){
+    public void functionController(String operations) throws NumberFormatException{
         List<String> listOperations = function.readOperations(operations);
         
         if(listOperations.size() == 1){

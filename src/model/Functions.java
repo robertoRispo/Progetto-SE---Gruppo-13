@@ -87,7 +87,7 @@ public class Functions {
      * @param String operation in input HashMap<String, List<String>>
      * HashMap<NomeFunzione, ListaOperazioni>
      */
-    public void executeFunction(String name) {
+    public void executeFunction(String name) throws NumberFormatException {
         if (function.containsKey(name)) {
             List<String> listOperations = function.get(name);
             Iterator<String> iterOperations = listOperations.iterator();
@@ -120,6 +120,13 @@ public class Functions {
                     case "conj":
                         core.conjugatedInStack();
                         break;
+                    case "push":
+                        String numb = iterOperations.next();
+                        strToComplex(numb);
+                        break;
+                    case "pop":
+                        core.popFromStack();
+                        break;
                     default:
                         if (function.containsKey(op)) {
                             this.executeFunction(op);
@@ -132,5 +139,80 @@ public class Functions {
             throw new NoSuchElementException("error");
         }
 
+    }
+
+    //Dobbiamo vedere dove mettere tutti questi metodi
+    public void strToComplex(String expression) throws NumberFormatException{
+
+        double real = 0, complex = 0;
+        String realPart = null;
+        String complexPart = null;
+
+        if (isExpression(expression)) {
+            if ((expression.lastIndexOf("+") == -1) || (expression.lastIndexOf("+") == 0)) {
+                realPart = expression.substring(0, expression.lastIndexOf("-"));
+                complexPart = expression.substring(expression.lastIndexOf("-") + 1, expression.lastIndexOf("i"));
+            } else {
+                realPart = expression.substring(0, expression.lastIndexOf("+"));
+                complexPart = expression.substring(expression.lastIndexOf("+") + 1, expression.lastIndexOf("i"));
+            }
+        } else if (isReal(expression)) {
+            realPart = expression.substring(0, expression.lastIndexOf(""));
+            complexPart = "0";
+        } else if (isComplex(expression)) {
+            realPart = "0";
+            complexPart = expression.substring(0, expression.lastIndexOf("i"));
+        }   else{
+            throw new NumberFormatException ("Variabile non compatibile");
+        }
+
+        real = Double.parseDouble(realPart);
+        complex = Double.parseDouble(complexPart);
+
+        core.creatNumber(real, complex);
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici complessi nella forma cartesiana
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isExpression(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?[-+]+\\d+(\\.\\d+)?i+");
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici eventualmente seguiti da un segno
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isReal(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?");
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici seguiti dal simbolo "i" ed eventualmente seguiti da un segno
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isComplex(String str) {
+        return str.matches("[-+]?\\d+(\\.\\d+)?i+");
+    }
+
+    /**
+     * Metodo che ritorna True se in String sono presenti solo caratteri
+     * numerici eventualmente seguiti da un segno
+     *
+     * @param String stringa in input
+     * @return boolean (True o False)
+     */
+    public static boolean isOperation(String str) {
+        return str.matches("[-+<>][a-z]");
     }
 }
