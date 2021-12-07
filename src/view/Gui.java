@@ -5,29 +5,17 @@
 package view;
 
 import controller.Calcolatrice;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.CoreStack;
 import model.ComplexNumber;
-import model.Core;
-import model.Functions;
-import model.Operations;
-import model.Variables;
 
 public class Gui extends javax.swing.JFrame {
 
@@ -35,31 +23,22 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     private Calcolatrice calcolatrice;
-    private CoreStack coreStack;
-    private Operations core;
-    private Functions function;
-    private Variables var;
+    private CoreStack coreStack;    //Necessario per updateModel();
 
     private List<ComplexNumber> numList;
     private DefaultListModel model;
-
-    private JFileChooser saveFunctions;
 
     public Gui() {
         initComponents();
     }
 
-    public Gui(Calcolatrice calcolatrice, CoreStack coreStack, Operations core, Functions function) {
+    public Gui(Calcolatrice calcolatrice, CoreStack coreStack) {
         initComponents();
         this.calcolatrice = calcolatrice;
         this.coreStack = coreStack;
-        this.core = core;
         this.numList = new ArrayList<>();
-        this.function = function;
         this.model = new DefaultListModel();
-
-        this.saveFunctions = new JFileChooser();
-
+        
         buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/info.png"))); // NOI18N
 
     }
@@ -619,13 +598,13 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_textInsertNumberActionPerformed
 
     private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
-        coreStack.clear();
+        calcolatrice.clear();
         updateModel();
     }//GEN-LAST:event_buttonClearActionPerformed
 
     private void buttonDupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDupActionPerformed
         try {
-            coreStack.duplicate();
+            calcolatrice.duplicate();
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
@@ -636,7 +615,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
         try {
-            coreStack.swap();
+            calcolatrice.swap();
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Gli elementi nello Stack non sono sufficienti per l'operazione di Swap");
@@ -646,7 +625,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDropActionPerformed
         try {
-            coreStack.drop();
+            calcolatrice.drop();
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Attenzione, lo Stack è vuoto!");
@@ -656,7 +635,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOverActionPerformed
         try {
-            coreStack.over();
+            calcolatrice.over();
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Gli elementi nello Stack non sono sufficienti per l'operazione di Over");
@@ -670,7 +649,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void buttonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInfoActionPerformed
         try {
-            coreStack.over();
+            calcolatrice.over();
         } catch (NoSuchElementException e) {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Inserisci il nome della funzione in questo modo [funzione]\n"

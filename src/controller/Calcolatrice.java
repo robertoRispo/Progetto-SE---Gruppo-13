@@ -110,6 +110,22 @@ public class Calcolatrice {
         }
 
     }
+    
+    public void clear(){
+        coreStack.clear();
+    }
+    public void duplicate() throws NoSuchElementException{
+        coreStack.duplicate();
+    }
+    public void swap(){
+        coreStack.swap();
+    }
+    public void over(){
+        coreStack.over();
+    }
+    public void drop(){
+        coreStack.drop();
+    }
 
     public void functionController(String operations) throws NumberFormatException, NullPointerException {
         List<String> listOperations = function.readOperations(operations);

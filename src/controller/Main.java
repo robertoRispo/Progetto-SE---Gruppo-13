@@ -42,7 +42,7 @@ public class Main {
 
         Calcolatrice calcolatrice = new Calcolatrice(core, coreStack, var, function);
         
-        Gui gui = new Gui(calcolatrice, coreStack, core, function);
+        Gui gui = new Gui(calcolatrice, coreStack);
         gui.setVisible(true);
     }
 }
