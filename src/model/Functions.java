@@ -4,12 +4,17 @@
  */
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  *
@@ -132,5 +137,67 @@ public class Functions {
             throw new NoSuchElementException("error");
         }
 
+    }
+    
+    public void createFile(String name, String namefile) {  
+        List<String> listOperations = function.get(name);
+        Iterator<String> iterOperations = listOperations.iterator();
+        try {
+            FileWriter myWriter = new FileWriter(namefile);
+            myWriter.write(name);
+            while (iterOperations.hasNext()) {
+            myWriter.write(iterOperations.next());
+            myWriter.write("/n");
+            }
+            
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+          } 
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+  }
+
+    public void readFile(String namefile) {
+        try {
+            File myObj = new File(namefile);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                createFunction(readOperations(data));
+                System.out.println(data);
+            }
+            myReader.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    
+    public void removeOperation(String name){
+        if(function.containsKey(name)){
+            function.remove(name);
+        }
+    }
+    public void modifyOperation(String name){
+        List<String> operationsList = readOperations(name);
+        
+        
+        name = operationsList.remove(0);
+
+        Iterator<String> iterOperations = operationsList.iterator();
+
+        if (!isFunctionCorrect(iterOperations)) {
+            System.out.println("Problema Trovato");
+        }
+
+        if(function.containsKey(name)){
+            function.replace(name, operationsList);
+        }
+        else{
+            throw new NoSuchElementException("Key non presente");
+        }
     }
 }
