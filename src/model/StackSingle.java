@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 public class StackSingle implements StackOp {
 
     private static StackSingle istanza = null;
-    private ArrayDeque data;
+    private final ArrayDeque data;
 
     private StackSingle() {
         this.data = new ArrayDeque();

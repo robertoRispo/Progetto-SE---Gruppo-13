@@ -21,6 +21,29 @@ import model.StackSingle;
  */
 public class Variables {
 
+    /**
+     * Classe innestata utilizzata per gestire il salvataggio e il caricamento
+     * delle variabili
+     */
+    private class Tuple {
+
+        private final String key;
+        private final ComplexNumber num;
+
+        public Tuple(String key, ComplexNumber num) {
+            this.key = key;
+            this.num = num;
+        }
+
+        private String getKey() {
+            return key;
+        }
+
+        private ComplexNumber getNum() {
+            return num;
+        }
+    }
+
     private StackOp data;
     private HashMap<String, ComplexNumber> variables;
     private ArrayDeque<Tuple> variableStack;
