@@ -7,17 +7,10 @@ package test;
 import java.util.NoSuchElementException;
 import model.StackOp;
 import model.StackSingle;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author agostinomoffa
- */
+
 public class StackSingleTest {
     private final StackOp data;
     Integer a,b,c,d;

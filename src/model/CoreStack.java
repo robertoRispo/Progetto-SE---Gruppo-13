@@ -89,4 +89,27 @@ public class CoreStack {
         dataSingle.over();
     }
 
+    public boolean compareStack(List<ComplexNumber> lc1, List<ComplexNumber> lc2) {
+        if (lc1.size() != lc2.size()) {
+            return false;
+        }
+
+        Iterator<ComplexNumber> ilc1 = lc1.iterator();
+        Iterator<ComplexNumber> ilc2 = lc2.iterator();
+        ComplexNumber nc1 = null;
+        ComplexNumber nc2 = null;
+
+        while (ilc1.hasNext()) {
+            nc1 = ilc1.next();
+            nc2 = ilc2.next();
+
+            if (!nc1.equals(nc2)) {
+                return false;
+            }
+
+        }
+        return true;
+
+    }
+
 }

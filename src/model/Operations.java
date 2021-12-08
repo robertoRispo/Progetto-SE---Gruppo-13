@@ -9,12 +9,10 @@ public interface Operations {
        /**
      * Metodo per effettuare la somma tra due elementi presenti nello stack
      */
-    public void sumInStack();
-    
+    public void sumInStack();  
      /**
      * Metodo per effettuare la differenza tra due elementi presenti nello stack
      */
-    
     public void diffInStack();
        /**
      * Metodo per effettuare il prodotto tra due elementi presenti nello stack
