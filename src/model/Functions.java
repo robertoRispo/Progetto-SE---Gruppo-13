@@ -121,7 +121,17 @@ public class Functions {
                         if (function.containsKey(op)) {
                             this.executeFunction(op);
                         } else {
+                            if(op.length()==2){
+                                if(op.matches("[-+<>][a-z]")){
+                                    varFunction(op); 
+                                }
+                                else{
+                                System.out.println("Non esiste questa funzione");
+                                }
+                            }
+                            else{
                             System.out.println("Non esiste questa funzione");
+                            }
                         }
                 }
             }
@@ -305,5 +315,43 @@ public class Functions {
      */
     public static boolean isOperation(String str) {
         return str.matches("[-+<>][a-z]");
+    }
+   
+    /**
+     * Metodo che esegue operazioni sulle variabili se in String sono presenti solo il segno di operazione e la variabile
+     *
+     * @param str
+     */
+    public void varFunction(String str){
+        
+        if (str.startsWith(">")){
+            if (isVariable(str.substring(1,2))){
+                var.pushInVar(str.substring(1,2));
+                System.out.print(str.substring(1,2));
+            }}
+        if (str.startsWith("<")){
+            if (isVariable(str.substring(1))){
+                var.popFromVar(str.substring(1));
+            
+        }}
+        if (str.startsWith("+")){
+            if (isVariable(str.substring(1))){
+                var.addInVar(str.substring(1));
+        }}
+        if (str.startsWith("-")){
+            if (isVariable(str.substring(1))){
+                var.diffInVar(str.substring(1));
+        }
+        }
+    }
+    
+    /**
+     * Metodo che ritorna True se in String sono presenti solo un carattere alfabetico*
+     * @param str
+     * @return (True se è un espressione corretta, False altrimenti)
+     */
+    
+    public static boolean isVariable(String str){
+        return str.matches("[a-z]");
     }
 }
