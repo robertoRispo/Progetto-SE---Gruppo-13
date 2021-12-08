@@ -8,9 +8,6 @@ import java.util.ArrayDeque;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import model.ComplexNumber;
-import model.StackOp;
-import model.StackSingle;
 
 /**
  * Classe utilizzata per gestire le variabili nella calcolatrice. Le variabili
@@ -44,9 +41,9 @@ public class Variables {
         }
     }
 
-    private StackOp data;
-    private HashMap<String, ComplexNumber> variables;
-    private ArrayDeque<Tuple> variableStack;
+    private final StackOp data;
+    private final HashMap<String, ComplexNumber> variables;
+    private final ArrayDeque<Tuple> variableStack;
 
     public Variables() {
         data = StackSingle.getInstance();
@@ -71,6 +68,7 @@ public class Variables {
      * cima allo stack
      *
      * @param a Stringa che contiene il nome della variabile
+     *
      * @throws NoSuchElementException nel caso in cui la variabile non fosse
      * inizializzata
      */
@@ -88,9 +86,15 @@ public class Variables {
      * presente in cima allo stack, il risultato viene inserito nella variabile
      *
      * @param a Stringa che contiene il nome della variabile
+     *
+     * @throws NoSuchElementException nel caso in cui la variabile non fosse
+     * inizializzata o nel caso non ci siano elementi nello stack
      */
-    public void addInVar(String a) {
+    public void addInVar(String a) throws NoSuchElementException {
         ComplexNumber num = variables.get(a);
+        if (num == null) {
+            throw new NoSuchElementException("La variabile non è inizializzata");
+        }
         ComplexNumber num2 = (ComplexNumber) data.stackPop();
         ComplexNumber sum = ComplexNumber.sum(num, num2);
         variables.put(a, sum);
@@ -102,9 +106,15 @@ public class Variables {
      * variabile
      *
      * @param a Stringa che contiene il nome della variabile
+     *
+     * @throws NoSuchElementException nel caso in cui la variabile non fosse
+     * inizializzata o nel caso non ci siano elementi nello stack
      */
-    public void diffInVar(String a) {
+    public void diffInVar(String a) throws NoSuchElementException {
         ComplexNumber num = variables.get(a);
+        if (num == null) {
+            throw new NoSuchElementException("La variabile non è inizializzata");
+        }
         ComplexNumber num2 = (ComplexNumber) data.stackPop();
         ComplexNumber sub = ComplexNumber.sub(num, num2);
         variables.put(a, sub);
@@ -164,9 +174,16 @@ public class Variables {
     }
 
     /**
+     * Metodo utilizzato per cancellare tutte le variabili presenti
+     */
+    public void clearVar() {
+        variables.clear();
+    }
+
+    /**
      * Metodo necessario per stampare le variabili
      *
-     * @return
+     * @return La stringa da stampare
      */
     @Override
     public String toString() {
