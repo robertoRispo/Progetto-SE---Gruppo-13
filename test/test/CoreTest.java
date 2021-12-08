@@ -4,9 +4,13 @@ package test;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
+import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import model.Core;
 import model.ComplexNumber;
+import model.StackOp;
+import model.StackSingle;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -18,43 +22,57 @@ public class CoreTest {
 
     public Core test;
     public Random ran;
+    public int a, b, c, d;
+    public ComplexNumber j;
+    public ComplexNumber k;
+    private final StackOp data;
 
     public CoreTest() {
         this.test = new Core();
         this.ran = new Random();
+        this.data = StackSingle.getInstance();
     }
 
-    @Before
-    public void setUpClass() {
-        for (int i = 0; i < 0; i++) {
-            test.creatNumber(ran.nextInt(), ran.nextInt());
-        }
-
+    @After
+    public void clearStack(){
+        this.data.clear();
     }
     
     
     
     @Test
-    public void testCreatNumber(){
-        int a, b;
-        ComplexNumber j;
+    public void testCreatNumber() {
+
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creatNumber(a, b);     
+            test.creatNumber(a, b);
             j = new ComplexNumber(a, b);
 
-
-            assertEquals(j.equals(test.popFromStack()), true);
+            assertTrue(j.equals(test.popFromStack()));
 
         }
     }
-  
+
+    @Test
+    public void testPushPopinStack() {
+
+        a = ran.nextInt();
+        b = ran.nextInt();
+        j = new ComplexNumber(a, b);
+        test.pushInStack(j);
+        k = test.popFromStack();
+        assertTrue(k.equals(j));
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testPopFromStackEx() {
+        test.popFromStack();
+    }
+
     @Test
     public void testSumInStack() {
-        int a, b, c, d;
-        ComplexNumber j;
-        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -66,17 +84,28 @@ public class CoreTest {
             j = new ComplexNumber(a, b);
             k = new ComplexNumber(c, d);
 
-            assertEquals(ComplexNumber.sum(j, k).equals(test.popFromStack()), true);
+            assertTrue(ComplexNumber.sum(j, k).equals(test.popFromStack()));
 
         }
-       
+
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testSumInStackEx() {
+
+        test.sumInStack();
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testSumInStackEx1elem() {
+        a = ran.nextInt();
+        b = ran.nextInt();
+        test.creatNumber(a, b);
+        test.sumInStack();
     }
 
     @Test
     public void testDiffInStack() {
-        int a, b, c, d;
-        ComplexNumber j;
-        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -88,16 +117,26 @@ public class CoreTest {
             j = new ComplexNumber(a, b);
             k = new ComplexNumber(c, d);
 
-            assertEquals(ComplexNumber.sub(k, j).equals(test.popFromStack()), true);
+            assertTrue(ComplexNumber.sub(k, j).equals(test.popFromStack()));
 
         }
     }
 
+    @Test(expected = EmptyStackException.class)
+    public void testDiffInStackEx() {
+        test.diffInStack();
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testDiffInStackEx1elem() {
+        a = ran.nextInt();
+        b = ran.nextInt();
+        test.creatNumber(a, b);
+        test.diffInStack();
+    }
+
     @Test
     public void testProdInStack() {
-        int a, b, c, d;
-        ComplexNumber j;
-        ComplexNumber k;
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -109,18 +148,27 @@ public class CoreTest {
             j = new ComplexNumber(a, b);
             k = new ComplexNumber(c, d);
 
-            assertEquals(ComplexNumber.multiplication(k, j).equals(test.popFromStack()), true);
+            assertTrue(ComplexNumber.multiplication(k, j).equals(test.popFromStack()));
 
         }
 
     }
 
-    
+    @Test(expected = EmptyStackException.class)
+    public void testProdInStackEx() {
+        test.prodInStack();
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testProdInStackEx1elem() {
+        a = ran.nextInt();
+        b = ran.nextInt();
+        test.creatNumber(a, b);
+        test.prodInStack();
+    }
+
     @Test
-    public void testDivInStack(){
-         int a, b, c, d;
-        ComplexNumber j;
-        ComplexNumber k;
+    public void testDivInStack() {
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
@@ -132,80 +180,103 @@ public class CoreTest {
             j = new ComplexNumber(a, b);
             k = new ComplexNumber(c, d);
 
-            assertEquals(ComplexNumber.division(k, j).equals(test.popFromStack()), true);
+            assertTrue(ComplexNumber.division(k, j).equals(test.popFromStack()));
 
         }
-    } 
-    
-    
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testDivInStackEx() {
+        test.divInStack();
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testDivInStackEx1elem() {
+        a = ran.nextInt();
+        b = ran.nextInt();
+        test.creatNumber(a, b);
+        test.divInStack();
+    }
+
     @Test
-    public void testSquare2InStack(){
-        int a, b;
-        ComplexNumber j;
+    public void testSquare2InStack() {
+
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creatNumber(a, b);     
+            test.creatNumber(a, b);
             test.square2InStack();
             j = new ComplexNumber(a, b);
 
-
-            assertEquals(j.sqrt().equals(test.popFromStack()), true);
+            assertTrue(j.sqrt().equals(test.popFromStack()));
 
         }
     }
-    
+
+    @Test(expected = EmptyStackException.class)
+    public void testSquare2InStackEx() {
+        test.square2InStack();
+    }
+
     @Test
-    public void testConjugatedInStack(){
-        int a, b;
-        ComplexNumber j;
+    public void testConjugatedInStack() {
+
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creatNumber(a, b);     
+            test.creatNumber(a, b);
             test.conjugatedInStack();
             j = new ComplexNumber(a, b);
 
-
-            assertEquals(j.conjugated().equals(test.popFromStack()), true);
+            assertTrue(j.conjugated().equals(test.popFromStack()));
 
         }
     }
-    
+
+    @Test(expected = EmptyStackException.class)
+    public void testConjugated2InStackEx() {
+        test.conjugatedInStack();
+    }
+
     @Test
-    public void testModInStack(){
-          int a, b;
-        ComplexNumber j;
-        ComplexNumber h;
+    public void testModInStack() {
+
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creatNumber(a, b);     
+            test.creatNumber(a, b);
             test.modInStack();
             j = new ComplexNumber(a, b);
-            h = test.popFromStack();
+            k = test.popFromStack();
 
-            assertEquals(j.mod() == h.re(), true);
-            assertEquals(h.im() == 0, true);
+            assertTrue(j.mod() == k.re());
+            assertTrue(k.im() == 0);
         }
     }
-    
-    
+
+    @Test(expected = EmptyStackException.class)
+    public void testModInStackEx() {
+        test.modInStack();
+    }
+
     @Test
-    public void testAbsInStack(){
-          int a, b;
-        ComplexNumber j;
-        ComplexNumber h;
+    public void testAbsInStack() {
+
         for (int i = 0; i < 999; i++) {
             a = ran.nextInt();
             b = ran.nextInt();
-            test.creatNumber(a, b);     
+            test.creatNumber(a, b);
             test.absInStack();
             j = new ComplexNumber(a, b);
-            h = test.popFromStack();
+            k = test.popFromStack();
 
-            assertEquals(j.abs() == h.re(), true);
-            assertEquals(h.im() == 0, true);
+            assertTrue(j.abs() == k.re());
+            assertTrue(k.im() == 0);
         }
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testAbsInStackEx() {
+        test.absInStack();
     }
 }

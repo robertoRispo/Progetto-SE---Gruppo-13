@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Core implements Operations {
 
-    private StackOp data;
+    private final StackOp data;
 
     public Core() {
         data = StackSingle.getInstance();
@@ -46,11 +46,14 @@ public class Core implements Operations {
     /**
      * Metodo che effettua il pop dallo stack e ritorna il numero complesso che
      * si trova nella cima dello stack
-     *
+     * 
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     * 
      * @return Numero Complesso
      */
     @Override
-    public ComplexNumber popFromStack() {
+    public ComplexNumber popFromStack() throws NoSuchElementException {
         return (ComplexNumber) data.stackPop();
     }
 
@@ -58,9 +61,12 @@ public class Core implements Operations {
      * Metodo per effettuare la somma tra due numeri complessi presenti nello
      * stack Tale metodo prima effettua il Pop dei due numeri, ne fa la somma ed
      * effettua il push del risultato nello stack
+     *  
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void sumInStack() {
+    public void sumInStack() throws EmptyStackException {
         ComplexNumber a;
         ComplexNumber b, s;
 
@@ -83,9 +89,12 @@ public class Core implements Operations {
      * Metodo per effettuare la differenza tra due numeri complessi presenti
      * nello stack Tale metodo prima effettua il Pop dei due numeri, ne fa la
      * differenza ed effettua il push del risultato nello stack
+     *  
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void diffInStack() {
+    public void diffInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber b, s;
 
@@ -108,9 +117,12 @@ public class Core implements Operations {
      * Metodo per effettuare il prodotto tra due numeri complessi presenti nello
      * stack Tale metodo prima effettua il Pop dei due numeri, ne fa il prodotto
      * ed effettua il push del risultato nello stack
+     *  
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void prodInStack() {
+    public void prodInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber b, s;
 
@@ -133,9 +145,12 @@ public class Core implements Operations {
      * Metodo per effettuare la division tra due numeri complessi presenti nello
      * stack Tale metodo prima effettua il Pop dei due numeri, ne fa la division
      * ed effettua il push del risultato nello stack
+     *   
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void divInStack() {
+    public void divInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber b, s;
 
@@ -158,9 +173,12 @@ public class Core implements Operations {
      * Metodo per effettuare la radice quadra di un numero complesso presente
      * nello stack Tale metodo prima effettua il Pop del numero, ne calcola la
      * radice ed effettua il push del risultato nello stack
+     * 
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void square2InStack() {
+    public void square2InStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber s;
         if (data.stackStatus()) {
@@ -182,9 +200,12 @@ public class Core implements Operations {
     /**
      * Metodo utilizzato per effettuare il coniugato del numero presente sulla
      * cima dello stack.
+     *
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void conjugatedInStack() {
+    public void conjugatedInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber s;
         if (data.stackStatus()) {
@@ -200,9 +221,12 @@ public class Core implements Operations {
      * Metodo utilizzato per effettuare il modulo del numero presente sulla cima
      * dello stack, pochè il risultato è un numero reale verrà inserito nello
      * stack nella forma mod + 0i;
+     * 
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void modInStack() {
+    public void modInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber s;
         if (data.stackStatus()) {
@@ -218,9 +242,12 @@ public class Core implements Operations {
      * Metodo utilizzato per effettuare l'abs del numero presente sulla cima
      * dello stack, pochè il risultato è un numero reale verrà inserito nello
      * stack nella forma mod + 0i;
+     * 
+     * @throws EmptyStackException Quando non ci sono abbastanza elementi
+     * nello stack
      */
     @Override
-    public void absInStack() {
+    public void absInStack() throws EmptyStackException{
         ComplexNumber a;
         ComplexNumber s;
         if (data.stackStatus()) {

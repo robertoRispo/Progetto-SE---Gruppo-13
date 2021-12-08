@@ -111,6 +111,8 @@ public class StackSingle implements StackOp {
     @Override
     public void duplicate() throws NoSuchElementException {
         Iterator iter = stackElements();
+        if(iter.hasNext() == false)
+            throw new NoSuchElementException("Non ci sono abbastanza elementi per la funzione dup");
         Object obj = iter.next();
         stackPush(obj);
     }
@@ -124,7 +126,7 @@ public class StackSingle implements StackOp {
     @Override
     public void swap() throws NoSuchElementException {
         if (data.size() < 2) {
-            throw new NoSuchElementException("error");
+            throw new NoSuchElementException("Non ci sono abbastanza elementi per la funzione di swap");
         }
         Object c1 = stackPop();
         Object c2 = stackPop();
@@ -153,7 +155,11 @@ public class StackSingle implements StackOp {
     @Override
     public void over() throws NoSuchElementException {
         Iterator iter = stackElements();
+        if(iter.hasNext() == false)
+            throw new NoSuchElementException("Non ci sono abbastanza elementi per la funzione over");
         iter.next();
+        if(iter.hasNext() == false)
+            throw new NoSuchElementException("Non ci sono abbastanza elementi per la funzione over");
         Object obj = iter.next();
 
         stackPush(obj);

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 
 public interface StackOp {
 
-    public Object stackPop();
+    public Object stackPop() throws NoSuchElementException;
 
     public void stackPush(Object E);
 

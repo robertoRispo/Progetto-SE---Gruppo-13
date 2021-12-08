@@ -57,7 +57,7 @@ public class VariablesTest {
         ComplexNumber num = new ComplexNumber(ran.nextInt(), ran.nextInt());
         op.pushInStack(num);
         var.pushInVar(a);
-        assertEquals(num.equals(var.getVar(a)),true);
+        assertTrue(num.equals(var.getVar(a)));
         }
         System.out.println(var.toString());
     }
@@ -69,10 +69,10 @@ public class VariablesTest {
         ComplexNumber num = new ComplexNumber(ran.nextInt(), ran.nextInt());
         op.pushInStack(num);
         var.pushInVar(a);
-        assertEquals(data.stackStatus(), false);
+        assertFalse(data.stackStatus());
         var.popFromVar(a);
         ComplexNumber num2 = op.popFromStack();
-        assertEquals(num.equals(num2), true);
+        assertTrue(num.equals(num2));
     }
     }
     
@@ -89,7 +89,7 @@ public class VariablesTest {
         op.pushInStack(num2);
         var.addInVar(a);
         ComplexNumber num4 = var.getVar(a);
-        assertEquals(sum.equals(num4),true);
+        assertTrue(sum.equals(num4));
     }
 }
     @Test
@@ -104,7 +104,7 @@ public class VariablesTest {
         op.pushInStack(num2);
         var.diffInVar(a);
         ComplexNumber num4 = var.getVar(a);
-        assertEquals(diff.equals(num4),true);
+        assertTrue(diff.equals(num4));
     }
 }
     
@@ -169,19 +169,19 @@ public class VariablesTest {
         var.restoreVar();
         
       
-        assertEquals(num6.equals(var.getVar(a)),true);
-        assertEquals(num7.equals(var.getVar(a2)),true);
-        assertEquals(num8.equals(var.getVar(a3)),true);
-        assertEquals(num9.equals(var.getVar(a4)),true);
-        assertEquals(num10.equals(var.getVar(a5)),true);
+        assertTrue(num6.equals(var.getVar(a)));
+        assertTrue(num7.equals(var.getVar(a2)));
+        assertTrue(num8.equals(var.getVar(a3)));
+        assertTrue(num9.equals(var.getVar(a4)));
+        assertTrue(num10.equals(var.getVar(a5)));
         var.restoreVar();
          
         
-        assertEquals(num.equals(var.getVar(a)),true);
-        assertEquals(num2.equals(var.getVar(a2)),true);
-        assertEquals(num3.equals(var.getVar(a3)),true);
-        assertEquals(num4.equals(var.getVar(a4)),true);
-        assertEquals(num5.equals(var.getVar(a5)),true);
+        assertTrue(num.equals(var.getVar(a)));
+        assertTrue(num2.equals(var.getVar(a2)));
+        assertTrue(num3.equals(var.getVar(a3)));
+        assertTrue(num4.equals(var.getVar(a4)));
+        assertTrue(num5.equals(var.getVar(a5)));
     }
 
 }
