@@ -146,7 +146,7 @@ public class Calcolatrice {
         coreStack.over();
     }
 
-    public void functionController(String operations) throws NumberFormatException, NullPointerException {
+    public void functionController(String operations) throws NumberFormatException, NoSuchElementException, NullPointerException {
         List<String> listOperations = function.readOperations(operations);
 
         if (listOperations.size() == 1) {

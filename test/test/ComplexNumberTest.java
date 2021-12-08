@@ -11,10 +11,7 @@ import model.ComplexNumber;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author M3ssian
- */
+
 public class ComplexNumberTest {
 
     public ComplexNumber test;

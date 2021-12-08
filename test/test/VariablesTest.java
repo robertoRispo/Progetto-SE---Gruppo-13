@@ -14,10 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author agostinomoffa
- */
+
 public class VariablesTest {
     public Variables var;
     public Random ran;

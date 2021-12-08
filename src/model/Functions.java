@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Functions {
@@ -71,7 +72,7 @@ public class Functions {
      * non è nella forma corretta
      * @throws NullPointerException Quando la funzione non viene trovata
      */
-    public void executeFunction(String name) throws NumberFormatException, NullPointerException {
+    public void executeFunction(String name) throws NumberFormatException, NoSuchElementException, NullPointerException {
         if (function.containsKey(name)) {
             List<String> listOperations = function.get(name);
             Iterator<String> iterOperations = listOperations.iterator();
@@ -121,7 +122,7 @@ public class Functions {
                         if (function.containsKey(op)) {
                             this.executeFunction(op);
                         } else {
-                            System.out.println("Non esiste questa funzione");
+                            throw new NoSuchElementException("Questa operazione non esiste");
                         }
                 }
             }
