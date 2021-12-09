@@ -122,18 +122,16 @@ public class Functions {
                         if (function.containsKey(op)) {
                             this.executeFunction(op);
                         } else {
-                            if(op.length()==2){
-                                if(op.matches("[-+<>][a-z]")){
-                                    varFunction(op); 
+                            if (op.length() == 2) {
+                                if (op.matches("[-+<>][a-z]")) {
+                                    varFunction(op);
+                                } else {
+                                    throw new NoSuchElementException("Questa operazione non esiste");
                                 }
-                                else{
+                            } else {
                                 throw new NoSuchElementException("Questa operazione non esiste");
-                                }
                             }
-                            else{
-                            throw new NoSuchElementException("Questa operazione non esiste");
-                            }
-                            
+
                         }
                 }
             }
@@ -318,42 +316,47 @@ public class Functions {
     public static boolean isOperation(String str) {
         return str.matches("[-+<>][a-z]");
     }
-   
+
     /**
-     * Metodo che esegue operazioni sulle variabili se in String sono presenti solo il segno di operazione e la variabile
+     * Metodo che esegue operazioni sulle variabili se in String sono presenti
+     * solo il segno di operazione e la variabile
      *
      * @param str
      */
-    public void varFunction(String str){
-        
-        if (str.startsWith(">")){
-            if (isVariable(str.substring(1,2))){
-                var.pushInVar(str.substring(1,2));
-                System.out.print(str.substring(1,2));
-            }}
-        if (str.startsWith("<")){
-            if (isVariable(str.substring(1))){
-                var.popFromVar(str.substring(1));
-            
-        }}
-        if (str.startsWith("+")){
-            if (isVariable(str.substring(1))){
-                var.addInVar(str.substring(1));
-        }}
-        if (str.startsWith("-")){
-            if (isVariable(str.substring(1))){
-                var.diffInVar(str.substring(1));
+    public void varFunction(String str) {
+
+        if (str.startsWith(">")) {
+            if (isVariable(str.substring(1, 2))) {
+                var.pushInVar(str.substring(1, 2));
+                System.out.print(str.substring(1, 2));
+            }
         }
+        if (str.startsWith("<")) {
+            if (isVariable(str.substring(1))) {
+                var.popFromVar(str.substring(1));
+
+            }
+        }
+        if (str.startsWith("+")) {
+            if (isVariable(str.substring(1))) {
+                var.addInVar(str.substring(1));
+            }
+        }
+        if (str.startsWith("-")) {
+            if (isVariable(str.substring(1))) {
+                var.diffInVar(str.substring(1));
+            }
         }
     }
-    
+
     /**
-     * Metodo che ritorna True se in String sono presenti solo un carattere alfabetico*
+     * Metodo che ritorna True se in String sono presenti solo un carattere alfabetico
+     *
+     *
      * @param str
      * @return (True se è un espressione corretta, False altrimenti)
      */
-    
-    public static boolean isVariable(String str){
+    public static boolean isVariable(String str) {
         return str.matches("[a-z]");
     }
 }

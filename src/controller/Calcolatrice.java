@@ -6,15 +6,9 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EmptyStackException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import model.ComplexNumber;
-import model.Core;
 import model.CoreStack;
 import model.Functions;
 import model.Operations;
@@ -167,5 +161,13 @@ public class Calcolatrice {
 
     public void deleteFunction(String name) throws NullPointerException {
         function.deleteFunction(name);
+    }
+
+    public void saveVar() throws NoSuchElementException {
+        var.saveVar();
+    }
+
+    public void restoreVar() throws EmptyStackException {
+        var.restoreVar();
     }
 }

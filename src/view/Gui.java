@@ -570,6 +570,33 @@ public class Gui extends javax.swing.JFrame {
 
         String expression = textInsertNumber.getText();
 
+        if (expression.compareTo("save") == 0) {
+            try {
+                calcolatrice.saveVar();
+                textInsertNumber.setText("");
+                return;
+
+            } catch (NoSuchElementException e) {
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "Nessuna variabile è stata inizializzata");
+
+                textInsertNumber.setText("");
+                return;
+            }
+        } else if (expression.compareTo("restore") == 0) {
+            try {
+                calcolatrice.restoreVar();
+                textInsertNumber.setText("");
+                return;
+            } catch (EmptyStackException e) {
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "Non c'è nessuna variabile memorizzata");
+
+                textInsertNumber.setText("");
+                return;
+            }
+        }
+
         if (isOperation(expression)) {
             try {
                 calcolatrice.executeOperation(expression);
