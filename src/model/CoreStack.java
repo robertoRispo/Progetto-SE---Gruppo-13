@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 public class CoreStack {
 
     private StackOp dataSingle;
-    int indexElement = 12;
+    int indexElement = 11;
 
     public CoreStack() {
         dataSingle = StackSingle.getInstance();
@@ -66,7 +66,7 @@ public class CoreStack {
      * @throws NoSuchElementException Quando non ci sono abbastanza elementi
      * nello stack
      */
-    public void swap() {
+    public void swap() throws NoSuchElementException{
         dataSingle.swap();
     }
 
@@ -75,7 +75,7 @@ public class CoreStack {
      *
      * @throws NoSuchElementException Quando lo stack è vuoto
      */
-    public void drop() {
+    public void drop() throws NoSuchElementException{
         dataSingle.drop();
     }
 
@@ -85,10 +85,15 @@ public class CoreStack {
      * @throws NoSuchElementException Quando non ci sono abbastanza elementi
      * nello stack
      */
-    public void over() {
+    public void over() throws NoSuchElementException {
         dataSingle.over();
     }
-
+     /**
+     * Metodo utilizzato per controllare se due stack abbiano gli stessi elementi 
+     *
+     * @throws NoSuchElementException Quando non ci sono abbastanza elementi
+     * nello stack
+     */
     public boolean compareStack(List<ComplexNumber> lc1, List<ComplexNumber> lc2) {
         if (lc1.size() != lc2.size()) {
             return false;
