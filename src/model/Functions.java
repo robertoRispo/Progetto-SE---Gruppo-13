@@ -143,7 +143,7 @@ public class Functions {
 
     /**
      * Metodo che salva una funzione esistente su file di testo
-     * "nomefunzion.txt"
+     * "nomefunzione.txt"
      *
      * @param name
      * @throws IOException
