@@ -214,27 +214,6 @@ public class Functions {
         }
     }
 
-    /*Da Rimuovere
-    public void modifyOperation(String name){
-        List<String> operationsList = readOperations(name);
-        
-        
-        name = operationsList.remove(0);
-
-        Iterator<String> iterOperations = operationsList.iterator();
-
-        if (!isFunctionCorrect(iterOperations)) {
-            System.out.println("Problema Trovato");
-        }
-
-        if(function.containsKey(name)){
-            function.replace(name, operationsList);
-        }
-        else{
-            throw new NoSuchElementException("Key non presente");
-        }
-    }*/
-    //Dobbiamo vedere dove mettere tutti questi metodi
     /**
      * Trasforma una stringa di numeri, in un numero complesso, reale o solo
      * immaginario
